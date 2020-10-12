@@ -1,3 +1,11 @@
+Prerequisites
+============
+
+The follwoing Apps must be deployed to your Search Head(s)
+- `Gemini KV Store Tools <https://splunkbase.splunk.com/app/3536/>`_.
+- `Python Cron Iteration for Splunk <https://splunkbase.splunk.com/app/4027/>`_.
+- `Lookup File Editor <https://splunkbase.splunk.com/app/1724/>`_.
+
 1 - Install the App on your Splunk Search Head(s).
 
 2 - Launch 'Update KV Store lookup' to populate KV Store lookup. 
