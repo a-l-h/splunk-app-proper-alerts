@@ -46,7 +46,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'ProperAlerts'
+project = 'Proper Alerts'
 copyright = '2020, A-L-H'
 author = 'A-L-H'
 
