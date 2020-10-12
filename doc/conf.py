@@ -94,7 +94,7 @@ html_theme_options = { style_external_links
 style_nav_header_background}
 
 html_theme_options = {
-    'style_nav_header_background': 'red',
+    'style_nav_header_background': '#EA2BD5',
     'style_external_links': True,
 }
 
