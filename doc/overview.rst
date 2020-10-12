@@ -9,17 +9,17 @@ Each alert should pass 6 arbitrary checks defined within the App:
 +-------------+-------------------------------------------------------------------------------------------------+---------------------+---------------------+
 | Check       | Definition                                                                                      | Type                | Resource            |
 +=============+=================================================================================================+=====================+=====================+
-| Source      | Data source must be indexed                                                                     | Manual              ||
+| Source      | Data source must be indexed                                                                     | Manual              |                     |
 +-------------+-------------------------------------------------------------------------------------------------+---------------------+---------------------+
-| Index       | If applicable, target index(es) must be specified                                               | Automatic           ||
+| Index       | If applicable, target index(es) must be specified                                               | Automatic           |                     |
 +-------------+-------------------------------------------------------------------------------------------------+---------------------+---------------------+
-| Runtime     | Runtime must be lower than the gap between two executions                                       | Automatic           ||
+| Runtime     | Runtime must be lower than the gap between two executions                                       | Automatic           |                     |
 +-------------+-------------------------------------------------------------------------------------------------+---------------------+---------------------+
-| Alignment   | Schedule must be coordinated with the search time range                                         | Manual              |https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Coordinate_an_alert_schedule_and_search_time_range|
+| Alignment   | Schedule must be coordinated with the search time range                                         | Manual              |                     |
 +-------------+-------------------------------------------------------------------------------------------------+---------------------+---------------------+
-| Delay       | Must have at least 1 minute delay (i.e. latest_time must not be "now")                          | Automatic           |https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Schedule_alerts_with_at_least_one_minute_of_delay|
+| Delay       | Must have at least 1 minute delay (i.e. latest_time must not be "now")                          | Automatic           |                     |
 +-------------+-------------------------------------------------------------------------------------------------+---------------------+---------------------+
-| Structure   | Must be correctly strutured (e.g. careful usage of join & transition, filters added the sooner) | Manual              |https://www.splunk.com/en_us/blog/tips-and-tricks/splunk-clara-fication-search-best-practices.html|
+| Structure   | Must be correctly strutured (e.g. careful usage of join & transition, filters added the sooner) | Manual              |                     |
 +-------------+-------------------------------------------------------------------------------------------------+---------------------+---------------------+
 
 
