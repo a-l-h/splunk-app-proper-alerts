@@ -3,12 +3,14 @@
 Purpose
 =======
 
-It is pretty easy for Splunk admins to lost track on Splunk alerts. The data source could no longer exist, the search query could be malformed, search period and time schedule could be uncoordinated and so on.
+Maintaining properly configured alerts is not an easy task.
 
-This could be addressed by reviewing alerts from time to time but there is a more efficient way that consists in reviewing alerts once, and then only review alerts whenever a change occurs after being notified about it.
+Is the search properly structured? Is data source still being indexed? Are search time and schedule coordinated? What if the runtime is longer than the interval between two occurrences of the same alert?
 
-This is the purpose of this App: help Splunk admins to continuously maintain properly configured alerts.
+You probably answered these questions while reviewing alerts from time to time but it can quickly become a painful task if the number of alerts rises and it is not rare to see an environment in which Splunk admins lost track of running alerts with consequences such as alerts being missed and improper resources usage.
 
-To do so, the App leverages Splunk KV Store to save a collection of configured alerts which gets updated every time an alert is added, modified or deleted, and uses an interactive dashboard to let Splunk admin review the alert beased on defined checks.
+The goal of this App is to help maintaining properly configured alerts.
+
+It does so by providing an interactive dashboard that lets Splunk admins review each alert effortlessly and by notifying them whenever a new or modified alert has to be reviewed.
 
 
