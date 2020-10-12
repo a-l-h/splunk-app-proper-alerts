@@ -12,6 +12,3 @@ word-count
 
    purpose.rst
    prerequisites.rst
-   usage.rst
-   credit.rst
-   exercises.rst
