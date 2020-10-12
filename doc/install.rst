@@ -14,7 +14,7 @@ Deployment Steps
 
 2. Launch ``Update KV Store lookup`` alert to populate data: adjust cron schedule to the next minute and wait for it to be triggerred
 
-3. Go to ``Inventory`` dashboard. Active alerts should be listed in the first panel
+3. Go to ``Inventory`` dashboard: active alerts should be listed in the first panel
 
 4. Adjust ``Update KV Store Lookup`` alert cron schedule as needed. It is set to run hourly by default. If you change the periodicity, adjust time range accordingly. 
 
