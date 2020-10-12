@@ -11,7 +11,7 @@ word-count
    :maxdepth: 2
 
    purpose.rst
-   dependencies.rst
+   prerequisites.rst
    usage.rst
    credit.rst
    exercises.rst
