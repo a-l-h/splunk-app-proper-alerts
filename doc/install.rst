@@ -3,10 +3,6 @@ Prerequisites
 
 The follwoing Apps must be deployed to your Search Head(s)
 
-- Semicircle Donut Chart Viz, Splunk Base: https://splunkbase.splunk.com/app/4378
-- Splunk Machine Learning Toolkit, Splunk Base: https://splunkbase.splunk.com/app/2890
-- Splunk Timeline - Custom Visualization, Splunk Base: https://splunkbase.splunk.com/app/3120
-
 - Gemini KV Store Tools: https://splunkbase.splunk.com/app/3536/
 - Python Cron Iteration for Splunk: https://splunkbase.splunk.com/app/4027/
 - Lookup File Editor: https://splunkbase.splunk.com/app/1724/
