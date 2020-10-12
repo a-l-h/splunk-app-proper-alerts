@@ -11,4 +11,6 @@ word-count
    :maxdepth: 2
 
    purpose.rst
+   overview.rst
+   install.rst
    prerequisites.rst
