@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# WordCount documentation build configuration file, created by
+# Proper Alerts documentation build configuration file, created by
 # sphinx-quickstart on Fri Jun  8 14:27:52 2018.
 #
 # This file is execfile()d with the current directory set to its
@@ -46,9 +46,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'WordCount'
-copyright = '2018, Harsha'
-author = 'Harsha'
+project = 'ProperAlerts'
+copyright = '2020, A-L-H'
+author = 'A-L-H'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
