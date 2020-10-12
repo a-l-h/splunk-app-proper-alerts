@@ -90,7 +90,7 @@ html_theme = 'sphinx_rtd_theme'
 # documentation.
 #
 html_theme_options = {
-    'style_nav_header_background': 'red',
+    'style_nav_header_background': '#3C444D',
     'style_external_links': True
 }
 
