@@ -13,4 +13,5 @@ word-count
    purpose.rst
    overview.rst
    install.rst
-   prerequisites.rst
+   alerts.rst
+   dashboards.rst
