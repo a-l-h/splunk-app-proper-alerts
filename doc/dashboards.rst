@@ -1,11 +1,7 @@
 Inventory
-#########
 
 Issues
-######
 
 Concurrency
-###########
 
 Lookups
-#######
