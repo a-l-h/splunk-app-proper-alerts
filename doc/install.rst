@@ -15,12 +15,17 @@ Deployment Steps
 
 1. `Install the App on your Splunk Search Head(s) <https://docs.splunk.com/Documentation/Splunk/latest/Admin/Deployappsandadd-ons#Deployment_architectures>`_
 
+
 2. Launch **Update KV Store lookup** alert to populate data: adjust cron schedule to the next minute and wait for it to be triggerred
+
 
 3. Go to **Inventory** dashboard: active alerts should be listed in the first panel
 
+
 4. Adjust **Update KV Store lookup** alert cron schedule as needed. Adjust the time range accordingly if you do so. 
 
+
 5. [Optional] Enable **Notify alert owner of a change** alert.
+
 
 6. [Optional] Set your team's email as the recipient to **Notify admin for alerts to review** alert and enable it.
