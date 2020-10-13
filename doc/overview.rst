@@ -30,9 +30,7 @@ Index
 -----
 
 When there is no index specified in a search query, Splunk searches in all available indexes (depending on owner's role). This is not optimal in terms of resource usage and it is best practice to specify index(es) to be searched within the query. 
-Searches that use alternate search commands in which index has not to be specified (e.g. dbxquery, inputlookup) are not taken into account (i.e. such queries are marked as having index specified).
-
-`Resource <https://docs.splunk.com/Documentation/Splunk/latest/Search/Writebettersearches#Restrict_searches_to_the_specific_index>`_
+Searches that use alternate search commands in which index has not to be specified (e.g. dbxquery, inputlookup) are not taken into account (i.e. such queries are marked as having index specified). `Resource <https://docs.splunk.com/Documentation/Splunk/latest/Search/Writebettersearches#Restrict_searches_to_the_specific_index>`_
 
 Runtime
 -------
@@ -42,9 +40,7 @@ When Splunk takes so much time to execute the search that it has not finished wh
 Delay
 -----
 
-It is better practice to leave some delay on alerts by configuring a latest time of at least 1 minute.
-
-`Resource <https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Schedule_alerts_with_at_least_one_minute_of_delay>`_
+It is better practice to leave some delay on alerts by configuring a latest time of at least 1 minute. `Resource <https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Schedule_alerts_with_at_least_one_minute_of_delay>`_
 
 
 Manual Checks
@@ -59,16 +55,12 @@ Alignment
 ---------
 
 Schedule must be coordinated with search time range.
-For instance, an alert executed every 5 minutes should have a time range of 5 minutes to avoid duplicate alerts and for better usage of resources. 
-
-`Resource <https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Coordinate_an_alert_schedule_and_search_time_range>`_
+For instance, an alert executed every 5 minutes should have a time range of 5 minutes to avoid duplicate alerts and for better usage of resources. `Resource <https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Coordinate_an_alert_schedule_and_search_time_range>`_
 
 Structure
 ---------
 
-This a way more subjective check whose goal is to make sure search queries are properly written considering searches best practices.
-
-Resource <https://www.splunk.com/en_us/blog/tips-and-tricks/splunk-clara-fication-search-best-practices.html>`_
+This a way more subjective check whose goal is to make sure search queries are properly written considering searches best practices. `Resource <https://www.splunk.com/en_us/blog/tips-and-tricks/splunk-clara-fication-search-best-practices.html>`_
 
 
 Update KV Store lookup alert
@@ -81,21 +73,31 @@ It checks for all enabled and scheduled alerts, perform the automatic checks and
 
 It performs CRUD operations to the KV store collection:
 
-- If the alert does not exist anymore since the last execution of the alert, its entry is deleted from
-
-- If the alert has changed since the last exection of the alert, its entry is updated
-
 - If the alert has been created since the last execution of the alert, a new entry is created
 
-More details on the alert here....
+- If the alert has changed since the last exection of the alert, the entry is updated
 
+- If the alert does not exist anymore since the last execution of the alert, the entry is deleted
+
+Specifics
 
 Inventory dashboard
 ###################
 
 
-Splunk admins can then use this dashboard to review alerts and manually update the KV store with manual checks
+This dashboard loads KV Store lookup entries and lets Splunk admins review each alert independently. During this review the admin will control alert manual checks and save results to the KV Store through interactive buttons. 
 
-Workflow images
+Specifics
 
-More details here
+Concurrency dashboard
+#####################
+
+This dashboard's goal is to help resolve alert spreading issues.
+
+Whith a growing number of alerts, there could be plenty of alerts launching at the same exact minute.
+
+This could be limited by the maximum number of concurrent scheduled searches that Splunk can run.
+
+Hence, the idea is to represent the number of alerts executed over time against this concurrency limit so it becomes easy to spot too busy schedules.
+
+Specifics
