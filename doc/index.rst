@@ -21,7 +21,7 @@ Topics
 ======
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 0
 
    overview.rst
    install.rst
