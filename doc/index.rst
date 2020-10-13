@@ -16,14 +16,20 @@ But this task becomes a pain in no time when the number of alerts rises and it i
 
 A more efficient way to keep track of configured alerts would consists in reviewing them all once, and then only review the ones that have changed since the last review. This the purpose of this App: help Splunk admins to continuously maintain properly configured alerts.
 
+App Purposes
+============
 
-Topics
-======
+- test
+- ok
+
+
+Index
+=====
 
 .. toctree::
    :maxdepth: 2
 
    overview.rst
    install.rst
-   alerts.rst
    dashboards.rst
+   alerts.rst
