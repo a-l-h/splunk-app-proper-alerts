@@ -3,8 +3,8 @@
    in this index.rst for them to be rendered and added to the
    table of contents
    
-Welcome to the Proper Alerts App documentation
-==============================================
+Proper Alerts App documentation
+===============================
 
 Maintaining properly configured alerts is not an easy task in Splunk.
 
