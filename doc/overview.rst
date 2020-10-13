@@ -1,8 +1,8 @@
 How does it work?
-#################
+
 
 Arbitrary Alert Checks
-######################
+
 
 Each alert should pass 6 arbitrary checks defined within the App:
 
@@ -24,7 +24,7 @@ Each alert should pass 6 arbitrary checks defined within the App:
 
 
 Update KV Store lookup alert
-############################
+
 
 The "Update KV Store lookup" alert is the core function of the App.
 
@@ -42,7 +42,7 @@ More details on the alert here....
 
 
 Inventory dashboard
-###################
+
 
 Splunk admins can then use this dashboard to review alerts and manually update the KV store with manual checks
 
