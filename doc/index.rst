@@ -18,11 +18,7 @@ A more efficient way to keep track of configured alerts would consists in review
 
 This the purpose of this App: help Splunk admins to continuously maintain properly configured alerts.
 
-App Purposes
-============
-
-- test
-- ok
+To do so, the App leverages Splunk KV Store to save a collection of configured alerts which gets updated every time an alert is modified and managed through an interactive dashboard that lets admins review alerts.
 
 
 Topics
