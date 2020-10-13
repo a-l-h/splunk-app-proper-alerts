@@ -1,7 +1,6 @@
 How does it work?
 =================
 
-
 Alert Checks
 ############
 
@@ -63,15 +62,14 @@ Structure
 This a way more subjective check whose goal is to make sure search queries are properly written considering searches best practices. `Resource <https://www.splunk.com/en_us/blog/tips-and-tricks/splunk-clara-fication-search-best-practices.html>`_
 
 
-Update KV Store lookup alert
-############################
-
+KV Store lookup
+###############
 
 The "Update KV Store lookup" alert is the core function of the App.
 
 It checks for all enabled and scheduled alerts, perform the automatic checks and save results into a KV Store lookup.
 
-It performs CRUD operations to the KV store collection:
+It performs CRUD (Create, read, update, and delete) operations to the KV store lookup:
 
 - If the alert has been created since the last execution of the alert, a new entry is created
 
@@ -84,17 +82,18 @@ Specifics
 Inventory dashboard
 ###################
 
+This dashboard loads KV Store lookup entries and lets Splunk admins review each alert independently. 
 
-This dashboard loads KV Store lookup entries and lets Splunk admins review each alert independently. During this review the admin will control alert manual checks and save results to the KV Store through interactive buttons. 
+During the review the admin will address alert manual checks and save results to the KV Store through interactive buttons. 
 
 Specifics
 
 Concurrency dashboard
 #####################
 
-This dashboard's goal is to help resolve alert spreading issues.
+The goal of this dashboard is to help resolve alert spreading issues.
 
-Whith a growing number of alerts, there could be plenty of alerts launching at the same exact minute.
+Whith a growing number of alerts, there could be plenty of alerts launching at the same exact time schedule.
 
 This could be limited by the maximum number of concurrent scheduled searches that Splunk can run.
 
