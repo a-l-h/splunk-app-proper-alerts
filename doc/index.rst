@@ -29,5 +29,6 @@ Topics
 
    overview.rst
    install.rst
+   usage.rst
    dashboards.rst
    alerts.rst
