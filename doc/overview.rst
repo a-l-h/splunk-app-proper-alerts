@@ -23,6 +23,16 @@ Alert Checks
 | Structure   | Must be correctly strutured                               | Manual    |
 +-------------+-----------------------------------------------------------+-----------+
 
+Automatic Checks
+****************
+
+Index
+-----
+
+
+Manual Checks
+*************
+
 
 Update KV Store lookup alert
 ############################
