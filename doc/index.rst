@@ -23,8 +23,8 @@ App Purposes
 - ok
 
 
-Index
-=====
+Topics
+======
 
 .. toctree::
    :maxdepth: 2
