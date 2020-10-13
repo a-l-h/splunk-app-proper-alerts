@@ -8,7 +8,7 @@ Proper Alerts
 =============
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    purpose.rst
    overview.rst
