@@ -1,5 +1,5 @@
 How does it work?
-=================
+#################
 
 Arbitrary Alert Checks
 ######################
