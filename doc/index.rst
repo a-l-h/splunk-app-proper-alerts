@@ -7,13 +7,13 @@ Is the search properly structured? Is data source still being indexed? Are searc
 
 You probably answered these questions while doing the once in a while alert review.
 
-But this task becomes a pain in no time when the number of alerts rises and, as a consultant, it is common to see a Splunk environment in which admins lost track of configured alerts with consequences such as alerts being missed and improper resources usage.
+This task however, becomes a pain in no time when the number of alerts rises and, as a consultant, it is common to see a Splunk environment in which admins lost track of configured alerts with consequences such as alerts being missed and improper resources usage.
 
-A more efficient way to keep track of configured alerts would consists in reviewing them all once, and then only review the ones that have changed since the last review.
+A more efficient way to keep track of active alerts would consist in reviewing them all once, and then only review the ones that have been modified since the last review.
 
 This the purpose of this App: help Splunk admins to continuously maintain properly configured alerts.
 
-To do so, the App leverages Splunk KV Store to save a collection of configured alerts which gets updated every time an alert is modified and managed through an interactive dashboard that lets admins review alerts.
+To do so, the App leverages Splunk KV Store to save active alerts in a lookup that gets updated every time an alert is modified. The lookup is then loaded in an interactive dashboard that lets Splunk admins review alerts.
 
 
 Topics
