@@ -4,8 +4,8 @@
    table of contents
 
 
-word-count
-==========
+Proper Alerts
+=============
 
 .. toctree::
    :maxdepth: 2
