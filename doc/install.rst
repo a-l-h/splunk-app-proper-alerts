@@ -1,5 +1,4 @@
 Prerequisites
-=============
 
 The following Apps must be deployed to your Search Head(s)
 
@@ -8,7 +7,6 @@ The following Apps must be deployed to your Search Head(s)
 - `Lookup File Editor <https://splunkbase.splunk.com/app/1724/>`_
 
 Deployment Steps
-================
 
 1. `Install the App on your Splunk Search Head(s) <https://docs.splunk.com/Documentation/Splunk/latest/Admin/Deployappsandadd-ons#Deployment_architectures>`_
 
