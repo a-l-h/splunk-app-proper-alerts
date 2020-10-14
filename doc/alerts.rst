@@ -4,7 +4,7 @@ Alerts
 Update KV Store lookup
 ######################
 
-As previously mentioned  :doc:`my document <../overview>`  :doc:`my document2 <../overview#kv-store-lookup>` , this alert looks for active alerts, performs the automatic checks :ref:`Automatic Checks` and save the result to a KV store lookup.
+As previously mentioned  :ref:`KV Store lookup` , this alert looks for active alerts, performs the automatic checks :ref:`Automatic Checks` and save the result to a KV store lookup.
 
 It can be broken down in more detailed steps:
 
