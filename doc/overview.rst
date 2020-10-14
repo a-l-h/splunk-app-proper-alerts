@@ -61,7 +61,7 @@ Structure
 
 This a way more subjective check whose goal is to make sure search queries are properly written considering searches best practices. `Resource <https://www.splunk.com/en_us/blog/tips-and-tricks/splunk-clara-fication-search-best-practices.html>`_
 
-
+.. _link-target:
 KV Store lookup
 ###############
 
