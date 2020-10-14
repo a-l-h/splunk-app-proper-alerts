@@ -1,4 +1,3 @@
-.. _my-reference-label:
 How does it work?
 =================
 
