@@ -4,7 +4,7 @@ Alerts
 Update KV Store lookup
 ######################
 
-As previously mentioned  :ref:`anchor text <overview:link-target>`  , this alert looks for active alerts, performs the automatic checks :ref:`Automatic Checks` and save the result to a KV store lookup.
+As previously mentioned  :ref:`my-reference-label`  , this alert looks for active alerts, performs the automatic checks :ref:`Automatic Checks` and save the result to a KV store lookup.
 
 It can be broken down in more detailed steps:
 
