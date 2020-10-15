@@ -90,7 +90,12 @@ html_theme = 'sphinx_rtd_theme'
 # documentation.
 #
 html_theme_options = {
-    'style_external_links': True
+    'style_external_links': True,
+    'display_version': False
+}
+
+html_context = {
+  'display_github': False
 }
 
 # The name of an image file (relative to this directory) to place at the top
