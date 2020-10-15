@@ -76,7 +76,7 @@ It performs CRUD (Create, read, update, and delete) operations to the KV store l
 
 - If the alert does not exist anymore since the last execution of the alert, the entry is deleted
 
-Specifics
+:ref:`Specifics<Update KV Store lookup>`
 
 Inventory dashboard
 ###################
@@ -85,8 +85,7 @@ This dashboard loads KV Store lookup entries and lets Splunk admins review each 
 
 During the review the admin will address alert manual checks and save results to the KV Store through interactive buttons. 
 
-Specifics
-
+:ref:`Specifics<Inventory>`
 Concurrency dashboard
 #####################
 
@@ -98,4 +97,4 @@ This could be limited by the maximum number of concurrent scheduled searches tha
 
 Hence, the idea is to represent the number of alerts executed over time against this concurrency limit so it becomes easy to spot too busy schedules.
 
-Specifics
+:ref:`Specifics<Concurrency>`
