@@ -86,6 +86,7 @@ This dashboard loads KV Store lookup entries and lets Splunk admins review each 
 During the review the admin will address alert manual checks and save results to the KV Store through interactive buttons. 
 
 :ref:`Specifics<Inventory>`
+
 Concurrency dashboard
 #####################
 
