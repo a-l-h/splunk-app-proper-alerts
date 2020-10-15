@@ -30,7 +30,7 @@ Considered fields
 +---------------+-----------------------------+
 | Field         | Field Description           |
 +===============+=============================+
-| alert         | alert name                  | 
+| ``alert``     | alert name                  | 
 +---------------+-----------------------------+
 | app           | app name                    |
 +---------------+-----------------------------+
@@ -49,26 +49,35 @@ Considered fields
 | actions       | alert action(s)             |
 +---------------+-----------------------------+
 
-Also save a md5 checksum of search query independently
+Also save a md5 checksum of search query.
 
 9. Use Cron Iteration command to calculate the interval between 2 executions
-10. Search scheduler logs to determine the maximum runtime
+10. Determine the maximum runtime from scheduler logs
 11. Add the current content of the KV Store lookup to the results for comparison
 12. If the md5 checksum of alert's main fields has changed, keep the newest values
-13. If the search period of schedule has changed, reset the 'Alignment' check
-14. If the search query has changed, reset the 'Structure' check
-15. If the runtime exceeeds the interval, update the 'Runtime' check
+13. If the search period of schedule has changed, reset the *Alignment* check
+14. If the search query has changed, reset the *Structure* check
+15. If the runtime exceeds the interval, update the *Runtime* check
 16. Check if the search period has a minimum delay of 1 minute, if applicable
-17. Call KV Store lookup to get the key of each entry to update
+17. Call KV Store lookup to get the ``_key`` field of each entry to update
 
 Workflow for that
 
 Notify admin for alerts to review
 #################################
 
+This alert notifies Splunk admins of the count of alerts that need to be reviewed.
 
+The idea is to enable it after the first initial review of all alerts so that Splunk admins get notified of any alert to review whether new of modified.
+
+The recipient(s) must be set and the schedule should be adjusted to your needs.
 
 Notify alert owner of a change 
 ##############################
 
+This alert notifies the owner of an alert of any change made on an alert he owns.
+
+The goal is to avoid any issue that could arise from unsolicited or unannounced modifications.
+
+The recipient of this alert is the recipient of the modified alert ?
 
