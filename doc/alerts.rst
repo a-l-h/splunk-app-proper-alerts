@@ -4,7 +4,7 @@ Alerts
 Update KV Store lookup
 ######################
 
-As :ref:`previously mentioned <KV Store lookup>`, this alert looks for active alerts, performs the :ref:`automatic checks<Automatic Checks>` and save the result to a KV store lookup.
+As :ref:`previously mentioned<KV Store lookup>`, this alert looks for active alerts, performs the :ref:`automatic checks<Automatic Checks>` and save the result to a KV store lookup.
 
 It can be broken down in more detailed steps:
 
