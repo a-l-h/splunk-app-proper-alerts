@@ -6,7 +6,7 @@ Update KV Store lookup
 
 As :ref:`previously mentioned<KV Store lookup>`, this alert looks for active alerts, performs the :ref:`automatic checks<Automatic Checks>` and save the result to a KV store lookup.
 
-It can be broken down in more detailed steps:
+Its search query can be broken down in more detailed steps:
 
 Remove deleted alerts from the lookup
 -------------------------------------
@@ -79,5 +79,20 @@ This alert notifies the owner of an alert of any change made on an alert he owns
 
 The goal is to avoid any issue that could arise from unsolicited or unannounced modifications.
 
-The recipient of this alert is the recipient of the modified alert ?
+The recipient of this alert is the recipient of the modified alert?
+
+Search query steps:
+
+
+1. Search for all enabled and scheduled alerts, then for each alert:
+2. Save the md5 checksum of the concatenation of main fields for later comparison (link similar to ^^)
+3. Prefix all fields name except alert & app with ``new_`` for later comparison
+5. Load KV Store lookup entries that do have an owner, that is mail recipient(s) as owner field is derived from email.to field
+6. Group both data sets (1 & 5) by alert and by app
+7. Filter out results having the same md5 of main fields on both data sets.
+8. Do some eval tricks among main alert fields to identify the ones that have been modified
+9. Retrieve App label using a subsearch
+10. Check if the email is valid
+11. If email is not valid set it to the one set in "Notify admin for alerts to review" as it should be Splunk admins email
+12. Add ``invalid_email`` field to identify invalid emails...
 
