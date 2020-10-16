@@ -16,4 +16,4 @@ Create an issue on `GitHub <https://github.com/a-l-h/splunk-app-proper-alerts-do
 Email
 #####
 
-a.b@c.d
+alh-spk@protonmail.com
