@@ -11,15 +11,15 @@ Its search query can be broken down in more detailed steps:
 Remove deleted alerts from the lookup
 ------------------------------------------------
 
-1.  Load KV Store lookup
-2.  Filter out enabbled and scheduled alerts to obtain the list of alerts that exist in the lookup but are not active in Splunk anymore
-6.  Call KV Store lookup to get the ``_key`` field of each alert entry to be deleted
-7.  Delete alert entries from the lookup using `Gemini KV Store Tools custom command <https://splunkbase.splunk.com/app/3536/#/details>`_
+1. Load KV Store lookup
+2. Filter out enabbled and scheduled alerts to obtain the list of alerts that exist in the lookup but are not active in Splunk anymore
+6. Call KV Store lookup to get the ``_key`` field of each alert entry to be deleted
+7. Delete alert entries from the lookup using `Gemini KV Store Tools custom command <https://splunkbase.splunk.com/app/3536/#/details>`_
 
 Search for active alerts
 ------------------------
 
-8.  Search for all enabled and scheduled alerts, then for each alert:
+8. Search for all enabled and scheduled alerts, then for each alert:
 11. Check if the index is specified in the search query if aplicable, using macro ``indexIsSpecified``
 13. Define the owner as being the local-part of the first recipient email address
 15. Extract service request reference from description field, using macro ``getServiceRequest``
