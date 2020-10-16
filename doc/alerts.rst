@@ -119,5 +119,4 @@ Search query steps:
 :16-21:   Eval main alert fields to identify the modified ones
 :27-30:   Retrieve App label using a subsearch
 :33:      Check if the email is valid
-:34:      If email is invalid set it as set in "Notify admin for alerts to review" alert
-:12:      Add ``invalid_email`` field to identify invalid emails...
+:34-39:   If email is invalid set it as set in ``Notify admin for alerts to review`` alert
