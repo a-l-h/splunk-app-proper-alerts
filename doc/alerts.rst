@@ -12,13 +12,13 @@ Remove deleted alerts from the lookup
 :1:       Load KV Store lookup
 :2-5:     Filter out active alerts to obtain the list of alerts to be removed from the KV Store lookup
 :6:       Call KV Store lookup to get the ``_key`` field of each alert entry to be deleted
-:7:       Delete alert entries from the lookup using `Gemini KV Store Tools custom command <https://splunkbase.splunk.com/app/3536/#/details>`_
+:7:       Delete alert entries from the lookup using `Gemini KV Store Tools<https://splunkbase.splunk.com/app/3536/#/details>`_ custom command
 
 Search for active alerts
 ------------------------
 
 :8-9:     Search for all enabled and scheduled alerts, then for each alert:
-:11:      Check if the index is specified in the search query if aplicable, using macro ``indexIsSpecified``
+:11:      Check if the index is specified in the search query, if applicable, using macro ``indexIsSpecified``
 :13-14:   Define the owner as being the local-part of the first recipient email address
 :15:      Extract service request reference from description field, using macro ``getServiceRequest``
 :18:      Clean the updated field
@@ -49,14 +49,14 @@ Considered fields
 | ``actions``       | alert action(s)             |
 +-------------------+-----------------------------+
 
-Also save a md5 checksum of the search query.
+Also save the md5 checksum of the search query.
 
-:20-22:   Use Cron Iteration command to calculate the interval between 2 executions
+:20-22:   Use `Cron Iteration<https://splunkbase.splunk.com/app/4027/#/details>`_ command to calculate the interval between 2 executions
 :23-24:   Prefix all fields name except alert & app with ``new_`` for later comparison
 :25-35:   Determine the maximum runtime from scheduler logs
 :36:      Filter out alerts only present in scheduler logs
 
-Compare it to KV Store lookup current entries
+Compare it to current KV Store lookup entries
 ---------------------------------------------
 
 :37-38:   Add the current content of the KV Store lookup to the results for comparison
@@ -68,7 +68,7 @@ Compare it to KV Store lookup current entries
 :45:      If the runtime exceeds the interval, update the *Runtime* check
 :46-47:   Check if the search period has a minimum delay of 1 minute, if applicable
 :48-55:   Fields clean up
-:56-59:   Retrieve App label using a subsearch
+:56-59:   Retrieve App label
 :60:      Call KV Store lookup to get the ``_key`` field for each entry to update
 
 Save results to the KV Store lookup
@@ -76,7 +76,9 @@ Save results to the KV Store lookup
 
 The output is saved to KV Store lookup **alerts_lookup** using Gemini's custom alert action.
 
-Workflow for that
+SCREEN
+
+WORKFLOW
 
 Notify admin for alerts to review
 #################################
@@ -96,7 +98,9 @@ This alert notifies the owner of an alert of any change made on an alert he owns
 
 The goal is to avoid any issue that could arise from unsolicited or unannounced modifications.
 
-The recipient of this alert is the recipient of the modified alert?
+The recipient of this alert is the recipient of the modified alert.
+
+If there is no email recipient defined for the alert, alert is sent to Splunk admins email defined the previous alert.
 
 Search query steps:
 
