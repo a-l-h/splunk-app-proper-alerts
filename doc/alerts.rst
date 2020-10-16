@@ -74,11 +74,15 @@ Compare it to current KV Store lookup entries
 Save results to the KV Store lookup
 -----------------------------------
 
-The output is saved to KV Store lookup **alerts_lookup** using Gemini's custom alert action.
+The output contains two types of entries:
 
-SCREEN
+- alerts created after the last execution of the alert
+- alerts modified since the last execution of the alert
 
-WORKFLOW
+It is saved to the KV Store lookup **alerts_lookup** using Gemini KV Store Tools' custom alert action:
+
+.. image:: img/alert_action_kv_store.png
+   :align: center
 
 Notify admin for alerts to review
 #################################
