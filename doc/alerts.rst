@@ -12,7 +12,7 @@ Remove deleted alerts from the lookup
 :1:       Load KV Store lookup
 :2-5:     Filter out active alerts to obtain the list of alerts to be removed from the KV Store lookup
 :6:       Call KV Store lookup to get the ``_key`` field of each alert entry to be deleted
-:7:       Delete alert entries from the lookup using `Gemini KV Store Tools<https://splunkbase.splunk.com/app/3536/#/details>`_ custom command
+:7:       Delete alert entries from the lookup using `Gemini KV Store Tools <https://splunkbase.splunk.com/app/3536/#/details>`_ custom command
 
 Search for active alerts
 ------------------------
@@ -51,7 +51,7 @@ Considered fields
 
 Also save the md5 checksum of the search query.
 
-:20-22:   Use `Cron Iteration<https://splunkbase.splunk.com/app/4027/#/details>`_ command to calculate the interval between 2 executions
+:20-22:   Use `Cron Iteration <https://splunkbase.splunk.com/app/4027/#/details>`_ command to calculate the interval between 2 executions
 :23-24:   Prefix all fields name except alert & app with ``new_`` for later comparison
 :25-35:   Determine the maximum runtime from scheduler logs
 :36:      Filter out alerts only present in scheduler logs
