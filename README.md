@@ -21,7 +21,16 @@
          ▀█▓█▀  ▀█▄▄▄▄▓▀▀-
 		 
 		 
-##	Version 1.0.1 - October 2020
+##	Version
+
+
+1.0.1
+
+
+##	Date
+
+
+October 2020
 
 
 ##	Release Notes
