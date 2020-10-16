@@ -28,6 +28,7 @@ Topics
    dashboards.rst
    alerts.rst
    macros.rst
+   download.rst
    compatibility.rst
    release_notes.rst
    support.rst
