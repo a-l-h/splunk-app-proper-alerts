@@ -8,7 +8,7 @@ Splunk Answers
 
 Start a Conversation on `Splunk Answers <https://splunkbase.splunk.com/app/3536/#/details>`_ 
 
-Tag it with *"Proper Alerts"*.
+Tag it ``Proper Alerts``
 
 GitHub 
 ######
