@@ -1,1 +1,7 @@
-hello
+Release Notes
+=============
+
+Version 1.0.1
+#############
+
+- Initial release
