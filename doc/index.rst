@@ -27,3 +27,4 @@ Topics
    usage.rst
    dashboards.rst
    alerts.rst
+   support.rst
