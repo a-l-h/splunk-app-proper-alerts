@@ -61,7 +61,7 @@ Compare it to KV Store lookup current entries
 
 :37-38:   Add the current content of the KV Store lookup to the results for comparison
 :39:      Group both data sets (1-6 & 37-38) by alert and by app
-:40:      If the md5 of main fields has changed or if runtime is longer than interval, keep the newest values
+:40:      If the md5 of main fields have changed or if runtime exceeds interval, keep the newest values
 :41:      If the search period of schedule has changed, reset the *Alignment* check
 :42:      If the search query has changed, reset the *Structure* check
 :43:      If the search query has changed, reset the *Source* check
