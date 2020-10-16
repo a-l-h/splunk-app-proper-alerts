@@ -30,7 +30,10 @@
 - Initial release
 
 
-##	[Documentation](https://splunk-proper-alerts.rtfd.io)
+##	Documentation
+
+
+[Read the Docs](https://splunk-proper-alerts.rtfd.io)
 
 
 ##	Prerequisites
