@@ -7,7 +7,7 @@ Update KV Store lookup
 Its search query broken down in detailed steps:
 
 Remove deleted alerts from the lookup
-------------------------------------------------
+-------------------------------------
 
 :1:       Load KV Store lookup
 :2-5:     Filter out active alerts to obtain the list of alerts to be removed from the KV Store lookup
