@@ -55,7 +55,7 @@ Also save a md5 checksum of search query.
 
 :20-22:   Use Cron Iteration command to calculate the interval between 2 executions
 :23-24:   Prefix all fields name except alert & app with ``new_`` for later comparison
-:25-35    Determine the maximum runtime from scheduler logs of Search Head or Search Head Cluster members, if applicable (27-33)
+:25-35:    Determine the maximum runtime from scheduler logs of Search Head or Search Head Cluster members, if applicable (27-33)
 :36:      Filter out alerts only present in scheduler logs
 :37-38:   Add the current content of the KV Store lookup to the results for comparison
 :39:      Group both data sets (1-6 & 37-38) by alert and by app
