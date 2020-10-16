@@ -83,7 +83,9 @@ Notify admin for alerts to review
 
 This alert notifies Splunk admins of the count of alerts that need to be reviewed.
 
-The idea is to enable it after the first initial review of all alerts so that Splunk admins get notified of any alert to review whether new of modified.
+The idea is to enable it after the first initial review of all alerts.
+
+This way, Splunk admins get notified of any alert to review whether new of modified.
 
 The recipient(s) must be set and the schedule should be adjusted to your needs.
 
