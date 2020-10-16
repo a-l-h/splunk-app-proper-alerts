@@ -27,29 +27,29 @@ Search for active alerts
 Considered fields
 *****************
 
-+---------------+-----------------------------+
-| Field         | Field Description           |
-+===============+=============================+
-| ``alert``     | alert name                  | 
-+---------------+-----------------------------+
-| app           | app name                    |
-+---------------+-----------------------------+
-| updated       | last update timestamp       | 
-+---------------+-----------------------------+
-| cron_schedule | alert schedule              |
-+---------------+-----------------------------+
-| earliest_time | search period earliest time |
-+---------------+-----------------------------+
-| latest_time   | search period latest time   |
-+---------------+-----------------------------+
-| search        | search query                |
-+---------------+-----------------------------+
-| email         | recipient email(s)          |
-+---------------+-----------------------------+
-| actions       | alert action(s)             |
-+---------------+-----------------------------+
++-------------------+-----------------------------+
+| Field             | Field Description           |
++===================+=============================+
+| ``alert``         | alert name                  | 
++-------------------+-----------------------------+
+| ``app``           | app name                    |
++-------------------+-----------------------------+
+| ``updated``       | last update timestamp       | 
++-------------------+-----------------------------+
+| ``cron_schedule`` | alert schedule              |
++-------------------+-----------------------------+
+| ``earliest_time`` | search period earliest time |
++-------------------+-----------------------------+
+| ``latest_time``   | search period latest time   |
++-------------------+-----------------------------+
+| ``search``        | search query                |
++-------------------+-----------------------------+
+| ``email``         | recipient email(s)          |
++-------------------+-----------------------------+
+| ``actions``       | alert action(s)             |
++-------------------+-----------------------------+
 
-Also save a md5 checksum of search query.
+Also save a md5 checksum of the search query.
 
 :20-22:   Use Cron Iteration command to calculate the interval between 2 executions
 :23-24:   Prefix all fields name except alert & app with ``new_`` for later comparison
