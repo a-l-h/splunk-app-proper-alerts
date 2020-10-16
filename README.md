@@ -1,26 +1,6 @@
-#	Proper Alerts App
+#	![alt text](https://github.com/a-l-h/splunk-app-proper-alerts-doc/blob/master/doc/img/logo.svg) Proper Alerts App
 
 
-                  ▄▄▄         █
-                 ██ÑÑ▀▓       █
-                 ▐█▓NÑÑ#▓▄    └      ▄█╙
-                ╓█ └▀█▄╠∩▀█▄        ▀"
-               ╓██▄  .▀█▄││▀█▄   
-              ╓█. ▀ ▄   ▀█▄││╙▀▓
-             ╒█-    ▀█▄   ▀█▄∩│╙▀▓,    ▀▀▀╙╙
-            ┌█-       ╙█▄   ╙█▓∩│Å▀█▄
-           ┌█¬          └▀▄   └▀▓▄│∩▀█▄
-          ┌█=              ▀▓,  └▀█▄││▀█▄
-         .█'                 ▀▓▄    ╫▄││╙█▄
-         ,.                    ▀█▄  ▄██▄▄█╩
-        █=                     ▄▄█▀▀╙
-     ╓▄█▀                 ▄▄▓▀▀╙
-    ▓█ÑÑ█▓,          ▄▄▓▀▀█
-     ▀█▄╠╙▀▓▄   ▄▄▓▀▀╙,█▌ █b
-       ▀█▄NÅ▀█▀▀█.▀▓▓▀▀└ ▄█
-         ▀█▓█▀  ▀█▄▄▄▄▓▀▀-
-		 
-		 
 ##	Version
 
 
@@ -29,7 +9,6 @@
 
 ##	Date
 
-![alt text](https://github.com/a-l-h/splunk-app-proper-alerts-doc/blob/master/doc/img/logo.svg)
 
 October 2020
 
