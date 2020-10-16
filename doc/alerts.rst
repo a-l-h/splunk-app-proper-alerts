@@ -12,29 +12,19 @@ Remove deleted alerts from the lookup
 ------------------------------------------------
 
 :1:       Load KV Store lookup
-:2-5:     Filter out enabbled and scheduled alerts to obtain the list of alerts that exist in the lookup but are not active in Splunk anymore
+:2-5:     Filter out enabled and scheduled alerts to obtain the list of alerts that exist in the lookup but are not active in Splunk anymore
 :6:       Call KV Store lookup to get the ``_key`` field of each alert entry to be deleted
 :7:       Delete alert entries from the lookup using `Gemini KV Store Tools custom command <https://splunkbase.splunk.com/app/3536/#/details>`_
-
-+---------------+--------------------------------------------------------------------------------------------------------------------------------------+
-| 1             | Load KV Store lookup                                                                                                                 |
-+---------------+--------------------------------------------------------------------------------------------------------------------------------------+
-| 2-5           | Filter out enabbled and scheduled alerts to obtain the list of alerts that exist in the lookup but are not active in Splunk anymore  | 
-+---------------+--------------------------------------------------------------------------------------------------------------------------------------+
-| 6             | Call KV Store lookup to get the ``_key`` field of each alert entry to be deleted                                                     |
-+---------------+--------------------------------------------------------------------------------------------------------------------------------------+
-| 7             | Delete alert entries from the lookup using `Gemini KV Store Tools custom command <https://splunkbase.splunk.com/app/3536/#/details>`_|
-+---------------+--------------------------------------------------------------------------------------------------------------------------------------+
 
 Search for active alerts
 ------------------------
 
-8. Search for all enabled and scheduled alerts, then for each alert:
-11. Check if the index is specified in the search query if aplicable, using macro ``indexIsSpecified``
-13. Define the owner as being the local-part of the first recipient email address
-15. Extract service request reference from description field, using macro ``getServiceRequest``
-18. Clean the updated field
-19. Save the md5 checksum of the concatenation of main fields for later comparison
+:8: Search for all enabled and scheduled alerts, then for each alert:
+:11: Check if the index is specified in the search query if aplicable, using macro ``indexIsSpecified``
+:13: Define the owner as being the local-part of the first recipient email address
+:15: Extract service request reference from description field, using macro ``getServiceRequest``
+:18: Clean the updated field
+:19: Save the md5 checksum of the concatenation of main fields for later comparison
 
 Considered fields
 *****************
@@ -63,21 +53,21 @@ Considered fields
 
 Also save a md5 checksum of search query.
 
-20. Use Cron Iteration command to calculate the interval between 2 executions
-23. Prefix all fields name except alert & app with ``new_`` for later comparison
-25. Determine the maximum runtime from scheduler logs of Search Head or Search Head Cluster members, if applicable (27-33)
-36. Filter out alerts only present in scheduler logs
-37. Add the current content of the KV Store lookup to the results for comparison
-39. Group both data sets (1-6 & 37-38) by alert and by app
-40. If the md5 checksum of alert's main fields has changed or if runtime is longer than interval, keep the newest values
-41. If the search period of schedule has changed, reset the *Alignment* check
-42. If the search query has changed, reset the *Structure* check
-43. If the search query has changed, reset the *Source* check
-45. If the runtime exceeds the interval, update the *Runtime* check
-46. Check if the search period has a minimum delay of 1 minute, if applicable
-48. Fields clean up
-56. Retrieve App label using a subsearch
-60. Call KV Store lookup to get the ``_key`` field for each entry to update
+:20: Use Cron Iteration command to calculate the interval between 2 executions
+:23: Prefix all fields name except alert & app with ``new_`` for later comparison
+:25: Determine the maximum runtime from scheduler logs of Search Head or Search Head Cluster members, if applicable (27-33)
+:36: Filter out alerts only present in scheduler logs
+:37: Add the current content of the KV Store lookup to the results for comparison
+:39: Group both data sets (1-6 & 37-38) by alert and by app
+:40: If the md5 checksum of alert's main fields has changed or if runtime is longer than interval, keep the newest values
+:41: If the search period of schedule has changed, reset the *Alignment* check
+:42: If the search query has changed, reset the *Structure* check
+:43: If the search query has changed, reset the *Source* check
+:45: If the runtime exceeds the interval, update the *Runtime* check
+:46: Check if the search period has a minimum delay of 1 minute, if applicable
+:48: Fields clean up
+:56: Retrieve App label using a subsearch
+:60: Call KV Store lookup to get the ``_key`` field for each entry to update
 
 The output is saved to KV Store lookup **alerts_lookup** using Gemini's custom alert action.
 
