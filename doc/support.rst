@@ -6,20 +6,14 @@ App is community supported through the following options:
 Splunk Answers
 ##############
 
-Open a question in Splunk answers for the application:
+Start a Conversation on `Splunk Answers<https://splunkbase.splunk.com/app/3536/#/details>`_ tagged with *"Proper Alerts"*.
 
-- https://community.splunk.com/t5/forums/postpage/board-id/apps-add-ons-all
+GitHub 
+######
 
-Create an Github issue
-######################
+Creat an issue on `GitHub<https://github.com/a-l-h/splunk-app-proper-alerts-doc/issues>`_
 
-To report an issue, request a feature change or improvement, please open an issue in Github:
-
-- https://github.com/guilhemmarchand/trackme/issues
-
-Email support
-#############
+Email
+#####
 
 * a.b@c.d
-
-However, previous options are far betters, and will give you all the chances to get a quick support from the community of fellow Splunkers.
