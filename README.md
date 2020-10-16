@@ -47,10 +47,11 @@ The following Apps must be deployed to your Search Head(s):
 
 
 ##	Deployment Steps
-
+[label](http://example.com)
 
 1.	Install the App on your Splunk Search Head(s) 
 [test] (https://docs.splunk.com/Documentation/Splunk/latest/Admin/Deployappsandadd-ons#Deployment_architectures)
+[label](http://example.com)
 2.	Launch *Update KV Store lookup* alert to populate data: adjust cron schedule to the next minute
 3.	Go to *Inventory* dashboard: active alerts should be listed in the first panel
 4.	*Optional* Adjust *getServiceRequest* macro if you want to extract the service request reference from the description field of each alert
