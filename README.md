@@ -1,6 +1,6 @@
 #	![](https://github.com/a-l-h/splunk-app-proper-alerts-doc/blob/master/doc/img/logo.svg) Proper Alerts
 
-
+<center>Centered text</center>
 ##	Version
 
 
