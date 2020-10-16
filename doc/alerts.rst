@@ -4,9 +4,7 @@ Alerts
 Update KV Store lookup
 ######################
 
-As :ref:`previously mentioned<KV Store lookup>`, this alert looks for active alerts, performs the :ref:`automatic checks<Automatic Checks>` and save the result to a KV store lookup.
-
-Its search query can be broken down in more detailed steps:
+Its search query broken down in detailed steps:
 
 Remove deleted alerts from the lookup
 ------------------------------------------------
@@ -55,8 +53,12 @@ Also save a md5 checksum of search query.
 
 :20-22:   Use Cron Iteration command to calculate the interval between 2 executions
 :23-24:   Prefix all fields name except alert & app with ``new_`` for later comparison
-:25-35:    Determine the maximum runtime from scheduler logs of Search Head or Search Head Cluster members, if applicable (27-33)
+:25-35:   Determine the maximum runtime from scheduler logs of Search Head or Search Head Cluster members, if applicable (27-33)
 :36:      Filter out alerts only present in scheduler logs
+
+Compare it to KV Store lookup current entries
+---------------------------------------------
+
 :37-38:   Add the current content of the KV Store lookup to the results for comparison
 :39:      Group both data sets (1-6 & 37-38) by alert and by app
 :40:      If the md5 checksum of alert's main fields has changed or if runtime is longer than interval, keep the newest values
@@ -68,6 +70,9 @@ Also save a md5 checksum of search query.
 :48-55:   Fields clean up
 :56-59:   Retrieve App label using a subsearch
 :60:      Call KV Store lookup to get the ``_key`` field for each entry to update
+
+Save results to the KV Store lookup
+-----------------------------------
 
 The output is saved to KV Store lookup **alerts_lookup** using Gemini's custom alert action.
 
