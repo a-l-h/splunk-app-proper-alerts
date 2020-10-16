@@ -27,4 +27,6 @@ Topics
    usage.rst
    dashboards.rst
    alerts.rst
+   macros.rst
+   release_notes.rst
    support.rst
