@@ -1,16 +1,14 @@
 Support
 =======
 
-This application is community supported.
-
-To get support, use of one the following options:
+App is community supported through the following options:
 
 Splunk Answers
 ##############
 
 Open a question in Splunk answers for the application:
 
-- https://answers.splunk.com/app/questions/4621.html
+- https://community.splunk.com/t5/forums/postpage/board-id/apps-add-ons-all
 
 Create an Github issue
 ######################
