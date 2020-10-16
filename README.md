@@ -10,7 +10,7 @@
 ##	Date
 
 
-October 2020
+21 October 2020
 
 
 ##	Release Notes
