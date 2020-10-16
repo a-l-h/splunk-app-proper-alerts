@@ -83,6 +83,11 @@ It is saved to the KV Store lookup **alerts_lookup** using Gemini KV Store Tools
 
 .. image:: img/alert_action_kv_store.png
    :align: center
+   
+Save results to the KV Store lookup
+-----------------------------------
+
+Alert runs every hour. If you adjust cron schedule, adjust time range accordingly.
 
 Notify admin for alerts to review
 #################################
@@ -107,7 +112,6 @@ The recipient of this alert is the recipient of the modified alert.
 If there is no email recipient defined for the alert, alert is sent to Splunk admins email defined the previous alert.
 
 Search query steps:
-
 
 :1:       Search for all enabled and scheduled alerts, then for each alert:
 :4:       Clean the updated field
