@@ -55,7 +55,7 @@ These Apps must be deployed to your Search Head(s):
 4.	[Optional] Adjust *getServiceRequest* macro if you want to extract the service request reference from alerts' description field
 5.	Adjust Update *KV Store lookup* alert cron schedule as needed (and time range accordingly)
 7.	[Optional] Enable *Notify admin for alerts to review* alert and adjust recipient
-8.	[Optional] Enable *Notify alert owner of a change* alert but note that **the fallback recipient maps to the one defined above**
+8.	[Optional] Enable *Notify alert owner of a change* alert but note that the fallback recipient maps to the one defined above
 
 
 ##	Contact
