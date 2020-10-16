@@ -109,7 +109,7 @@ The goal is to avoid any issue that could arise from unsolicited or unannounced 
 
 The recipient of this alert is the recipient of the modified alert.
 
-If there is no email recipient defined for the alert, alert is sent to Splunk admins email defined the previous alert.
+If the alert has no recipient, alert is sent to email defined in ``Notify admin for alerts to review``.
 
 Search query steps:
 
