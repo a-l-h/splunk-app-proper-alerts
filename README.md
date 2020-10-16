@@ -33,7 +33,7 @@
 ##	Documentation
 
 
-https://splunk-proper-alerts.rtfd.io
+[Doc](https://splunk-proper-alerts.rtfd.io)
 
 
 ##	Prerequisites
