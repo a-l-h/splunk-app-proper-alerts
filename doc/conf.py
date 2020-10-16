@@ -94,10 +94,6 @@ html_theme_options = {
     'display_version': False
 }
 
-html_context = {
-  'display_github': False
-}
-
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
 html_logo = "img/logo.svg"
