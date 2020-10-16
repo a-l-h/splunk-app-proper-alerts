@@ -4,4 +4,4 @@ Compatibility
 Splunk
 ######
 
-This application is compatible with Splunk 7.2.x.....
+This App is compatible with Splunk 7.x and 8.x versions.
