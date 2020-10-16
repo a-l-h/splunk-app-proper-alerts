@@ -12,7 +12,7 @@ Remove deleted alerts from the lookup
 ------------------------------------------------
 
 :1:       Load KV Store lookup
-:2-5:     Filter out enabled and scheduled alerts to obtain the list of alerts that exist in the lookup but are not active in Splunk anymore
+:2-5:     Filter out active alerts to obtain the list of alerts to be removed from the KV Store lookup
 :6:       Call KV Store lookup to get the ``_key`` field of each alert entry to be deleted
 :7:       Delete alert entries from the lookup using `Gemini KV Store Tools custom command <https://splunkbase.splunk.com/app/3536/#/details>`_
 
@@ -104,5 +104,5 @@ Search query steps:
 :16-21:   Eval main alert fields to identify the modified ones
 :27-30:   Retrieve App label using a subsearch
 :33:      Check if the email is valid
-:34:      If email is not valid set it to the one set in "Notify admin for alerts to review" as it should be Splunk admins email
+:34:      If email is invalid set it as set in "Notify admin for alerts to review" alert
 :12:      Add ``invalid_email`` field to identify invalid emails...
