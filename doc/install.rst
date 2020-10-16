@@ -17,6 +17,6 @@ Deployment Steps
 2.  Set cron schedule for **Update KV Store lookup** alert to the next minute 
 3.  Open the **Inventory** dashboard to check if active alerts are listed in the panel
 4.  [OPT] Adjust **getServiceRequest** macro to extract service request # from alerts' description
-5.  Adjust **Update KV Store lookup** alert cron schedule as needed (and time range accordingly)
+5.  [OPT] Adjust **Update KV Store lookup** alert cron schedule as needed (and time range accordingly)
 6.  [OPT] Enable **Notify admin for alerts to review** alert and adjust recipient
 7.  [OPT] Enable **Notify alert owner of a change** alert
