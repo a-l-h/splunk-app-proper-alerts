@@ -43,7 +43,7 @@ Search for active alerts
      - Save the MD5 hash of the concatenation of main fields for later comparison
 
 Considered fields:
-******************
+~~~~~~~~~~~~~~~~~~
 
 .. list-table::
    :widths: 20 80
@@ -158,7 +158,7 @@ The recipient of this alert is the recipient of the modified alert.
 If the alert has no recipient, alert is sent to email set in ``Notify admin for alerts to review`` alert.
 
 Search query steps:
-*******************
+~~~~~~~~~~~~~~~~~~~
 
 .. list-table::
    :widths: 20 80
