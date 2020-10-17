@@ -11,12 +11,12 @@ Download
 
 The application can be downloaded from:
 
-|splunk| Splunkbase
+|splunk| Splunkbase |github|
 ###################
         
 SplunkBase link
 
-|github| GitHub
+|github| GitHub |github|
 ###############
 
 GitHub link
