@@ -11,18 +11,12 @@ Download
 
 The application can be downloaded from:
 
-|splunk| Splunkbase |github|
-###################
+|splunk| Splunkbase
+-------------------
         
 SplunkBase link
 
-|github| GitHub |github|
-###############
+|github| GitHub
+---------------
 
 GitHub link
-
-.. warning:: Beware of dragons.
-
-.. note:: This is a note.
-
-|github| GitHub |github|
