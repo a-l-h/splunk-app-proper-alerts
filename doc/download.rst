@@ -20,3 +20,5 @@ SplunkBase link
 ###############
 
 GitHub link
+
+.. warning:: Beware of dragons.
