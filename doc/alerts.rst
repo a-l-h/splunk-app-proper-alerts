@@ -42,7 +42,8 @@ Search for active alerts
    * - 19
      - Save the MD5 hash of the concatenation of main fields for later comparison
 
-**Considered fields:**
+Considered fields
+*****************
 
 .. list-table::
    :widths: 20 80
