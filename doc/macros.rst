@@ -2,7 +2,7 @@ Macros
 ======
 
 indexIsSpecified
-################
+----------------
 
 This macro is used in ``Update KV Store lookup`` alert to perform the :ref:`Index automatic check<Index>`
 
@@ -28,7 +28,7 @@ While it still is a good practice to precise the index using alernate commands s
 If you use a scripted command in an alert query and it is spooted as not having index specified, add your script command to the search_commands_lookup and give the value classic search = 0
 
 getServiceRequest
-#################
+-----------------
 
 This macro is used in ``Update KV Store lookup`` to perform extract the service request from alert's description field.
 
@@ -38,6 +38,6 @@ Having service request could be useful when investigating an alert from the inve
 
 
 maxConcurrentSavedSearches
-##########################
+--------------------------
 
 This macro is used in the ``Concurrency`` dashboard to retrieve the maximum number of concurent saved searches that can be run.
