@@ -1,12 +1,10 @@
 .. |splunk| image:: img/spk.svg 
-        :height: 16px
-        :width: 16px
-        :align: center
+        :height: 15px
+        :width: 15px
 
 .. |github| image:: img/git.svg 
-        :height: 14px
-        :width: 14px
-        :align: center
+        :height: 15px
+        :width: 15px
 
 Download
 ========
@@ -22,8 +20,3 @@ SplunkBase link
 ---------------
 
 GitHub link
-
-.. raw:: html
-   <h1 align="center">
-   <a href="https://www.google.fr"><img width="14" src="img/git.svg">Hello</a>
-   </h1>
