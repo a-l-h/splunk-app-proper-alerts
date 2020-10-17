@@ -35,13 +35,12 @@ Search for active alerts
      - Search for all enabled and scheduled alerts, then for each alert:
    * - 11
      - Check if the index is specified in the search query, if applicable, using macro ``indexIsSpecified``
-
-:8-9:     Search for all enabled and scheduled alerts, then for each alert:
-:11:      Check if the index is specified in the search query, if applicable, using macro ``indexIsSpecified``
-:13-14:   Define the owner as being the local-part of the first recipient email address
-:15:      Extract service request reference from description field, using macro ``getServiceRequest``
-:18:      Clean the updated field
-:19:      Save the md5 checksum of the concatenation of main fields for later comparison
+   * - 13-14
+     - Define the owner as being the local-part of the first recipient email address
+   * - 18
+     - Clean ``updated`` field
+   * - 19
+     - Save the MD5 hash of the concatenation of main fields for later comparison
 
 Considered fields
 *****************
@@ -70,25 +69,48 @@ Considered fields
 
 Also save the md5 checksum of the search query.
 
-:20-22:   Use `Cron Iteration <https://splunkbase.splunk.com/app/4027/#/details>`_ command to calculate the interval between 2 executions
-:23-24:   Prefix all fields name except alert & app with ``new_`` for later comparison
-:25-35:   Determine the maximum runtime from scheduler logs
-:36:      Filter out alerts only present in scheduler logs
+.. list-table::
+   :widths: 20 80
+   :header-rows: 0
+
+   * - 20-22
+     - Use `Cron Iteration <https://splunkbase.splunk.com/app/4027/#/details>`_ command to calculate the interval between 2 executions
+   * - 23-24
+     - Prefix all fields name except ``alert`` & ``app`` with ``new_`` for later comparison
+   * - 25-35
+     - Determine the maximum runtime from scheduler logs
+   * - 36
+     - Filter out alerts only present in scheduler logs
 
 Compare it to current KV Store lookup entries
 ---------------------------------------------
 
-:37-38:   Add the current content of the KV Store lookup to the results for comparison
-:39:      Group both data sets (1-6 & 37-38) by alert and by app
-:40:      If the md5 of main fields have changed or if runtime exceeds interval, keep the newest values
-:41:      If the search period of schedule has changed, reset the *Alignment* check
-:42:      If the search query has changed, reset the *Structure* check
-:43:      If the search query has changed, reset the *Source* check
-:45:      If the runtime exceeds the interval, update the *Runtime* check
-:46-47:   Check if the search period has a minimum delay of 1 minute, if applicable
-:48-55:   Fields clean up
-:56-59:   Retrieve App label
-:60:      Call KV Store lookup to get the ``_key`` field for each entry to update
+.. list-table::
+   :widths: 20 80
+   :header-rows: 0
+
+   * - 37-38
+     - Add the current content of the KV Store lookup to the results for comparison
+   * - 39
+     - Group both data sets (1-6 & 37-38) by ``alert`` and by ``app``
+   * - 40
+     - If the MD5 of main fields have changed or if runtime exceeds interval, keep the newest values
+   * - 41
+     - If the search period of schedule has changed, reset the *Alignment* check
+   * - 42
+     - If the search query has changed, reset the *Structure* check
+   * - 43
+     - If the search query has changed, reset the *Source* check
+   * - 45
+     - If the runtime exceeds the interval, update the *Runtime* check
+   * - 46-47
+     - Check if the search period has a minimum delay of 1 minute, if applicable
+   * - 48-55
+     - Fields clean up
+   * - 56-59
+     - Retrieve App label
+   * - 60
+     - Call KV Store lookup to get the ``_key`` field for each entry to update
 
 Save results to the KV Store lookup
 -----------------------------------
@@ -132,14 +154,29 @@ If the alert has no recipient, alert is sent to email set in ``Notify admin for 
 
 Search query steps:
 
-:1:       Search for all enabled and scheduled alerts, then for each alert:
-:4:       Clean the updated field
-:5:       Save the md5 checksum of the concatenation of main fields for later comparison (:ref:`see above<Considered fields>`)
-:6:       Prefix all fields name except alert & app with ``new_`` for later comparison
-:8-11:    Load KV Store lookup entries that do have an owner
-:12:      Group both data sets (1 & 8-11) by alert and by app
-:13:      Filter out results having the same md5 of main fields on both data sets.
-:16-21:   Eval main alert fields to identify the modified ones
-:27-30:   Retrieve App label using a subsearch
-:33:      Check if the email is valid
-:34-39:   If email is invalid set it as set in ``Notify admin for alerts to review`` alert
+.. list-table::
+   :widths: 20 80
+   :header-rows: 1
+   
+   * - Lines
+     - Description
+   * - 1
+     - Search for all enabled and scheduled alerts, then for each alert:
+   * - 4
+     - Clean ``updated`` field
+   * - 5
+     - Save the MD5 hash of the concatenation of main fields for later comparison (:ref:`see above<Considered fields>`)
+   * - 6
+     - Prefix all fields name except ``alert`` & ``app`` with ``new_`` for later comparison
+   * - 8-11
+     - Load KV Store lookup entries that do have an ``owner``
+   * - 12
+     - Group both data sets (1 & 8-11) by ``alert`` and by ``app``
+   * - 13
+     - Filter out results having the same MD5 hash of main fields in both data sets
+   * - 16-21
+     - Eval main alert fields to identify the modified ones
+   * - 27-30
+     - Retrieve App label
+   * - 34-39
+     - If email is invalid set it as set in ``Notify admin for alerts to review`` alert
