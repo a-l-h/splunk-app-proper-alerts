@@ -6,6 +6,17 @@ Update KV Store lookup
 
 Its search query broken down in detailed steps:
 
+.. list-table::
+   :widths: 20 80
+   :header-rows: 1
+
+   * - Shapes
+     - Description
+   * - Square
+     - Four sides of equal length, 90 degree angles
+   * - Rectangle
+     - Four sides, 90 degree angles
+
 Remove deleted alerts from the lookup
 -------------------------------------
 
