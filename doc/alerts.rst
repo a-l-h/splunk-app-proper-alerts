@@ -6,6 +6,9 @@ Update KV Store lookup
 
 Its search query broken down in detailed steps:
 
+Remove deleted alerts from the lookup
+-------------------------------------
+
 .. list-table::
    :widths: 20 80
    :header-rows: 1
@@ -21,16 +24,17 @@ Its search query broken down in detailed steps:
    * - 7
      - Delete alert entries from the lookup using `Gemini KV Store Tools <https://splunkbase.splunk.com/app/3536/#/details>`_ custom command
 
-Remove deleted alerts from the lookup
--------------------------------------
-
-:1:       Load KV Store lookup
-:2-5:     Filter out active alerts to obtain the list of alerts to be removed from the KV Store lookup
-:6:       Call KV Store lookup to get the ``_key`` field of each alert entry to be deleted
-:7:       Delete alert entries from the lookup using `Gemini KV Store Tools <https://splunkbase.splunk.com/app/3536/#/details>`_ custom command
-
 Search for active alerts
 ------------------------
+
+.. list-table::
+   :widths: 20 80
+   :header-rows: 0
+
+   * - 8-9
+     - Search for all enabled and scheduled alerts, then for each alert:
+   * - 11
+     - Check if the index is specified in the search query, if applicable, using macro ``indexIsSpecified``
 
 :8-9:     Search for all enabled and scheduled alerts, then for each alert:
 :11:      Check if the index is specified in the search query, if applicable, using macro ``indexIsSpecified``
