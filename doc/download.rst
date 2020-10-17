@@ -20,3 +20,8 @@ SplunkBase link
 ---------------
 
 GitHub link
+
+.. raw:: html
+   <h1 align="center">
+   <a href="https://www.google.fr"><img width="14" src="img/git.svg">Hello</a>
+   </h1>
