@@ -3,8 +3,8 @@ Download
 
 The application can be downloaded from:
 
-Splunk base
-###########
+Splunkbase
+##########
 
 SplunkBase link
 
