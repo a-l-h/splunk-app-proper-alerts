@@ -1,22 +1,25 @@
+.. |splunk|
+.. image:: img/splunk.svg
+   :target: https://www.google.com
+   :align: left
+
+.. |github|
+.. image:: img/github.svg
+   :target: https://www.google.com
+   :align: left
+
 Download
 ========
 
 The application can be downloaded from:
 
-.. image:: img/splunk.svg
-   :align: middle
-   :target: https://www.google.com
 
-Splunkbase
-##########
+|splunk| Splunkbase
+###################
 
 SplunkBase link
 
-.. image:: img/github.svg
-   :align: middle
-   :target: https://www.google.com
-
-GitHub
-######
+|github| GitHub
+###############
 
 GitHub link
