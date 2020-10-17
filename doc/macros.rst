@@ -9,15 +9,17 @@ This macro is used in ``Update KV Store lookup`` alert to perform the :ref:`Inde
 It looks through the ``qualifiedSearch`` field of each alert to find if an index is specified in the query.
 
 While sounding simple at first, several usescases has to be covered:
-- subsearches
-- macros
-- eventypes
-- alternative search commands
+
++ subsearches
++ macros
++ eventypes
++ alternative search commands
 
 As a result the underlying query handles:
-- up to 2 levels of macros
-- up to 2 levels of eventtypes
-- alternative search commands via the ``search_commands_lookup``
+
++ up to 2 levels of macros
++ up to 2 levels of eventtypes
++ alternative search commands via the ``search_commands_lookup``
 
 This latter case is simple, if the search is not a classic index=foo search, then index is not required.
 
