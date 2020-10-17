@@ -45,29 +45,34 @@ Search for active alerts
 Considered fields
 *****************
 
-+-------------------+-----------------------------+
-| Field             | Field Description           |
-+===================+=============================+
-| ``alert``         | alert name                  | 
-+-------------------+-----------------------------+
-| ``app``           | app name                    |
-+-------------------+-----------------------------+
-| ``updated``       | last update timestamp       | 
-+-------------------+-----------------------------+
-| ``cron_schedule`` | alert schedule              |
-+-------------------+-----------------------------+
-| ``earliest_time`` | search period earliest time |
-+-------------------+-----------------------------+
-| ``latest_time``   | search period latest time   |
-+-------------------+-----------------------------+
-| ``search``        | search query                |
-+-------------------+-----------------------------+
-| ``email``         | recipient email(s)          |
-+-------------------+-----------------------------+
-| ``actions``       | alert action(s)             |
-+-------------------+-----------------------------+
+.. list-table::
+   :widths: 20 80
+   :header-rows: 1
 
-Also save the md5 checksum of the search query.
+   * - Field
+     - Field Description
+   * - ``alert``
+     - alert name
+   * - ``app``
+     - app name
+   * - ``updated``
+     - last update timestamp
+   * - ``cron_schedule``
+     - alert schedule
+   * - ``cron_schedule``
+     - alert schedule
+   * - ``earliest_time``
+     - search period earliest time
+   * - ``latest_time``
+     - search period latest time
+   * - ``search``
+     - search query
+   * - ``email``
+     - recipient(s)
+   * - ``actions``
+     - alert action(s)
+
+Also save the MD5 hash of the search query.
 
 .. list-table::
    :widths: 20 80
