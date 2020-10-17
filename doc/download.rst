@@ -9,7 +9,7 @@ Splunkbase
 
 SplunkBase link
 
-.. image:: img/github.png
+.. image:: img/github.svg
 GitHub
 ######
 
