@@ -7,7 +7,7 @@ Update KV Store lookup
 Its search query broken down in detailed steps:
 
 Remove deleted alerts from the lookup
-+++++++++++++++++++++++++++++++++++++
+*************************************
 
 .. list-table::
    :widths: 20 80
