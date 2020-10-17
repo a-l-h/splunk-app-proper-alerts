@@ -32,3 +32,4 @@ Topics
    compatibility.rst
    release_notes.rst
    support.rst
+   test.md
