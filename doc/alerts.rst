@@ -169,7 +169,7 @@ If the alert has no recipient, alert is sent to email set in ``Notify admin for 
    * - 4
      - Clean ``updated`` field
    * - 5
-     - Save the MD5 hash of the concatenation of main fields for later comparison (:ref:`Considered fields`)
+     - Save the MD5 hash of the concatenation of main fields for later comparison (:ref:`see considered fields<Considered fields>`)
    * - 6
      - Prefix all fields name except ``alert`` & ``app`` with ``new_`` for later comparison
    * - 8-11
