@@ -18,7 +18,7 @@ Six different alerts checks are defined within the App:
      - Manual
    * - Index
      - If applicable, target index(es) must be specified
-     - Manual
+     - Automatic
    * - Runtime
      - Runtime must be lower than the gap between two executions
      - Automatic
@@ -31,22 +31,6 @@ Six different alerts checks are defined within the App:
    * - Structure
      - Must be correctly strutured 
      - Manual
-     
-+-------------+-----------------------------------------------------------+-----------+
-| Check       | Definition                                                | Type      |
-+=============+===========================================================+===========+
-| Source      | Data source must be indexed                               | Manual    |
-+-------------+-----------------------------------------------------------+-----------+
-| Index       | If applicable, target index(es) must be specified         | Automatic |
-+-------------+-----------------------------------------------------------+-----------+
-| Runtime     | Runtime must be lower than the gap between two executions | Automatic |
-+-------------+-----------------------------------------------------------+-----------+
-| Alignment   | Schedule must be coordinated with the search time range   | Manual    |
-+-------------+-----------------------------------------------------------+-----------+
-| Delay       | Must have at least 1 minute delay                         | Automatic |
-+-------------+-----------------------------------------------------------+-----------+
-| Structure   | Must be correctly strutured                               | Manual    |
-+-------------+-----------------------------------------------------------+-----------+
 
 Automatic Checks
 ****************
