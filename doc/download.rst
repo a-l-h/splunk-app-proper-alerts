@@ -3,8 +3,8 @@ Download
 
 The application can be downloaded from:
 
-.. image:: img/splunk.svg 
-Splunkbase
+.. |Splunkbase| image:: img/splunk.svg 
+:alt: Alternative text
 ##########
 
 SplunkBase link
