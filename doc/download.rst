@@ -3,12 +3,12 @@ Download
 
 The application can be downloaded from:
 
-.. image:: img/splunk.svgSplunkbase
+.. image:: img/splunk.svg Splunkbase
 ##########
 
 SplunkBase link
 
-.. image:: img/github.svgGitHub
+.. image:: img/github.svg GitHub
 ######
 
 GitHub link
