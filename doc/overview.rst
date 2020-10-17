@@ -6,6 +6,32 @@ Alert Checks
 
 Six different alerts checks are defined within the App:
 
+.. list-table::
+   :widths: 10 80 10
+   :header-rows: 1
+
+   * - Check
+     - Definition
+     - Type
+   * - Source
+     - Data source must be indexed
+     - Manual
+   * - Index
+     - If applicable, target index(es) must be specified
+     - Manual
+   * - Runtime
+     - Runtime must be lower than the gap between two executions
+     - Automatic
+   * - Alignment
+     - Schedule must be coordinated with the search time range
+     - Manual
+   * - Delay
+     - Must have at least 1 minute delay  
+     - Automatic
+   * - Structure
+     - Must be correctly strutured 
+     - Manual
+     
 +-------------+-----------------------------------------------------------+-----------+
 | Check       | Definition                                                | Type      |
 +=============+===========================================================+===========+
