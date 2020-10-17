@@ -1,8 +1,8 @@
 .. |splunk| image:: img/spk.svg 
-:height: 10px
+        :height: 10px
 
 .. |github| image:: img/git.svg 
-:height: 100px
+        :height: 100px
 
 Download
 ========
