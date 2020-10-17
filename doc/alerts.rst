@@ -86,3 +86,51 @@ Also save the MD5 hash of the search query.
      - Determine the maximum runtime from scheduler logs
    * - 36
      - Filter out alerts only present in scheduler logs
+
+Compare it to current KV Store lookup entries
++++++++++++++++++++++++++++++++++++++++++++++
+
+.. list-table::
+   :widths: 20 80
+   :header-rows: 0
+
+   * - 37-38
+     - Add the current content of the KV Store lookup to the results for comparison
+   * - 39
+     - Group both data sets (1-6 & 37-38) by ``alert`` and by ``app``
+   * - 40
+     - If the MD5 of main fields have changed or if runtime exceeds interval, keep the newest values
+   * - 41
+     - If the search period of schedule has changed, reset the *Alignment* check
+   * - 42
+     - If the search query has changed, reset the *Structure* check
+   * - 43
+     - If the search query has changed, reset the *Source* check
+   * - 45
+     - If the runtime exceeds the interval, update the *Runtime* check
+   * - 46-47
+     - Check if the search period has a minimum delay of 1 minute, if applicable
+   * - 48-55
+     - Fields clean up
+   * - 56-59
+     - Retrieve App label
+   * - 60
+     - Call KV Store lookup to get the ``_key`` field for each entry to update
+
+Save results to the KV Store lookup
++++++++++++++++++++++++++++++++++++
+
+The output contains two types of entries:
+
+- alerts created after the last execution of the alert
+- alerts modified since the last execution of the alert
+
+It is saved to the KV Store lookup **alerts_lookup** using Gemini KV Store Tools' custom alert action:
+
+.. image:: img/alert_action_kv_store.png
+   :align: center
+   
+Save results to the KV Store lookup
++++++++++++++++++++++++++++++++++++
+
+Alert runs every hour. If you adjust cron schedule, adjust time range accordingly.
