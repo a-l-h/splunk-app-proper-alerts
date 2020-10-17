@@ -4,7 +4,7 @@ Macros
 indexIsSpecified
 ----------------
 
-This macro is used in ``Update KV Store lookup`` alert to perform the :ref:`Index automatic check<Index>`
+This macro is used in ``Update KV Store lookup`` alert to perform the :hoverxref:`Index automatic check<Index>`
 
 It looks through the ``qualifiedSearch`` field of each alert to find if an index is specified in the query.
 
