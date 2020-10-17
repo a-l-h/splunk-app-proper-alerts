@@ -6,13 +6,13 @@ The application can be downloaded from:
 |splunk| Splunkbase
 ###################
 
-.. |splunk| image:: img/splunk.svg
+.. |splunk| image:: img/spk.svg
             
 SplunkBase link
 
 |github| GitHub
 ###############
 
-.. |github| image:: img/github.svg
+.. |github| image:: img/git.svg
 
 GitHub link
