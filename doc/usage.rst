@@ -2,12 +2,12 @@ How to use it?
 ==============
 
 Reviewing Alerts
-################
+----------------
 
 Phrase intro puis dire go inventory dashboard
 
 Inventory Dashboard
--------------------
++++++++++++++++++++
 
 Search for a particular alert using filters + screen
 
@@ -23,32 +23,28 @@ Update: Explain each button
 
 Bonus: Explain each button
 
-Workflow
---------
-
 What happens after an alert modification?
-#########################################
+-----------------------------------------
 
 Workflow
---------
 
 Dealing with spreading issues
-#############################
+-----------------------------
 
 Concurrency Dashboard
----------------------
++++++++++++++++++++++
 
 Edit
-----
+++++
 
 Check again
------------
++++++++++++
 
 Browsing KPIs
-#############
+-------------
 
 Stats
------
++++++
 
 Additional checks
------------------
++++++++++++++++++
