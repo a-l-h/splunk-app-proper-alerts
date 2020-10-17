@@ -2,12 +2,12 @@ Alerts
 ======
 
 Update KV Store lookup
-######################
+----------------------
 
 Its search query broken down in detailed steps:
 
 Remove deleted alerts from the lookup
--------------------------------------
++++++++++++++++++++++++++++++++++++++
 
 .. list-table::
    :widths: 20 80
@@ -25,7 +25,7 @@ Remove deleted alerts from the lookup
      - Delete alert entries from the lookup using `Gemini KV Store Tools <https://splunkbase.splunk.com/app/3536/#/details>`_ custom command
 
 Search for active alerts
-------------------------
+++++++++++++++++++++++++
 
 .. list-table::
    :widths: 20 80
@@ -88,7 +88,7 @@ Also save the MD5 hash of the search query.
      - Filter out alerts only present in scheduler logs
 
 Compare it to current KV Store lookup entries
----------------------------------------------
++++++++++++++++++++++++++++++++++++++++++++++
 
 .. list-table::
    :widths: 20 80
@@ -118,7 +118,7 @@ Compare it to current KV Store lookup entries
      - Call KV Store lookup to get the ``_key`` field for each entry to update
 
 Save results to the KV Store lookup
------------------------------------
++++++++++++++++++++++++++++++++++++
 
 The output contains two types of entries:
 
@@ -131,12 +131,12 @@ It is saved to the KV Store lookup **alerts_lookup** using Gemini KV Store Tools
    :align: center
    
 Save results to the KV Store lookup
------------------------------------
++++++++++++++++++++++++++++++++++++
 
 Alert runs every hour. If you adjust cron schedule, adjust time range accordingly.
 
 Notify admin for alerts to review
-#################################
+---------------------------------
 
 This alert notifies Splunk admins of the count of alerts that need to be reviewed.
 
@@ -147,7 +147,7 @@ This way, Splunk admins get notified of any alert to review whether new of modif
 The recipient(s) must be set and the schedule should be adjusted to your needs.
 
 Notify alert owner of a change 
-##############################
+------------------------------
 
 This alert notifies the owner of an alert of any change made on an alert he owns.
 
