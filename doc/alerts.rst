@@ -10,12 +10,16 @@ Its search query broken down in detailed steps:
    :widths: 20 80
    :header-rows: 1
 
-   * - Shapes
+   * - Lines
      - Description
-   * - Square
-     - Four sides of equal length, 90 degree angles
-   * - Rectangle
-     - Four sides, 90 degree angles
+   * - 1
+     - Load KV Store lookup
+   * - 2-5
+     - Filter out active alerts to obtain the list of alerts to be removed from the KV Store lookup
+   * - 6
+     - Call KV Store lookup to get the ``_key`` field of each alert entry to be deleted
+   * - 7
+     - Delete alert entries from the lookup using `Gemini KV Store Tools <https://splunkbase.splunk.com/app/3536/#/details>`_ custom command
 
 Remove deleted alerts from the lookup
 -------------------------------------
