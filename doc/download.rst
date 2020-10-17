@@ -7,7 +7,6 @@ The application can be downloaded from:
 ###################
 
 .. |splunk| image:: img/splunk.svg
-            :width: 16 px
             
 SplunkBase link
 
@@ -15,6 +14,5 @@ SplunkBase link
 ###############
 
 .. |github| image:: img/github.svg
-            :width: 16 px
 
 GitHub link
