@@ -21,7 +21,7 @@ As a result the underlying query handles:
 + up to 2 levels of eventtypes
 + alternative search commands via the ``search_commands_lookup``
 
-This latter case is simple, if the search is not a classic index=foo search, then index is not required.
+This latter case is simple, if the search is not a classic ``index=foo search``, then index is not required.
 
 While it still is a good practice to precise the index using alernate commands such as mstats, the initial goal is to spot uneficient search queries within alerts, so mainly classic searches.
 
