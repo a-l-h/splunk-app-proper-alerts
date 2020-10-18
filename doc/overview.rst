@@ -74,7 +74,7 @@ This a way more subjective check whose goal is to make sure search queries are p
 KV Store lookup
 ---------------
 
-The "Update KV Store lookup" alert is the core function of the App.
+The ``Update KV Store lookup`` alert is the core function of the App.
 
 It checks for all enabled and scheduled alerts, perform the automatic checks and save results into a KV Store lookup.
 
