@@ -30,8 +30,8 @@ Topics
    :maxdepth: 2
    :caption: Knowledge Objects
    
-   /dashboards
    /alerts
+   /dashboards
    /macros
    
 .. toctree::
