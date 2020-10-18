@@ -14,22 +14,22 @@ Six different alerts checks are defined within the App:
      - Definition
      - Type
    * - Source
-     - Data source must be indexed
+     - Target data source must be indexed
      - Manual
    * - Index
-     - If applicable, target index(es) must be specified
+     - If applicable, target index(es) must be specified in the search query
      - Automatic
    * - Runtime
-     - Runtime must be lower than the gap between two executions
+     - Runtime must be lower than the interval between one run to the next
      - Automatic
    * - Alignment
-     - Schedule must be coordinated with the search time range
+     - Alert schedule must be coordinated with search time range
      - Manual
    * - Delay
-     - Must have at least 1 minute delay  
+     - Alert must be scheduled with at least one minute of delay  
      - Automatic
    * - Structure
-     - Must be correctly strutured 
+     - Search query must be correctly structured 
      - Manual
 
 Automatic Checks
@@ -38,13 +38,13 @@ Automatic Checks
 Index
 *****
 
-When there is no index specified in a search query, Splunk searches in all available indexes (depending on owner's role). This is not optimal in terms of resource usage and it is best practice to specify index(es) to be searched within the query. 
-Searches that use alternate search commands in which index has not to be specified (e.g. dbxquery, inputlookup) are not taken into account (i.e. such queries are marked as having index specified). `Resource <https://docs.splunk.com/Documentation/Splunk/latest/Search/Writebettersearches#Restrict_searches_to_the_specific_index>`_
+When there is no index specified in a search query, Splunk searches in all available allowed indexes. This is not optimal in terms of resource usage and it is best practice to specify index(es) to be searched within the query. 
+Searches that use alternate search commands in which index has not to be specified (e.g. ``dbxquery``, ``inputlookup``) are not taken into account (i.e. such queries are marked as having index specified). `Resource <https://docs.splunk.com/Documentation/Splunk/latest/Search/Writebettersearches#Restrict_searches_to_the_specific_index>`_
 
 Runtime
 *******
 
-When Splunk takes so much time to execute the search that it has not finished when the next execution starts.
+When Splunk takes so much time to execute the query that search job is not finished when the alert's next run launches.
 
 Delay
 *****
@@ -63,8 +63,8 @@ Is there any data at all when you run alert's base search (i.e. query's first li
 Alignment
 *********
 
-Schedule must be coordinated with search time range.
-For instance, an alert executed every 5 minutes should have a time range of 5 minutes to avoid duplicate alerts and for better usage of resources. `Resource <https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Coordinate_an_alert_schedule_and_search_time_range>`_
+Alert schedule must be coordinated with search time range.
+For instance, an alert running every 5 minutes should have a time range of 5 minutes to avoid duplicate alerts and for better use of resources. `Resource <https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Coordinate_an_alert_schedule_and_search_time_range>`_
 
 Structure
 *********
@@ -78,13 +78,13 @@ The ``Update KV Store lookup`` alert is the core function of the App.
 
 It checks for all enabled and scheduled alerts, perform the automatic checks and save results into a KV Store lookup.
 
-It performs CRUD (Create, read, update, and delete) operations to the KV store lookup:
+It performs CRUD (Create, Read, Update, and Delete) operations to the KV store lookup:
 
-- If the alert has been created since the last execution of the alert, a new entry is created
+- If the alert has been created since alert's last run, a new entry is created
 
-- If the alert has changed since the last exection of the alert, the entry is updated
+- If the alert has changed since alert's last run, the entry is updated
 
-- If the alert does not exist anymore since the last execution of the alert, the entry is deleted
+- If the alert does not exist anymore since alert's last run, the entry is deleted
 
 :ref:`Specifics<Update KV Store lookup>`
 
@@ -102,9 +102,9 @@ Concurrency dashboard
 
 The goal of this dashboard is to help resolve alert spreading issues.
 
-Whith a growing number of alerts, there could be plenty of alerts launching at the same exact time schedule.
+Whith a growing number of alerts, there could be plenty of alerts launching at the same exact schedule.
 
-This could be limited by the maximum number of concurrent scheduled searches that Splunk can run.
+This could be limited by the maximum concurrent scheduled searches that Splunk scheduler can run.
 
 Hence, the idea is to represent the number of alerts executed over time against this concurrency limit so it becomes easy to spot too busy schedules.
 
