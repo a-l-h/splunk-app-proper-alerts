@@ -4,4 +4,18 @@ Compatibility
 Splunk
 ------
 
-This App is compatible with Splunk 7.x and 8.x versions.
+.. list-table::
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Version
+     - Compatibility
+   * - 7
+     - ✔️
+   * - 8
+     - ✔️
+
+Splunk Cloud
+------------
+
+Cloud Vetting initiated
