@@ -11,7 +11,7 @@ This task however, becomes a pain in no time when the number of alerts rises and
 
 A more efficient way to keep track of active alerts would consist in reviewing them all once, and then only review the ones that have been modified since their last review.
 
-This the purpose of this App: help Splunk admins to continuously maintain properly configured alerts.
+This the purpose of this App: help admins to continuously maintain properly configured alerts.
 
 To do so, the App leverages Splunk KV Store to save active alerts in a lookup that gets updated every time an alert is modified. The lookup is then loaded in an interactive dashboard that lets Splunk admins review alerts.
 
