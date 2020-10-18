@@ -1,7 +1,13 @@
 Release Notes
 =============
 
-1.0.1 - Oct 2020 
-----------------
+.. list-table::
+   :widths: 20 20 60
+   :header-rows: 1
 
-- Initial release
+   * - Version
+     - Date
+     - Comments
+   * - 1.0.1
+     - Oct 2020
+     - Initial release
