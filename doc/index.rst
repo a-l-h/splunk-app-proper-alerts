@@ -20,14 +20,17 @@ Topics
 
 .. toctree::
    :maxdepth: 2
+   :hidden:
+   :caption: First steps
 
-   overview.rst
-   install.rst
-   usage.rst
-   dashboards.rst
-   alerts.rst
-   macros.rst
-   download.rst
-   compatibility.rst
-   release_notes.rst
-   support.rst
+   /overview
+   /install
+   /usage
+   /dashboards
+   /alerts
+   /macros
+   /download
+   /compatibility
+   /release_notes
+   /support
+
