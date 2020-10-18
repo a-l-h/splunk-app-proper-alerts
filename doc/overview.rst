@@ -102,10 +102,10 @@ Concurrency dashboard
 
 The goal of this dashboard is to help resolve alert spreading issues.
 
-Whith a growing number of alerts, there could be plenty of alerts launching at the same exact schedule.
+Whith a growing number of alerts, there could be plenty of alerts launching at the same schedule.
 
-This could be limited by the maximum concurrent scheduled searches that Splunk scheduler can run.
+This could be limited by the maximum concurrent scheduled searches Splunk scheduler can run.
 
-Hence, the idea is to represent the number of alerts executed over time against this concurrency limit so it becomes easy to spot too busy schedules.
+Hence, the idea is to represent the number of alerts launched over time against this concurrency limit so it becomes easy to spot too busy schedules.
 
 :ref:`Specifics<Concurrency>`
