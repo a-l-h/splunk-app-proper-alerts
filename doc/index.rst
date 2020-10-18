@@ -20,15 +20,25 @@ Topics
 
 .. toctree::
    :maxdepth: 2
+   :caption: How to
 
    /overview
    /install
    /usage
+  
+.. toctree::
+   :maxdepth: 2
+   :caption: Knowledge Objects
+   
    /dashboards
    /alerts
    /macros
+   
+.. toctree::
+   :maxdepth: 2
+   :caption: About
+   
    /download
    /compatibility
    /release_notes
    /support
-
