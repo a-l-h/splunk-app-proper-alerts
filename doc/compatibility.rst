@@ -9,13 +9,13 @@ Splunk
    :header-rows: 1
 
    * - Version
-     - Compatibility
-   * - 7
+     - Compatible?
+   * - 7.x
      - ✔️
-   * - 8
+   * - 8.x
      - ✔️
 
 Splunk Cloud
 ------------
 
-Cloud Vetting initiated
+Cloud vetting initiated
