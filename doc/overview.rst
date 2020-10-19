@@ -1,5 +1,5 @@
-How does it work?
-=================
+Overview
+========
 
 Alert Checks
 ------------
