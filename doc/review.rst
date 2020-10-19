@@ -21,6 +21,6 @@ Update: Explain each button
 Bonus: Explain each button
 
 What happens after an alert modification?
------------------------------------------
++++++++++++++++++++++++++++++++++++++++++
 
 Workflow
