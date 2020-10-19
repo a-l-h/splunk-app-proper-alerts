@@ -19,15 +19,21 @@ Topics
 ======
 
 .. toctree::
-   :maxdepth: 2
-   :caption: How to
+   :maxdepth: 1
 
    /overview
+
+.. toctree::
+   :maxdepth: 1
+   :caption: How to
+
    /install
-   /usage
+   /review
+   /kpis
+   /spreading
   
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Knowledge Objects
    
    /alerts
@@ -35,10 +41,10 @@ Topics
    /macros
    
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: About
    
    /download
    /compatibility
-   /release_notes
+   /releases
    /support
