@@ -1,0 +1,4 @@
+# to build documentation locally
+sphinx
+sphinx_rtd_theme
+sphinx-hoverxref
