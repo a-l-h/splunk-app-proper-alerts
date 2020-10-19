@@ -1,5 +1,5 @@
-Reviewing Alerts
-----------------
+Review Alerts
+-------------
 
 Phrase intro puis dire go inventory dashboard
 
