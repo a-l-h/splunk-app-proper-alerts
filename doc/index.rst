@@ -20,14 +20,14 @@ Topics
 
 .. toctree::
    :maxdepth: 1
-
+   :caption: First Steps
    /overview
+   /install
 
 .. toctree::
    :maxdepth: 1
-   :caption: How to
-
-   /install
+   :caption: Usage
+   
    /review
    /kpis
    /spreading
