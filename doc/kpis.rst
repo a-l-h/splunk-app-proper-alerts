@@ -1,5 +1,5 @@
-Browsing KPIs
--------------
+Browse KPIs
+-----------
 
 Stats
 +++++
