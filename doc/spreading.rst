@@ -1,5 +1,5 @@
-Dealing with spreading issues
------------------------------
+Address spreading issues
+------------------------
 
 Concurrency Dashboard
 +++++++++++++++++++++
