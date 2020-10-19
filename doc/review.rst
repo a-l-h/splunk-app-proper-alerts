@@ -24,6 +24,3 @@ What happens after an alert modification?
 -----------------------------------------
 
 Workflow
-
-Dealing with spreading issues
------------------------------
