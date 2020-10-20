@@ -44,7 +44,7 @@ Besides stats on defined :hoverxref:`Alert checks<Alert Checks>`, 3 additional c
 
 .. admonition:: No action
 
-   This check discards actions that could be part of the search query 
+   This check discards alerts whose action resides within the search query 
    (e.g. outputlookup). These alerts should be checked.
 
 .. warning:: These additonal checks are global, meaning dashboard's top filters does not apply.
