@@ -8,11 +8,11 @@ Active alerts should be listed in the very first panel:
 .. image:: img/inventory_panel_1.png
    :align: center
    
-Some filters can be used to narrow down displayed alerts.
+Use the filters to narrow down displayed alerts.
 
-The ℹ️ button is a reminder of Alert Checks (link).
+The ℹ️ button is a reminder of :hoverxref:`Alert checks definitions<Alert Checks>`.
 
-**Table details**
+**Table info**
 
 .. list-table::
    :widths: 40 60
@@ -33,20 +33,20 @@ The ℹ️ button is a reminder of Alert Checks (link).
    * - issues
      - # of failed checks
 
-To review an alert, click on its row to obtain its specifics:
+To review an alert, click on its row to display its specifics in a new panel:
 
 .. image:: img/inventory_panel_2.png
    :align: center
 
-Underneath, the ``Review alert`` section provides interactivre buttons:
+The ``Review alert`` section underneath provides interactive buttons:
 
-🔍 --> alert's search query in a new tab
+🔍 ➫ alert's search query in a new tab
 
-📊 --> alert actions from scheduler logs in a dynamic panel
+📊 ➫ alert actions from scheduler logs in a dynamic panel
 
-⚙️ --> edit the alert in its App context in a new tab
+⚙️ ➫ edit the alert in its App context in a new tab
 
-🚀 --> reload results
+🚀 ➫ reload results
 
 .. admonition:: Reloading results
 
@@ -54,23 +54,14 @@ Underneath, the ``Review alert`` section provides interactivre buttons:
    and you want the results to be refreshed right away, click the 🚀 button as it 
    launches the ``Update KV Store lookup`` alert in the background.
 
-Whether automatic checks are passed or not, you can then update manual checks (link) from the ``Update data`` section.
+Whether automatic checks are passed or not, you can then update :hoverxref:`manual checks definitions<Manual Checks>` from the ``Update data`` section.
 
 To do so, update each manual check status by clicking either on ✔️ or ❌.
 
 .. admonition:: Update buttons
-
-   Update button for each manual check depends of its current status:
    
    - If it is currently failed and you want to review it as passed, click --> [check] ✔️
    - If it is currently passed and you want to review it as failed, click --> [check] ❌
    - If you want to mark it as reviewed, click --> Reviewed ✔️
-   - If the owner is undefined, a dedicated text box lets you update it manually
-   - If the service request is not available, a dedicated text box lets you update it manually
-
-
-.. graphviz::
-
-   digraph {
-      "From" -> "To";
-   }
+   - If alert's ``owner`` is undefined, a dedicated text box lets you update it manually
+   - The same applies for the ``service request`` reference
