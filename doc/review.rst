@@ -1,7 +1,7 @@
 Review Alerts
 -------------
 
-Alert review happens from the ``Iventory`` dashboard.
+Alert review happens from the ``Inventory`` dashboard.
 
 Active alerts should be listed in the very first panel:
 
@@ -38,7 +38,7 @@ To review an alert, click on its row to obtain its specifics:
 .. image:: img/inventory_panel_2.png
    :align: center
 
-Underneath, the ``Review alert`` section provides interactivre buttons.
+Underneath, the ``Review alert`` section provides interactivre buttons:
 
 🔍 --> alert's search query in a new tab
 
@@ -51,21 +51,20 @@ Underneath, the ``Review alert`` section provides interactivre buttons.
 .. admonition:: Reloading results
 
    If you have just edited the alert - to specify an ``index`` for instance -
-   and you want the results to be refreshed right away, click 🚀 button as it 
+   and you want the results to be refreshed right away, click the 🚀 button as it 
    launches the ``Update KV Store lookup`` alert in the background.
 
-Whether automatic checks are passed or not, you can then update manual checks (link) based on your review from the ``Update data`` section.
+Whether automatic checks are passed or not, you can then update manual checks (link) from the ``Update data`` section.
 
-You can update manual check status in the KV Store lookup by clicking either on ✔️ or ❌
+To do so, update each manual check status by clicking either on ✔️ or ❌.
 
 .. admonition:: Update buttons
 
    Update button for each manual check depends of its current status:
+   
    - If it is currently failed and you want to review it as passed, click --> [check] ✔️
    - If it is currently passed and you want to review it as failed, click --> [check] ❌
-   
    - If you want to mark it as reviewed, click --> Reviewed ✔️
-   
    - If the owner is undefined, a dedicated text box lets you update it manually
    - If the service request is not available, a dedicated text box lets you update it manually
 
