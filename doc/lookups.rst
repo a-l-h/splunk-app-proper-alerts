@@ -3,6 +3,9 @@ Lookups
 
 This App uses 2 lookups, ``alerts_lookup`` and ``search_commands_lookup``
 
+KV Store lookup
+---------------
+
 ``alert_lookup`` is the KV Store lookup that store the state of active alerts.
 
 It has the following fields:
@@ -13,68 +16,85 @@ It has the following fields:
 
    * - Field
      - Type
-   * - actions
+   * - ``actions``
      - string
-   * - alert
+   * - ``alert``
      - string
-   * - app
+   * - ``app``
      - string
-   * - app_label
+   * - ``app_label``
      - string
-   * - cron_schedule
+   * - ``cron_schedule``
      - string
-   * - dataSourceExist
+   * - ``dataSourceExist``
      - bool
-   * - dateLastReview
+   * - ``dateLastReview``
      - number
-   * - description
+   * - ``description``
      - string
-   * - earliest_time
+   * - ``earliest_time``
      - string
-   * - email
+   * - ``email``
      - string
-   * - hasOwner
+   * - ``hasOwner``
      - bool
-   * - hasServiceRequest
+   * - ``hasServiceRequest``
      - bool
-   * - indexIsSpecified
+   * - ``indexIsSpecified``
      - bool
-   * - interval
+   * - ``interval``
      - number
-   * - latest_time
+   * - ``latest_time``
      - string
-   * - md5
+   * - ``md5``
      - string
-   * - md5_search
+   * - ``md5_search``
      - string
-   * - owner
+   * - ``owner``
      - string
-   * - reviewer
+   * - ``reviewer``
      - string
-   * - run_time
+   * - ``run_time``
      - number
-   * - runtimeIsLowerThanInterval
+   * - ``runtimeIsLowerThanInterval``
      - bool
-   * - scheduleHasAtLeastOneMinuteDelay
+   * - ``scheduleHasAtLeastOneMinuteDelay``
      - bool
-   * - search
+   * - ``search``
      - string
-   * - searchIsCorrectlyStructured
+   * - ``searchIsCorrectlyStructured``
      - bool
-   * - searchPeriodIsAlignedWithSchedule
+   * - ``searchPeriodIsAlignedWithSchedule``
      - bool
-   * - service_request
+   * - ``service_request``
      - string
-   * - updated
+   * - ``updated``
      - number
+     
+Search commands lookup
+----------------------
 
 ``search_commands_lookup`` is the lookup that store splunk search commands.
 
-It is used in the ``indexIsSpecified`` macro that check if the index is specified in alerts' queries.
+It goes like this:
 
-It is also used ``Issues`` dashboard additional check ``No action`` that looks for alert wothout configured action.
+.. list-table::
+   :widths: 33 33 33
+   :header-rows: 1
 
-Lookup Editeor App
+   * - command
+     - classic_search
+     - ooutput_command
+   * - <Splunk command>
+     - bool
+     - bool
 
-Trough the ``Lookups`` tab, you can edit both of these lookups in a convenient way using Lookup Editor app.
+It is used in the ``indexIsSpecified`` macro which checks if the index is specified in alerts' queries.
+
+It is also used in the ``No action`` additional check from the ``Issues`` dashboard which looks for alert without any configured action.
+
+Lookup Editor App
+-----------------
+
+Both of these lookups can be edited manually in a convenient way from the ``Lookups`` tab that relies on Lookup Editor App.
 
