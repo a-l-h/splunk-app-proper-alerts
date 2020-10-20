@@ -27,7 +27,11 @@ Additional info is provided within the dashboard accessible from the ℹ️ butt
    * - Search ID
      - Search IDs events
 
-.. tip:: As Croniter converts alerts' cron schedules to timestamps, any alert adjustment would be reflected right away.
+.. tip:: As Croniter converts alerts' cron schedules into timestamps, any alert adjustment would be reflected right after a panel refresh.
 
-Additional panels 
+Additional panels underneath have the same purpose of spotting busy schedules by showing the most used ones:
 
+.. image:: img/concurrency_panel_2.png
+   :align: center
+
+.. tip:: Clicking on a cron schedule would open a new panel with matching alerts which can then be clicked again to open alert's edit page.
