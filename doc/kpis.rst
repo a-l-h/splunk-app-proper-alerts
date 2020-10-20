@@ -48,3 +48,5 @@ Besides stats on defined :hoverxref:`Alert checks<Alert Checks>`, 3 additional c
    (e.g. outputlookup). These alerts should be checked.
 
 .. warning:: These additonal checks are global, meaning dashboard's top filters does not apply.
+
+.. tip:: Click on an alert row to open it in the ``Inventory`` dashboard.
