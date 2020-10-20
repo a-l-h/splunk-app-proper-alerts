@@ -1,4 +1,4 @@
-Address Spreading Issues
+Resolve Spreading Issues
 ------------------------
 
 Spreading issues are addressed in the :hoverxref:`Concurrency dashboard<Concurrency dashboard>`.
