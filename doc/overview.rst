@@ -1,7 +1,7 @@
 Overview
 ========
 
-Alert Checks
+Alert checks
 ------------
 
 Six different alerts checks are defined within the App:
@@ -32,7 +32,7 @@ Six different alerts checks are defined within the App:
      - Search query must be correctly structured 
      - Manual
 
-Automatic Checks
+Automatic checks
 ++++++++++++++++
 
 Index
@@ -52,7 +52,7 @@ Delay
 It is better practice to leave some delay on alerts by configuring a latest time of at least 1 minute. `Resource <https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Schedule_alerts_with_at_least_one_minute_of_delay>`_
 
 
-Manual Checks
+Manual checks
 +++++++++++++
 
 Source
