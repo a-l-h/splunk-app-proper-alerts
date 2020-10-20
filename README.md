@@ -1,4 +1,4 @@
-#	![](https://github.com/a-l-h/splunk-app-proper-alerts-doc/blob/master/doc/img/logo.svg) Proper Alerts
+#	![](https://github.com/a-l-h/splunk-app-proper-alerts/blob/master/doc/img/logo.svg) Proper Alerts
 
 
 ##	Version
@@ -10,7 +10,7 @@
 ##	Date
 
 
-21 October 2020
+20 October 2020
 
 
 ##	Release Notes
@@ -22,7 +22,7 @@
 ##	Documentation
 
 
-[Read the Docs](https://splunk-proper-alerts.rtfd.io)
+[Read the Docs](https://proper-alerts.rtfd.io)
 
 
 ##	Prerequisites
@@ -39,16 +39,16 @@ These Apps must be deployed to your Search Head(s):
 
 
 1.	[Install the App on your Splunk Search Head(s)](https://docs.splunk.com/Documentation/Splunk/latest/Admin/Deployappsandadd-ons#Deployment_architectures)
-2.	Launch *Update KV Store lookup* alert to populate data by setting cron schedule to the next minute
-3.	Go to *Inventory* dashboard to check if active alerts are listed in the first panel
-4.	[Optional] Adjust *getServiceRequest* macro if you want to extract the service request reference from alerts' description field
-5.	Adjust Update *KV Store lookup* alert cron schedule as needed (and time range accordingly)
-7.	[Optional] Enable *Notify admin for alerts to review* alert and adjust recipient
-8.	[Optional] Enable *Notify alert owner of a change* alert but note that the fallback recipient maps to the one defined above
+2.	Set cron schedule for *Update KV Store lookup* alert to the next minute
+3.	Open the *Inventory* dashboard to check if active alerts are listed in the panel
+4.	[OPT] Adjust getServiceRequest macro to extract service request # from alerts' description
+5.	[OPT] Enable Notify admin for alerts to review alert and adjust recipient
+6.	[OPT] Enable Notify alert owner of a change alert
 
 
 ##	Contact
 
 
 [a-l-h](https://github.com/a-l-h)
+
 
