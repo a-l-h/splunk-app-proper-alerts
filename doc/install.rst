@@ -9,7 +9,7 @@ These Apps must be deployed to your Search Head(s):
 - `Python Cron Iteration for Splunk <https://splunkbase.splunk.com/app/4027/>`_
 - `Lookup File Editor <https://splunkbase.splunk.com/app/1724/>`_
 
-Deployment Steps
+Deployment steps
 ----------------
 
 #.  `Install the App on your Splunk Search Head(s) <https://docs.splunk.com/Documentation/Splunk/latest/Admin/Deployappsandadd-ons#Deployment_architectures>`_
