@@ -1,5 +1,5 @@
 Review Alerts
--------------
+=============
 
 Alert review happens from the ``Inventory`` dashboard.
 
