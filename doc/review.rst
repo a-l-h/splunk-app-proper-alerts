@@ -66,4 +66,4 @@ To do so, update each manual check status by clicking either on ✔️ or ❌.
    - If alert's ``owner`` is undefined, a dedicated text box lets you update it manually
    - The same applies for the ``service request`` reference
  
- .. note:: Whatever manual check updated, current Splunk admin becomes alert's ``reviewer``
+ .. note:: Whatever manual check updated, current Splunk admin becomes alert's ``reviewer``.
