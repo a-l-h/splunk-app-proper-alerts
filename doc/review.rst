@@ -1,6 +1,12 @@
 Review Alerts
 -------------
 
+.. graphviz::
+
+   digraph {
+      "From" -> "To";
+   }
+
 Alert review happens from the ``Iventory`` dashboard.
 
 Active alerts should be listed in the very first panel and you can use search filter to narrow results to a particular App for instance:
