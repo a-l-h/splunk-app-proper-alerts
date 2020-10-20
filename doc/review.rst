@@ -1,15 +1,12 @@
 Review Alerts
 -------------
 
-.. graphviz::
-
-   digraph {
-      "From" -> "To";
-   }
-
 Alert review happens from the ``Iventory`` dashboard.
 
-Active alerts should be listed in the very first panel and you can use search filter to narrow results to a particular App for instance:
+Active alerts should be listed in the very first panel:
+
+.. image:: img/inventory_panel_1.png
+   :align: center
 
 .. image:: img/inventory_filters.png
    :align: center
@@ -80,6 +77,12 @@ Once reviewed, it is time to update KV store lookup, if you want to change any v
 
 Bonus owner update
 
+
+.. graphviz::
+
+   digraph {
+      "From" -> "To";
+   }
 
 
 Search for a particular alert using filters + screen
