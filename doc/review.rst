@@ -8,7 +8,9 @@ Active alerts should be listed in the very first panel:
 .. image:: img/inventory_panel_1.png
    :align: center
    
-Some filters can be used to narrow down displayed alerts while the ℹ️ button is a reminder of Alert Checks (link).
+Some filters can be used to narrow down displayed alerts.
+
+The ℹ️ button is a reminder of Alert Checks (link).
 
 **Table details**
 
