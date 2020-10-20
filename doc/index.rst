@@ -32,13 +32,13 @@ Topics
    /review
    /kpis
    /spreading
+   /lookups
   
 .. toctree::
    :maxdepth: 1
    :caption: Knowledge Objects
    
    /alerts
-   /dashboards
    /macros
    
 .. toctree::
