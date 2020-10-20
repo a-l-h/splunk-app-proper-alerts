@@ -96,5 +96,5 @@ It is also used in the ``No action`` :hoverxref:`additional check<Additional Che
 Lookup Editor App
 -----------------
 
-Both of these lookups can be edited manually effortlessly from the ``Lookups`` tab which relies on Lookup Editor App.
+Both of these lookups can be edited manually effortlessly from the ``Lookups`` tab which relies on `Lookup File Editor App<https://splunkbase.splunk.com/app/1724/>`_.
 
