@@ -7,16 +7,10 @@ Active alerts should be listed in the very first panel:
 
 .. image:: img/inventory_panel_1.png
    :align: center
+   
+Some filters can be used to narrow down displayed alerts while the ℹ️ button is a reminder of Alert Checks (link).
 
-.. image:: img/inventory_filters.png
-   :align: center
-
-The ℹ️ button serves as a reminder for Alert Checks:
-
-.. image:: img/inventory_info.png
-   :align: center
-
-The panel has multiple columns
+**Table details**
 
 .. list-table::
    :widths: 40 60
@@ -32,38 +26,25 @@ The panel has multiple columns
      - alert app
    * - owner
      - owner of the alert
-   * - source
-     - source check
-   * - index
-     - index check
-   * - runtime
-     - runtime check
-   * - alignment
-     - alignement check
-   * - delay
-     - delay check
-   * - structure
-     - structure check
+   * - source --> structure
+     - is the check passed?
    * - issues
-     - issues count out of 6
+     - # of failed checks
 
-To review an alert, click on a row to drilldown to a new panel that provides more details on the selected alert:
+To review an alert, click on its row to obtain its specifics:
 
 .. image:: img/inventory_panel_2.png
    :align: center
 
-Then the Review alert part provides interactivre buttons
+Underneath, the ``Review alert`` section provides interactivre buttons.
 
-.. image:: img/inventory_review_alert.png
-   :align: center
+🔍 --> alert's search query in a new tab
 
-The 🔍 button opens up alert's search query in a new tab.
+📊 --> alert actions from scheduler logs in a dynamic panel
 
-The 📊 button opens a new panel that show scheduler logs as well as actions
+⚙️ --> edit the alert in its App context in a new tab
 
-The ⚙️ button opens a new tab in the App conext to edit the alert
-
-If you edit the alert, for instance to specify an index, you might want to reload the 'update KV store lookup' so that new values are show, this happends from the 🚀 button
+🚀 --> launch the ``Update KV Store`` alert
 
 Update data
 
@@ -73,6 +54,19 @@ Update data
 Once reviewed, it is time to update KV store lookup, if you want to change any value click buttpn
 
 **(WARNING/2) Only the oposit value as the current one would be clickable ...**
+
+.. admonition:: Changing the configuration file
+
+   Extensions local to a project should be put within the project’s directory structure.
+   Set Python’s module search path, sys.path, accordingly so that Sphinx can find them.
+   E.g., if your extension foo.py lies in the exts subdirectory of the project root,
+   put into conf.py::
+   
+      import sys, os
+      sys.path.append(os.path.abspath('exts'))
+      extensions = ['foo']
+   
+   You can also install extensions anywhere else on sys.path, e.g. in the site-packages directory.
 
 
 Bonus owner update
