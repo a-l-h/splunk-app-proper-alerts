@@ -38,6 +38,7 @@ Topics
    :maxdepth: 1
    :caption: Knowledge Objects
    
+   /reports
    /alerts
    /macros
    
@@ -49,3 +50,4 @@ Topics
    /compatibility
    /releases
    /support
+   /roadmap
