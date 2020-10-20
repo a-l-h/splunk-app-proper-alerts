@@ -1,5 +1,8 @@
 Browse KPIs
------------
+===========
+
+Alert Checks Stats
+------------------
 
 ``Issues`` dashboard is stats oriented.
 
@@ -16,6 +19,9 @@ Click on a panel title to obtain the list of alerts related to each stat:
    :align: center
    
 Use the ``Close`` button to hide the panel back.
+
+Additional Checks
+-----------------
 
 Besides stats on defined :hoverxref:`Alert checks<Alert Checks>`, 3 additional checks are provided:
 
