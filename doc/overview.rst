@@ -74,17 +74,9 @@ This a way more subjective check whose goal is to make sure search queries are p
 KV Store lookup
 ---------------
 
-The ``Update KV Store lookup`` alert is the core function of the App.
+The ``Update KV Store lookup`` report is the core function of the App.
 
 It checks for all enabled and scheduled alerts, perform the automatic checks and save results into a KV Store lookup.
-
-It performs CRUD (Create, Read, Update, and Delete) operations to the KV store lookup:
-
-- If the alert has been created since alert's last run, a new entry is created
-
-- If the alert has changed since alert's last run, the entry is updated
-
-- If the alert does not exist anymore since alert's last run, the entry is deleted
 
 :ref:`Specifics<Update KV Store lookup>`
 
