@@ -44,32 +44,28 @@ Underneath, the ``Review alert`` section provides interactivre buttons.
 
 ⚙️ --> edit the alert in its App context in a new tab
 
-🚀 --> launch the ``Update KV Store`` alert
+🚀 --> reload results
 
-Update data
+.. admonition:: Reloading results
 
-.. image:: img/inventory_update_data.png
-   :align: center
+   If you have just edited the alert - to specify an ``index`` for instance -
+   and you want the results to be refreshed right away, click 🚀 button as it 
+   launches the ``Update KV Store lookup`` alert in the background.
 
-Once reviewed, it is time to update KV store lookup, if you want to change any value click buttpn
+Whether automatic checks are passed or not, you can then update manual checks (link) based on your review from the ``Update data`` section.
 
-**(WARNING/2) Only the oposit value as the current one would be clickable ...**
+You can update manual check status in the KV Store lookup by clicking either on ✔️ or ❌
 
-.. admonition:: Changing the configuration file
+.. admonition:: Update buttons
 
-   Extensions local to a project should be put within the project’s directory structure.
-   Set Python’s module search path, sys.path, accordingly so that Sphinx can find them.
-   E.g., if your extension foo.py lies in the exts subdirectory of the project root,
-   put into conf.py::
+   Update button for each manual check depends of its current status:
+   - If it is currently failed and you want to review it as passed, click --> [check] ✔️
+   - If it is currently passed and you want to review it as failed, click --> [check] ❌
    
-      import sys, os
-      sys.path.append(os.path.abspath('exts'))
-      extensions = ['foo']
+   - If you want to mark it as reviewed, click --> Reviewed ✔️
    
-   You can also install extensions anywhere else on sys.path, e.g. in the site-packages directory.
-
-
-Bonus owner update
+   - If the owner is undefined, a dedicated text box lets you update it manually
+   - If the service request is not available, a dedicated text box lets you update it manually
 
 
 .. graphviz::
@@ -77,23 +73,3 @@ Bonus owner update
    digraph {
       "From" -> "To";
    }
-
-
-Search for a particular alert using filters + screen
-
-Panel explain statuses + screen
-
-Click an alert sreen ?
-
-This opens another panel -> screen + eplain
-
-Review: Explain each button 
-
-Update: Explain each button
-
-Bonus: Explain each button
-
-What happens after an alert modification?
-+++++++++++++++++++++++++++++++++++++++++
-
-Workflow
