@@ -89,12 +89,12 @@ It goes like this:
      - bool
      - bool
 
-It is used in the ``indexIsSpecified`` macro which checks if the index is specified in alerts' queries.
+It is used in the :hoverxref:`indexIsSpecified<indexIsSpecified>` macro which checks if the index is specified in alerts' queries.
 
-It is also used in the ``No action`` additional check from the ``Issues`` dashboard which looks for alert without any configured action.
+It is also used in the ``No action`` :hoverxref:`additional check<Additional Checks>` from the ``Issues`` dashboard which looks for alert without any configured action.
 
 Lookup Editor App
 -----------------
 
-Both of these lookups can be edited manually in a convenient way from the ``Lookups`` tab that relies on Lookup Editor App.
+Both of these lookups can be edited manually effortlessly from the ``Lookups`` tab which relies on Lookup Editor App.
 
