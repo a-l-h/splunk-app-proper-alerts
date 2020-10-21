@@ -1,7 +1,7 @@
 Download
 ========
 
-Proper Alerts App can be downloaded from:
+Download the App from:
         
 `Splunkbase <https://splunkbase.splunk.com/app/5301/>`_
 
