@@ -220,7 +220,7 @@
           <br/>
           <b>Runtime</b>: Runtime must be lower than the interval between one run to the next – <b>auto</b>
           <br/>
-          <b>Alignment</b>: Alert schedule must be coordinated with search time range – <b>manual</b> | <a class="external" href="https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Coordinate_an_alert_schedule_and_search_time_range" target="_blank">Resource</a>
+          <b>Alignment</b>: Alert schedule must be coordinated with search time range – <b>auto</b> | <a class="external" href="https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Coordinate_an_alert_schedule_and_search_time_range" target="_blank">Resource</a>
           <br/>
           <b>Delay</b>: Alert must be scheduled with at least one minute of delay – <b>auto</b> | <a class="external" href="https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Schedule_alerts_with_at_least_one_minute_of_delay" target="_blank">Resource</a>
           <br/>
