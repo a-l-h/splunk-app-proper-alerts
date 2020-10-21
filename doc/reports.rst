@@ -4,6 +4,8 @@ Reports
 Update KV Store lookup
 ----------------------
 
+This reports looks for all active alerts, perform the automatic checks against each and save results into a KV Store lookup.
+
 Lets break down its search query:
 
 Search for active alerts
@@ -109,7 +111,7 @@ Save results to the KV Store lookup
    * - 52
      - Call KV Store lookup to get the ``_key`` field for each entry to update
    * - 53
-     - Update KV store lookup entries with the results
+     - Update ``alert_lookup`` KV store lookup entries with the results
 
 The output can be both:
 
@@ -118,3 +120,33 @@ The output can be both:
 
 .. warning:: Report runs every hour. If you change its cron schedule to your needs, adjust time range accordingly.
 
+Clean KV Store lookup
+---------------------
+
+Whenever an alert is enabled and scheduled, it is saved it the KV Store lookup thanks to the ``Update KV Store lookup`` report above.
+
+If the same alert is disabled or even deleted later on, it has to be removed from the KV Store lookup.
+
+This is what the ``Clean KV Store lookup`` report does, removing disabled or deleted alerts from the KV Store lookup.
+
+
+.. list-table::
+   :widths: 20 80
+   :header-rows: 0
+
+   * - 1
+     - Load the current content of the KV Store lookup
+   * - 2
+     - Mark this data set with the key value ``source=kv_store``
+   * - 3-7
+     - Append the list of enabled and scheduled alerts marked with key value ``source=rest``
+   * - 8
+     - Group both data sets (1-2 & 3-7) by ``alert`` and by ``app``
+   * - 9
+     - Count the number of data sets each alert is in
+   * - 10
+     - Filter out alerts that are only part of 1 data set
+   * - 12
+     - Save results to the KV store
+     
+.. hint:: In simple steps, the report loads all entries from the KV Store lookup, takes out disabled or deleted alerts, and overwrites the output back to the lookup. As a result, deleted or disabled alerts are no longer in the lookup.
