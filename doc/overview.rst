@@ -1,10 +1,12 @@
 Overview
 ========
 
+The App arbitrarily defines 6 :ref:`alerts checks<Alert checks>` each alert should pass.
+
+These checks are either :ref:`automatically<Automatic checks>` performed by :ref:`App's main report<KV Store lookup>` or manually reviewed by Splunk admins through an :ref:`interactive dashboard<Inventory dashboard>`.
+
 Alert checks
 ------------
-
-Six different alerts checks are defined within the App:
 
 .. list-table::
    :widths: 10 80 10
@@ -78,7 +80,7 @@ The ``Update KV Store lookup`` report is the core function of the App.
 
 It checks for all enabled and scheduled alerts, perform the automatic checks and save results into a KV Store lookup.
 
-:ref:`Specifics<Update KV Store lookup>`
+:ref:`See Update KV Store lookup report<Update KV Store lookup>`
 
 Inventory dashboard
 -------------------
@@ -87,7 +89,7 @@ This dashboard loads KV Store lookup entries and lets Splunk admins review each 
 
 During the review the admin will address alert manual checks and save results to the KV Store through interactive buttons. 
 
-:ref:`Specifics<Inventory>`
+:ref:`See Review Alerts<Review Alerts>`
 
 Concurrency dashboard
 ---------------------
@@ -100,4 +102,4 @@ This could be limited by the maximum concurrent scheduled searches Splunk schedu
 
 Hence, the idea is to represent the number of alerts launched over time against this concurrency limit so it becomes easy to spot too busy schedules.
 
-:ref:`Specifics<Concurrency>`
+:ref:`See Improve Spreading<Improve Spreading>`
