@@ -66,11 +66,15 @@ Also save the MD5 hash of the search query.
 
    * - 12-14
      - Use `Cron Iteration <https://splunkbase.splunk.com/app/4027/#/details>`_ command to calculate the interval between 2 executions
-   * - 15-16
+   * - 15
+     - Calculate the search time range interval using earliest and latest time
+   * - 16
+     - If search time range interval = cron schedule interval, or if query is not an ``index=foo`` search, *Alignment* check is passed
+   * - 18-19
      - Prefix all fields name except ``alert`` & ``app`` with ``new_`` for later comparison
-   * - 17-27
+   * - 20-30
      - Determine the maximum runtime from scheduler logs
-   * - 28
+   * - 31
      - Filter out alerts only present in scheduler logs
 
 Compare it to current KV Store lookup entries
@@ -80,25 +84,23 @@ Compare it to current KV Store lookup entries
    :widths: 20 80
    :header-rows: 0
 
-   * - 29-30
+   * - 32-33
      - Add the current content of the KV Store lookup to the results for comparison
-   * - 31
-     - Group both data sets (1-6 & 37-38) by ``alert`` and by ``app``
-   * - 32
-     - If the MD5 of main fields have changed or if runtime exceeds interval, keep the newest values
-   * - 33
-     - If the search period of schedule has changed, reset the *Alignment* check
    * - 34
-     - If the search query has changed, reset the *Structure* check
+     - Group both data sets (1-2 & 32-33) by ``alert`` and by ``app``
    * - 35
-     - If the search query has changed, reset the *Source* check
+     - If the MD5 of main fields have changed or if runtime exceeds interval, keep the newest values
+   * - 36
+     - If the search query has changed, reset the *Structure* check
    * - 37
+     - If the search query has changed, reset the *Source* check
+   * - 39
      - If the runtime exceeds the interval, update the *Runtime* check
-   * - 39-40
+   * - 41-42
      - Check if the search period has a minimum delay of 1 minute, if applicable
-   * - 41-47
+   * - 43-48
      - Fields clean up
-   * - 48-51
+   * - 49-52
      - Retrieve App label
      
 Save results to the KV Store lookup
@@ -108,9 +110,9 @@ Save results to the KV Store lookup
    :widths: 20 80
    :header-rows: 0
 
-   * - 52
-     - Call KV Store lookup to get the ``_key`` field for each entry to update
    * - 53
+     - Call KV Store lookup to get the ``_key`` field for each entry to update
+   * - 54
      - Update ``alert_lookup`` KV store lookup entries with the results
 
 The output can be both:
