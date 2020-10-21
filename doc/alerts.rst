@@ -25,7 +25,7 @@ The recipient of this alert is the recipient of the modified alert.
 
 .. admonition:: Do not forget
 
-   Cautiously set recipient as ``$result.email$``. It had to be removed to comply with AppInspect rules.
+   Cautiously set recipient as ``$result.email$`` removed to comply with AppInspect rules.
 
 **Search query steps:**
 
