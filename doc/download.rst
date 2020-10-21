@@ -6,7 +6,7 @@ Proper Alerts App can be downloaded from:
 Splunkbase
 ----------
         
-SplunkBase link
+`Proper Alerts <https://splunkbase.splunk.com/app/5301/>`_
 
 GitHub
 ------
