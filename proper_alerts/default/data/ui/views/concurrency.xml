@@ -1,0 +1,305 @@
+<form script="tokenlinks.js">
+  <label>Concurrency</label>
+  <init>
+    <set token="show_info_set_tok">true</set>
+  </init>
+  <search id="cronBaseSearch">
+    <query>| rest splunk_server="local" /servicesNS/-/-/saved/searches search="disabled=0 is_scheduled=1"
+| fields title eai:acl.app cron_schedule
+| rename title as alert eai:acl.app as app
+| join app 
+    [| rest splunk_server="local" /servicesNS/-/-/apps/local 
+    | fields title label 
+    | rename title as app label as app_label]</query>
+    <earliest>0</earliest>
+    <latest></latest>
+  </search>
+  <search>
+    <query>| rest splunk_server="local" /services/server/info 
+| stats values(serverName) as host 
+| append 
+    [ search earliest="-5m" index="_internal" sourcetype="splunkd" component="SHCMaster" 
+    | stats values(peer) as host 
+    | mvexpand host]
+| stats values(host) as host
+| nomv host</query>
+    <earliest>0</earliest>
+    <latest></latest>
+    <done>
+      <set token="host_tok">$result.host$</set>
+    </done>
+  </search>
+  <fieldset submitButton="false"></fieldset>
+  <row depends="$show_panels_tok$">
+    <panel>
+      <html>
+        <style>
+          .input-link{
+            min-width: 500px !important;
+            width: 500px !important;
+            max-width: 500px !important;
+          }
+          #info_button button{
+            border-color: #C3CBD4 !important;
+            background-color: #F7F8FA !important;
+            margin-right: 10px;
+          }
+          .dashboard-panel,
+          .panel-body.html{
+            background: #F2F4F5 !important;
+          }
+        </style>
+        <center>
+          <h2>
+            <i class="icon-chart-column icon-no-underline"/> Alert count vs. max concurrent alerts
+          </h2>
+        </center>
+      </html>
+    </panel>
+  </row>
+  <row depends="$show_panels_tok$">
+    <panel>
+      <input id="info_button" type="link">
+        <choice value="link1">Croniter</choice>
+        <choice value="link2">Scheduler</choice>
+        <choice value="link3">Search ID</choice>
+        <choice value="link4">ℹ</choice>
+        <default>Croniter</default>
+        <change>
+          <condition value="link1">
+            <set token="show_croniter_tok">true</set>
+            <unset token="show_scheduler_tok"></unset>
+            <unset token="show_info_tok"></unset>
+            <unset token="show_sid_tok"></unset>
+          </condition>
+          <condition value="link2">
+            <set token="show_scheduler_tok">true</set>
+            <unset token="show_croniter_tok"></unset>
+            <unset token="show_info_tok"></unset>
+            <unset token="show_sid_tok"></unset>
+          </condition>
+          <condition value="link3">
+            <set token="show_sid_tok">true</set>
+            <unset token="show_info_tok">true</unset>
+            <unset token="show_scheduler_tok"></unset>
+            <unset token="show_croniter_tok"></unset>
+          </condition>
+          <condition value="link4">
+            <set token="show_info_tok">true</set>
+            <unset token="show_scheduler_tok"></unset>
+            <unset token="show_croniter_tok"></unset>
+            <unset token="show_sid_tok"></unset>
+          </condition>
+        </change>
+      </input>
+      <chart depends="$show_croniter_tok$">
+        <search>
+          <done>
+            <condition match="'job.resultCount' &gt; 0">
+              <set token="show_panels_tok">true</set>
+            </condition>
+            <condition>
+              <unset token="show_panels_tok"></unset>
+            </condition>
+          </done>
+          <query>| inputlookup alerts_lookup 
+| search cron_schedule="*" 
+| dedup alert 
+| eval start_epoch=relative_time(now(),"-4h"), end_epoch=now() 
+| croniter input="cron_schedule" iterations="240" start_epoch=start_epoch end_epoch=end_epoch 
+| mvexpand croniter_return 
+| where croniter_return&lt;=end_epoch 
+| rename croniter_return as _time 
+| timechart span=1m count(alert) as "alert count (croniter)" 
+| `maxConcurrentSavedSearches`</query>
+          <earliest>0</earliest>
+          <latest></latest>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.overlayFields">"max concurrent alerts"</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="charting.backgroundColor">#F2F4F5</option>
+      </chart>
+      <chart depends="$show_scheduler_tok$">
+        <search>
+          <query>index="_internal" sourcetype="scheduler" host IN ($host_tok$) savedsearch_name="*" NOT savedsearch_name="_ACCELERATE_*" NOT status="delegated*"
+| timechart span=1m count(savedsearch_name) by status
+| `maxConcurrentSavedSearches`</query>
+          <earliest>-4h@m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.overlayFields">"max concurrent alerts"</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="charting.backgroundColor">#F2F4F5</option>
+      </chart>
+      <chart depends="$show_sid_tok$">
+        <search>
+          <query>index="_introspection" sourcetype="splunk_resource_usage" host IN ($host_tok$) data.search_props.sid::* component="PerProcess" "data.search_props.mode"="historical*" "data.search_props.role"="head" "data.search_props.type"="scheduled"
+| rename data.search_props.sid as sid 
+| timechart span=1m dc(sid) as "alert count (sid)" 
+| `maxConcurrentSavedSearches`</query>
+          <earliest>-4h@m</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.chart.overlayFields">"max concurrent alerts"</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="charting.backgroundColor">#F2F4F5</option>
+      </chart>
+      <html depends="$show_info_tok$">
+          <b>Croniter</b> timechart uses <a class="external" href="https://splunkbase.splunk.com/app/4027/" target="_blank">Python Cron Iteration for Splunk</a>  to convert each alert schedule to a timestamp.
+          <br/>
+          <b>Scheduler</b> timechart is based on executed alerts events.
+          <br/>
+          <b>Search ID</b> timechart is based on search IDs events.
+          <br/>
+          <span>In each timechart, the count of searches scheduled each minute is compared to the maximum number of scheduled searches that can be run concurrently.</span>
+        <br/>
+          <span>Whereas there are differences between them, <b>the goal is to spot when too many alerts are configured on the same schedule and adjust them to obtain a better spreading.</b>
+        </span>
+        <br/>
+      </html>
+    </panel>
+  </row>
+  <row depends="$show_panels_tok$">
+    <panel>
+      <html>
+        <center>
+          <h2>
+            <i class="icon-flag icon-no-underline"/> Top cron schedules
+          </h2>
+        </center>
+      </html>
+    </panel>
+    <panel>
+      <html>
+        <center>
+          <h2>
+            <i class="icon-flag icon-no-underline"/> Top cron schedules (minutes)
+          </h2>
+        </center>
+      </html>
+    </panel>
+  </row>
+  <row depends="$show_panels_tok$">
+    <panel>
+      <table>
+        <search>
+          <query>| rest splunk_server="local" /servicesNS/-/-/saved/searches search="disabled=0 is_scheduled=1"
+| top 0 cron_schedule
+| fields - percent
+| rename cron_schedule as "cron schedule"</query>
+          <earliest>0</earliest>
+          <latest></latest>
+        </search>
+        <option name="count">7</option>
+        <option name="drilldown">cell</option>
+        <format type="color" field="count">
+          <colorPalette type="minMidMax" maxColor="#E66356" minColor="#F2F4F5"></colorPalette>
+          <scale type="minMidMax"></scale>
+        </format>
+        <drilldown>
+          <set token="clicked_cron_schedule_tok">$click.value$</set>
+        </drilldown>
+      </table>
+    </panel>
+    <panel>
+      <table>
+        <search>
+          <query>| rest splunk_server="local" /servicesNS/-/-/saved/searches search="disabled=0 is_scheduled=1"
+| regex cron_schedule="^\d+.+"
+| rex field="cron_schedule" "(?&lt;cron_minute&gt;.+?)\s"
+| makemv delim="/" cron_minute
+| mvexpand cron_minute
+| makemv delim="-" cron_minute
+| mvexpand cron_minute
+| top 0 cron_minute
+| fields - percent
+| rename cron_minute as "cron minute"</query>
+          <earliest>0</earliest>
+          <latest></latest>
+        </search>
+        <option name="count">7</option>
+        <option name="drilldown">cell</option>
+        <format type="color" field="count">
+          <colorPalette type="minMidMax" maxColor="#E66356" minColor="#F2F4F5"></colorPalette>
+          <scale type="minMidMax"></scale>
+        </format>
+        <drilldown>
+          <set token="clicked_cron_minute_tok">$click.value$</set>
+        </drilldown>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel depends="$clicked_cron_schedule_tok$">
+      <html>
+        <center>
+          <h2>
+            <a style="text-decoration:none" data-unset-token="clicked_cron_schedule_tok">
+              <i class="icon-bell icon-no-underline"/> Alerts with cron schedule <b>$clicked_cron_schedule_tok$</b>
+            </a>
+          </h2>
+        </center>
+      </html>
+    </panel>
+    <panel depends="$clicked_cron_minute_tok$">
+      <html>
+        <center>
+          <h2>
+            <a style="text-decoration:none" data-unset-token="clicked_cron_minute_tok">
+              <i class="icon-bell icon-no-underline"/> Alerts with cron minute <b>$clicked_cron_minute_tok$</b>
+            </a>
+          </h2>
+        </center>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel depends="$clicked_cron_schedule_tok$">
+      <table>
+        <search base="cronBaseSearch">
+          <query>| eval match=if(like(cron_schedule,"$clicked_cron_schedule_tok$"),"yes",null)
+| search match="yes"
+| rename cron_schedule as "cron schedule" app as app_drilldown app_label as app
+| fields alert app "cron schedule" app_drilldown</query>
+        </search>
+        <option name="count">20</option>
+        <option name="drilldown">cell</option>
+        <fields>["alert","app","cron schedule"]</fields>
+        <drilldown>
+          <link target="_blank">/manager/$row.app_drilldown$/saved/searches?search=$row.alert|h$&amp;owner=null</link>
+        </drilldown>
+      </table>
+    </panel>
+    <panel depends="$clicked_cron_minute_tok$">
+      <table>
+        <search base="cronBaseSearch">
+          <query>| regex cron_schedule="^\d+.+"
+| rex field="cron_schedule" "(?&lt;cron_minute&gt;.+?)\s"
+| makemv delim="/" cron_minute
+| mvexpand cron_minute
+| makemv delim="-" cron_minute
+| mvexpand cron_minute
+| search cron_minute="$clicked_cron_minute_tok$"
+| rename cron_schedule as "cron schedule" app as app_drilldown app_label as app
+| fields alert app "cron schedule" app_drilldown</query>
+        </search>
+        <option name="count">20</option>
+        <option name="drilldown">cell</option>
+        <fields>["alert","app","cron schedule"]</fields>
+        <drilldown>
+          <link target="_blank">/manager/$row.app_drilldown$/saved/searches?search=$row.alert|h$&amp;owner=null</link>
+        </drilldown>
+      </table>
+    </panel>
+  </row>
+</form>
