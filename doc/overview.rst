@@ -26,7 +26,7 @@ Alert checks
      - Automatic
    * - Alignment
      - Alert schedule must be coordinated with search time range
-     - Manual
+     - Automatic
    * - Delay
      - Alert must be scheduled with at least one minute of delay  
      - Automatic
@@ -48,6 +48,12 @@ Runtime
 
 When Splunk takes so much time to execute the query that search job is not finished when the alert's next run launches.
 
+Alignment
+*********
+
+Alert schedule must be coordinated with search time range.
+For instance, an alert running every 5 minutes should have a time range of 5 minutes to avoid duplicate alerts and for better use of resources. `Resource <https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Coordinate_an_alert_schedule_and_search_time_range>`_
+
 Delay
 *****
 
@@ -61,12 +67,6 @@ Source
 ******
 
 Is there any data at all when you run alert's base search (i.e. query's first line)?
-
-Alignment
-*********
-
-Alert schedule must be coordinated with search time range.
-For instance, an alert running every 5 minutes should have a time range of 5 minutes to avoid duplicate alerts and for better use of resources. `Resource <https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Coordinate_an_alert_schedule_and_search_time_range>`_
 
 Structure
 *********
