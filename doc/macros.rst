@@ -4,7 +4,7 @@ Macros
 indexIsSpecified
 ----------------
 
-This macro is used in ``Update KV Store lookup`` alert to perform the :hoverxref:`Index automatic check<Index>`
+This macro is used in ``Update KV Store lookup`` report to perform the :hoverxref:`Index automatic check<Index>`
 
 It looks through the ``qualifiedSearch`` field of each alert to find if an index is specified in the query.
 
@@ -30,7 +30,7 @@ If you use a scripted command in an alert query and it is spooted as not having 
 getServiceRequest
 -----------------
 
-This macro is used in ``Update KV Store lookup`` to perform extract the service request from alert's description field.
+This macro is used in ``Update KV Store lookup`` report to perform extract the service request from alert's description field.
 
 This a common practice to add service request reference(s) to alert's description.
 
