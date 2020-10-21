@@ -27,10 +27,8 @@ If the alert has no recipient, alert is sent to email set in ``Notify admin for 
 
 .. list-table::
    :widths: 20 80
-   :header-rows: 1
+   :header-rows: 0
    
-   * - Lines
-     - Description
    * - 1
      - Search for all enabled and scheduled alerts, then for each alert:
    * - 4
