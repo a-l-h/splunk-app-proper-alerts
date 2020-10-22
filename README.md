@@ -44,9 +44,6 @@ These Apps must be deployed to your Search Head(s):
 5.	Set recipient to *Notify admin for alerts to review* alert or disable it
 6.	[CAUTION] Set recipient to *Enable Notify alert owner of a change* alert as ``$result.email$`` or disable it
 
-| :warning: be careful to baz the quux before initializing the retro encabulator! |
-| --- |
-
 
 ##	Contact
 
