@@ -21,11 +21,7 @@ The goal is to avoid any issue that could arise from unsolicited or unannounced 
 
 The recipient of this alert is the recipient of the modified alert.
 
-.. warning:: If the alert has no recipient, alert is sent to email set in ``Notify admin for alerts to review`` alert.
-
-.. admonition:: Do not forget
-
-   Cautiously set recipient as ``$result.email$`` removed to comply with AppInspect rules.
+.. note:: If the alert has no recipient, alert is sent to email set in ``Notify admin for alerts to review`` alert.
 
 **Search query steps:**
 
