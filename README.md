@@ -42,7 +42,7 @@ These Apps must be deployed to your Search Head(s):
 3.	Verify that active alerts are listed in the *Inventory* dashboard
 4.	[OPT] Adjust *getServiceRequest* macro to extract service request # from alerts' description
 5.	Set recipient to *Notify admin for alerts to review* alert or disable it
-6.	cautiously set recipient to *Enable Notify alert owner of a change* alert as ``$result.email$`` or disable it
+6.	[CAUTION] Set recipient to *Enable Notify alert owner of a change* alert as ``$result.email$`` or disable it
 
 
 ##	Contact
