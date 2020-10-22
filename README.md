@@ -4,7 +4,7 @@
 ##	Version
 
 
-1.0.6
+1.0.7
 
 
 ##	Date
@@ -40,9 +40,11 @@ These Apps must be deployed to your Search Head(s):
 1.	[Install the App on your Splunk Search Head(s)](https://docs.splunk.com/Documentation/Splunk/latest/Admin/Deployappsandadd-ons#Deployment_architectures)
 2.	Set cron schedule for *Update KV Store lookup* report to the next minute
 3.	Verify that active alerts are listed in the *Inventory* dashboard
-4.	[OPTIONAL] Adjust *getServiceRequest* macro to extract service request # from alerts' description
+4.	[OPT] Adjust *getServiceRequest* macro to extract service request # from alerts' description
 5.	Set recipient to *Notify admin for alerts to review* alert or disable it
-6.	[CAUTION] Set recipient to *Enable Notify alert owner of a change* alert as ``$result.email$`` or disable it
+6.	[WARN] Set recipient to *Notify alert owner of a change* alert as ``$result.email$`` or disable it
+
+:warning: *Notify alert owner of a change* alert will send an email to alert’s recipient when triggered.
 
 
 ##	Contact
