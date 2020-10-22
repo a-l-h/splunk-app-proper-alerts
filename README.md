@@ -44,7 +44,7 @@ These Apps must be deployed to your Search Head(s):
 5.	Set recipient to *Notify admin for alerts to review* alert or disable it
 6.	[WARN] Set recipient to *Notify alert owner of a change* alert as ``$result.email$`` or disable it
 
-:warning: *Notify alert owner of a change* alert will send an email to alert’s recipient when triggered.
+:warning: *Notify alert owner of a change* alert will send an email to alert’s recipient when triggered
 
 
 ##	Contact
