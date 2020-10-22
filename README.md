@@ -4,13 +4,13 @@
 ##	Version
 
 
-1.0.5
+1.0.6
 
 
 ##	Date
 
 
-22 October 2020
+23 October 2020
 
 
 ##	Release Notes
@@ -42,7 +42,7 @@ These Apps must be deployed to your Search Head(s):
 3.	Verify that active alerts are listed in the *Inventory* dashboard
 4.	[OPT] Adjust *getServiceRequest* macro to extract service request # from alerts' description
 5.	Set recipient to *Notify admin for alerts to review* alert or disable it
-6.	Set recipeint to *Enable Notify alert owner of a change* alert as ``$result.email$`` or disable it
+6.	cautiously set recipient to *Enable Notify alert owner of a change* alert as ``$result.email$`` or disable it
 
 
 ##	Contact
