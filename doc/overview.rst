@@ -34,7 +34,7 @@ Alert checks
      - Search query must be correctly structured 
      - Manual
      
- .. warning::
+.. warning::
  
     Alignement check assumes interval between two cron schedules is always the same. 
     While it should be the same to avoid overlapping as search time period interval 
