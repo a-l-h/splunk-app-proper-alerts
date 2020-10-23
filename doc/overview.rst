@@ -36,11 +36,10 @@ Alert checks
      
 .. warning::
  
-    Alignement check assumes interval between two cron schedules is always the same. 
-    While it should be the same to avoid overlapping as search time period interval 
-    can only be the same, there are some cases in which the cron interval could be 
-    different from one run to the next. This scenario is not yet covered in the App 
-    but it will be addressed any time soon.
+    Alignement check assumes that the interval between two cron schedules is always the same. 
+    While it should be the case to avoid overlapping, there are some cases in which the cron 
+    interval could be different from one run to the next. This scenario is not yet covered in 
+    the App but it will be addressed any time soon.
 
 Automatic checks
 ++++++++++++++++
