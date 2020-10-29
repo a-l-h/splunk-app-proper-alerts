@@ -8,6 +8,6 @@ Release Notes
    * - Version
      - Date
      - Comments
-   * - 1.0.6
-     - 22 Oct 2020
+   * - 1.0.8
+     - 30 Oct 2020
      - Initial release
