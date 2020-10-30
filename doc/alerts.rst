@@ -14,9 +14,7 @@ The recipient(s) must be set and the schedule should be adjusted to your needs.
 
 **Email body:**
 
-Email body containes the following message:
-
-example::
+Email body containes the following message::
 
    There are <count> remaining alerts to review.
 
@@ -33,9 +31,7 @@ The recipient of this alert is the recipient of the modified alert.
 
 **Email body:**
 
-Email body containes the following message:
-
-example::
+Email body containes the following message::
 
    Your alert '<alert name>' has been modified.
    Please find below what has changed - prefixed with new - within alert's main parameters.
@@ -43,7 +39,7 @@ example::
 It also comes with the inline table below:
 
 .. list-table::
-   :widths: 20 20 20 20 20
+   :widths: 20 10 10 10 20
    :header-rows: 0
    
    * - modification date
