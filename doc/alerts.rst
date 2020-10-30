@@ -33,7 +33,7 @@ The recipient of this alert is the recipient of the modified alert.
    * - alert
    * - app
    * - ``<field>`` (``cron schedule``, ``earliest time``, ``latest time``, ``search``, ``actions``, or ``email``)
-   * - new <field>
+   * - new ``<field>``
  
 .. attention:: 
 
@@ -41,22 +41,6 @@ The recipient of this alert is the recipient of the modified alert.
    If the ``new <field>`` value is ``N/A``, please do not consider. The column shows 
    up because there was a new value for that field for another modified alert triggered 
    at the same time.
-   
-   .. list-table::
-   :widths: 20 80
-   :header-rows: 0
-
-   * - modification date
-   * - alert
-   * - app
-   * - ``<field>`` (``cron schedule``, ``earliest time``, ``latest time``, ``search``, ``actions``, or ``email``)
-   * - new <field>
-     
-   alert a
-   field x new field x owner
-   alert B
-   fied
-
 
 **Search query steps:**
 
