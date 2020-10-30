@@ -37,6 +37,7 @@ It also comes with the inline table below:
 .. list-table::
    :widths: 15 15 15 15 15
    :header-rows: 0
+   :align: center
    
    * - modification date
      - alert
@@ -56,7 +57,7 @@ It also comes with the inline table below:
 **Search query steps:**
 
 .. list-table::
-   :widths: 20 80
+   :widths: 5 95
    :header-rows: 0
    
    * - 1
