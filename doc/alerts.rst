@@ -30,8 +30,17 @@ Email body containes the following message:
 .. code-block:: html
     :linenos:
 
+    <h1>code block example</h1>
+
+.. code-block:: html
+    :linenos:
+
    <p>Your alert '<alert name>' has been modified.</p>
    <p>Please find below what has changed - prefixed with new - within alert's main parameters.</p>
+   
+.. code-block:: HTML
+
+  <h1 class="title">Title</h1>
    
 It also comes with the inline table below:
 
