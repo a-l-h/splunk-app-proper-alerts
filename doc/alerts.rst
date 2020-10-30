@@ -23,17 +23,27 @@ The recipient of this alert is the recipient of the modified alert.
 
 .. note:: If the alert has no recipient, alert is sent to email set in ``Notify admin for alerts to review`` alert.
 
-**Email body**
+**Email body:**
+
+Email body containes the following message:
+
+.. code-block:: html
+    :linenos:
+
+   <p>Your alert '<alert name>' has been modified.</p>
+   <p>Please find below what has changed - prefixed with new - within alert's main parameters.</p>
+   
+It also comes with the inline table below:
 
 .. list-table::
-   :widths: 100
-   :header-rows: 0
+   :widths: 20 20 20 20 20
+   :header-rows: 1
 
    * - modification date
-   * - alert
-   * - app
-   * - ``<field>``
-   * - new ``<field>``
+     - alert
+     - app
+     - ``<field>``
+     - new ``<field>``
    
 .. note:: Possible ``<field>`` values: ``cron schedule``, ``earliest time``, ``latest time``, ``search``, ``actions``, ``email``
  
