@@ -32,8 +32,10 @@ The recipient of this alert is the recipient of the modified alert.
    * - modification date
    * - alert
    * - app
-   * - ``<field>`` (``cron schedule``, ``earliest time``, ``latest time``, ``search``, ``actions``, or ``email``)
+   * - ``<field>``
    * - new ``<field>``
+   
+.. note:: Possible ``<field>`` values: ``cron schedule``, ``earliest time``, ``latest time``, ``search``, ``actions``, ``email``
  
 .. attention:: 
 
