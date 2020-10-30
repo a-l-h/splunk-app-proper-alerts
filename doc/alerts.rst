@@ -35,9 +35,8 @@ Email body contains the following message::
 It also comes with the inline table below:
 
 .. list-table::
-   :widths: 15 15 15 15 15
+   :widths: 10 10 10 10 10
    :header-rows: 0
-   :align: center
    
    * - modification date
      - alert
