@@ -4,7 +4,7 @@
 ##	Version
 
 
-1.0.8
+1.1.0
 
 
 ##	Date
@@ -16,7 +16,7 @@
 ##	Release Notes
 
 
-- Initial release
+- Fixed 'Notify alert owner of a change' alert
 
 
 ##	Documentation
