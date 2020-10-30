@@ -36,16 +36,20 @@ The recipient of this alert is the recipient of the modified alert.
    * - 5
      - Save the MD5 hash of the concatenation of :hoverxref:`main fields<Considered fields>` for later comparison
    * - 6
+     - Clean ``latest_time`` field
+   * - 7
      - Prefix all fields name except ``alert`` & ``app`` with ``new_`` for later comparison
-   * - 8-11
+   * - 9-12
      - Load KV Store lookup entries that do have an ``owner``
-   * - 12
-     - Group both data sets (1 & 8-11) by ``alert`` and by ``app``
    * - 13
+     - Group both data sets (1 & 9-12) by ``alert`` and by ``app``
+   * - 14
      - Filter out results having the same MD5 hash of main fields in both data sets
-   * - 16-21
+   * - 17-22
      - Eval main alert fields to identify the modified ones
-   * - 27-30
+   * - 28-31
      - Retrieve App label
-   * - 34-39
+   * - 35-40
      - If email is invalid set it as set in ``Notify admin for alerts to review`` alert
+   * - 43
+     - Fill any ``null`` column with ``N/A``
