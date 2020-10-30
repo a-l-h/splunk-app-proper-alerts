@@ -12,6 +12,14 @@ This way, Splunk admins get notified of any alert to review whether new of modif
 
 The recipient(s) must be set and the schedule should be adjusted to your needs.
 
+**Email body:**
+
+Email body containes the following message:
+
+example::
+
+   There are <count> remaining alerts to review.
+
 Notify alert owner of a change 
 ------------------------------
 
@@ -27,27 +35,17 @@ The recipient of this alert is the recipient of the modified alert.
 
 Email body containes the following message:
 
-.. code-block:: html
-    :linenos:
+example::
 
-    <h1>code block example</h1>
-
-.. code-block:: html
-    :linenos:
-
-   <p>Your alert '<alert name>' has been modified.</p>
-   <p>Please find below what has changed - prefixed with new - within alert's main parameters.</p>
-   
-.. code-block:: HTML
-
-  <h1 class="title">Title</h1>
+   Your alert '<alert name>' has been modified.
+   Please find below what has changed - prefixed with new - within alert's main parameters.
    
 It also comes with the inline table below:
 
 .. list-table::
    :widths: 20 20 20 20 20
-   :header-rows: 1
-
+   :header-rows: 0
+   
    * - modification date
      - alert
      - app
