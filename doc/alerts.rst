@@ -12,8 +12,6 @@ This way, Splunk admins get notified of any alert to review whether new of modif
 
 The recipient(s) must be set and the schedule should be adjusted to your needs.
 
-**Email body:**
-
 Email body containes the following message::
 
    There are <count> remaining alerts to review.
@@ -29,8 +27,6 @@ The recipient of this alert is the recipient of the modified alert.
 
 .. note:: If the alert has no recipient, alert is sent to email set in ``Notify admin for alerts to review`` alert.
 
-**Email body:**
-
 Email body containes the following message::
 
    Your alert '<alert name>' has been modified.
@@ -39,7 +35,7 @@ Email body containes the following message::
 It also comes with the inline table below:
 
 .. list-table::
-   :widths: 20 10 10 10 20
+   :widths: 15 5 5 10 15
    :header-rows: 0
    
    * - modification date
@@ -54,7 +50,7 @@ It also comes with the inline table below:
 
    ``new <field>`` column comes up only if there is a new value for the said field. 
    If the ``new <field>`` value is ``N/A``, please do not consider. The column shows 
-   up because there was a new value for that field for another modified alert triggered 
+   up because there was a new value for that field in another modified alert triggered 
    at the same time.
 
 **Search query steps:**
