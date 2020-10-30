@@ -23,6 +23,41 @@ The recipient of this alert is the recipient of the modified alert.
 
 .. note:: If the alert has no recipient, alert is sent to email set in ``Notify admin for alerts to review`` alert.
 
+**Email body**
+
+.. list-table::
+   :widths: 100
+   :header-rows: 0
+
+   * - modification date
+   * - alert
+   * - app
+   * - ``<field>`` (``cron schedule``, ``earliest time``, ``latest time``, ``search``, ``actions``, or ``email``)
+   * - new <field>
+ 
+.. attention:: 
+
+   ``new <field>`` column comes up only if there is a new value for the said field. 
+   If the ``new <field>`` value is ``N/A``, please do not consider. The column shows 
+   up because there was a new value for that field for another modified alert triggered 
+   at the same time.
+   
+   .. list-table::
+   :widths: 20 80
+   :header-rows: 0
+
+   * - modification date
+   * - alert
+   * - app
+   * - ``<field>`` (``cron schedule``, ``earliest time``, ``latest time``, ``search``, ``actions``, or ``email``)
+   * - new <field>
+     
+   alert a
+   field x new field x owner
+   alert B
+   fied
+
+
 **Search query steps:**
 
 .. list-table::
