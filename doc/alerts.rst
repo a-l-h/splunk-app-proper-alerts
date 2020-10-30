@@ -36,8 +36,7 @@ It also comes with the inline table below:
 
 .. list-table::
    :widths: 10 10 10 10 10
-   :header-rows: 1
-   :align: center
+   :header-rows: 0
    
    * - modification date
      - alert
