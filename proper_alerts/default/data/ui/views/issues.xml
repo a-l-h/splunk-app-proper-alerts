@@ -6,6 +6,11 @@
   </init>
   <search id="baseSearch">
     <query>| inputlookup alerts_lookup
+| search NOT [| inputlookup app_whitelist_lookup]
+| append 
+    [| inputlookup alert_whitelist_lookup 
+    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
+| stats last(*) as * by alert app
 | eval reviewed=if(updated&gt;=dateLastReview,0,1)
 | search app IN ($app_tok$) owner="$owner_tok$" reviewed IN ($reviewed_tok$)
 | fields alert hasOwner dataSourceExist indexIsSpecified runtimeIsLowerThanInterval searchPeriodIsAlignedWithSchedule scheduleHasAtLeastOneMinuteDelay searchIsCorrectlyStructured owner app app_label
@@ -19,6 +24,11 @@
   </search>
   <search id="baseSearchGlobal">
     <query>| inputlookup alerts_lookup
+| search NOT [| inputlookup app_whitelist_lookup]
+| append 
+    [| inputlookup alert_whitelist_lookup 
+    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
+| stats last(*) as * by alert app
 | fields actions alert app cron_schedule md5_search search
     </query>
     <earliest>0</earliest>
@@ -26,18 +36,15 @@
   </search>
   <search id="inputBaseSearch">
     <query>| inputlookup alerts_lookup
+| search NOT [| inputlookup app_whitelist_lookup]
+| append 
+    [| inputlookup alert_whitelist_lookup 
+    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
+| stats last(*) as * by alert app
 | eval reviewed=if(updated&gt;=dateLastReview,0,1)
 | fields alert app app_label owner reviewed</query>
     <earliest>0</earliest>
     <latest></latest>
-  </search>
-  <search base="baseSearch">
-    <query>| stats count(eval(hasOwner="0")) as count count as total
-| eval raw_count=count, count=count."/".total</query>
-    <done>
-      <set token="no_owner_count_tok">$result.count$</set>
-      <eval token="no_owner_css">if($result.raw_count$&gt;0,"#E66356","#53A051")</eval>
-    </done>
   </search>
   <search base="baseSearch">
     <query>| stats count(eval(dataSourceExist="0")) as count count as total
@@ -135,6 +142,17 @@
     <done>
       <set token="no_action_tok">$result.count$</set>
       <eval token="no_action_css">if($result.count$&gt;0,"#E66356","#53A051")</eval>
+    </done>
+  </search>
+  <search base="baseSearchGlobal">
+    <query><![CDATA[| fields actions alert app cron_schedule md5_search search
+| rex mode="sed" field="alert" "s/./& /g"
+| cluster field="alert" t=0.8 showcount=true
+| where cluster_count>1
+| stats count]]></query>
+    <done>
+      <set token="close_names_tok">$result.count$</set>
+      <eval token="close_name_css">if($result.count$&gt;0,"#E66356","#53A051")</eval>
     </done>
   </search>
   <fieldset submitButton="false">
@@ -406,7 +424,7 @@
     </panel>
   </row>
   <row depends="$show_panels_tok$">
-    <panel depends="$no_owner_count_tok$" id="no_owner">
+    <panel id="no_source">
       <html>
         <style>
           #no_issues_count svg g.single-value-under-label g.single-value-label g.under-label-group g.svg-label text.under-label,
@@ -432,16 +450,6 @@
             display: none !important;
           }
         </style>
-        <center>
-          <h2>
-            <a style="text-decoration:none;color:$no_owner_css$" data-set-token="show_panels_1_tok" data-value="true">
-              <i class="icon-user icon-no-underline" style="color:$no_owner_css$"/> No owner (<b>$no_owner_count_tok$</b>)</a>
-          </h2> 
-        </center>
-      </html>
-    </panel>
-    <panel id="no_source">
-      <html>
         <center>
           <h2>
             <a style="text-decoration:none;color:$no_source_css$" data-set-token="show_panels_1_tok" data-value="true">
@@ -480,28 +488,18 @@
         </center>
       </html>
     </panel>
+    <panel id="no_delay">
+      <html>
+        <center>
+          <h2>
+            <a style="text-decoration:none;color:$no_delay_css$" data-set-token="show_panels_2_tok" data-value="true">
+              <i class="icon-flag icon-no-underline" style="color:$no_delay_css$"/> No delay (<b>$no_delay_tok$</b>)</a>
+          </h2>
+        </center>
+      </html>
+    </panel>
   </row>
   <row depends="$show_panels_1_tok$,$show_panels_tok$">
-    <panel>
-      <title></title>
-      <table>
-        <search base="baseSearch">
-          <query>| search hasOwner="0"
-| eval dummy="$show_panels_1_tok$" 
-| fields - dummy 
-| fields alert
-| eval lower_alert=lower(alert)
-| sort + lower_alert
-| fields - lower_alert</query>
-        </search>
-        <option name="drilldown">cell</option>
-        <drilldown>
-          <link target="_blank">
-            <![CDATA[/app/proper_alerts/inventory?form.alert_tok=$click.value$]]>
-          </link>
-        </drilldown>
-      </table>
-    </panel>
     <panel>
       <title></title>
       <table>
@@ -582,6 +580,26 @@
         </drilldown>
       </table>
     </panel>
+    <panel>
+      <title></title>
+      <table>
+        <search base="baseSearch">
+          <query>| search scheduleHasAtLeastOneMinuteDelay="0"
+| eval dummy="$show_panels_2_tok$" 
+| fields - dummy 
+| fields alert
+| eval lower_alert=lower(alert)
+| sort + lower_alert
+| fields - lower_alert</query>
+        </search>
+        <option name="drilldown">cell</option>
+        <drilldown>
+          <link target="_blank">
+            <![CDATA[/app/proper_alerts/inventory?form.alert_tok=$click.value$]]>
+          </link>
+        </drilldown>
+      </table>
+    </panel>
   </row>
   <row depends="$show_panels_1_tok$,$show_panels_tok$">
     <panel>
@@ -595,16 +613,6 @@
     </panel>
   </row>
   <row depends="$show_panels_tok$">
-    <panel id="no_delay">
-      <html>
-        <center>
-          <h2>
-            <a style="text-decoration:none;color:$no_delay_css$" data-set-token="show_panels_2_tok" data-value="true">
-              <i class="icon-flag icon-no-underline" style="color:$no_delay_css$"/> No delay (<b>$no_delay_tok$</b>)</a>
-          </h2>
-        </center>
-      </html>
-    </panel>
     <panel id="not_structured">
       <html>
         <center>
@@ -645,28 +653,18 @@
         </center>
       </html>
     </panel>
+    <panel>
+      <html>
+        <center>
+          <h2>
+            <a style="text-decoration:none;color:$close_names_css$" data-set-token="show_panels_2_tok" data-value="true">
+              <i class="icon-bulb icon-no-underline" style="color:$close_names_css$"/> Close names (global) (<b>$close_names_tok$</b>)</a>
+          </h2>
+        </center>
+      </html>
+    </panel>
   </row>
   <row depends="$show_panels_2_tok$,$show_panels_tok$">
-    <panel>
-      <title></title>
-      <table>
-        <search base="baseSearch">
-          <query>| search scheduleHasAtLeastOneMinuteDelay="0"
-| eval dummy="$show_panels_2_tok$" 
-| fields - dummy 
-| fields alert
-| eval lower_alert=lower(alert)
-| sort + lower_alert
-| fields - lower_alert</query>
-        </search>
-        <option name="drilldown">cell</option>
-        <drilldown>
-          <link target="_blank">
-            <![CDATA[/app/proper_alerts/inventory?form.alert_tok=$click.value$]]>
-          </link>
-        </drilldown>
-      </table>
-    </panel>
     <panel>
       <title></title>
       <table>
@@ -730,6 +728,41 @@
           </link>
         </drilldown>
         <fields>["alert"]</fields>
+      </table>
+    </panel>
+    <panel>
+      <table>
+        <search base="baseSearchGlobal">
+          <query>| search NOT actions="*"
+| eval dummy="$show_panels_2_tok$" 
+| fields - dummy
+| rex field="search" "(?&lt;last_line&gt;.*\z)$"
+| rex field="last_line" "^.*\|\s*(?&lt;command&gt;\w+)(?:\s|$)"
+| rex field="last_line" "`(?&lt;macro&gt;.+?)(\\((?&lt;macro_args&gt;.+?)\\)|)\\`"
+| rex field="macro" mode=sed "s/\\(\\)//g" 
+| eval macro=if(isnotnull(macro_args),(((macro . "(") . mvcount(split(macro_args,","))) . ")"),macro)
+| join type=outer macro
+    [| rest splunk_server=local /servicesNS/-/-/admin/macros 
+    | fields + title, definition 
+    | rename title as macro]
+| eval macro=if((definition == "()"),null,definition)
+| eval search=if(isnotnull(macro),definition,search)
+| rex field="search" "(?&lt;last_line&gt;.*\z)$"
+| rex field="last_line" "^.*\|\s*(?&lt;command&gt;\w+)(?:\s|$)"
+| lookup search_commands_lookup command OUTPUT output_command
+| search NOT output_command=1
+| fields alert
+| eval lower_alert=lower(alert)
+| sort + lower_alert
+| fields - lower_alert</query>
+        </search>
+        <option name="drilldown">cell</option>
+        <option name="refresh.display">progressbar</option>
+        <drilldown>
+          <link target="_blank">
+            <![CDATA[/app/proper_alerts/inventory?form.alert_tok=$click.value$]]>
+          </link>
+        </drilldown>
       </table>
     </panel>
     <panel>

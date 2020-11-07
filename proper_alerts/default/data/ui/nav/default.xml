@@ -5,6 +5,10 @@
   <collection label="Lookups">
   	<a href="/app/proper_alerts/lookup_edit?owner=nobody&amp;namespace=proper_alerts&amp;lookup=alerts_lookup&amp;type=kv">Alerts (KV Store)</a>
     <a href="/app/proper_alerts/lookup_edit?owner=nobody&amp;namespace=proper_alerts&amp;lookup=search_commands_lookup.csv&amp;type=csv">Search Commands (CSV)</a>
+	<collection label="Whitelists">
+    <a href="/app/proper_alerts/lookup_edit?owner=nobody&amp;namespace=proper_alerts&amp;lookup=alert_whitelist_lookup.csv&amp;type=csv">Alerts</a>
+	<a href="/app/proper_alerts/lookup_edit?owner=nobody&amp;namespace=proper_alerts&amp;lookup=app_whitelist_lookup.csv&amp;type=csv">Apps</a>
+    </collection>
   </collection>
   <view name="reports" />
   <view name="alerts" />

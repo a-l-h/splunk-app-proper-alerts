@@ -7,8 +7,13 @@
   </init>
   <search id="inputBaseSearch">
     <query>| inputlookup alerts_lookup
+| search NOT [| inputlookup app_whitelist_lookup]
+| append 
+    [| inputlookup alert_whitelist_lookup 
+    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
+| stats last(*) as * by alert app
 | eval reviewed=if(updated&gt;=dateLastReview,0,1)
-| fields alert app app_label owner owner reviewed</query>
+| fields alert app app_label owner reviewed</query>
     <earliest>0</earliest>
     <latest></latest>
   </search>
@@ -159,6 +164,11 @@
             </condition>
           </done>
           <query>| inputlookup alerts_lookup
+| search NOT [| inputlookup app_whitelist_lookup]
+| append 
+    [| inputlookup alert_whitelist_lookup
+    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
+| stats last(*) as * by alert app
 | eval dummy="$update_list_tok$"
 | fields - dummy
 | eval reviewed=if(updated&gt;=dateLastReview,0,1)
@@ -200,8 +210,6 @@
           <eval token="show_structure_ok_tok">if($row.structure$="✔️",null,"true")</eval>
           <eval token="show_structure_ko_tok">if($row.structure$="✔️","true",null)</eval>
           <eval token="clicked_cron_tok">replace($row.cron_schedule$," ","_")</eval>
-          <eval token="show_update_owner_panel">if($row.owner$="N/A","true",null)</eval>
-          <eval token="submit_owner_panel_tok">if($row.owner$="N/A","submit_owner_panel","null")</eval>
           <eval token="show_update_service_request_panel">if($row.service_request$="N/A","true",null)</eval>
           <eval token="submit_service_request_panel_tok">if($row.service_request$="N/A","submit_service_request_panel","null")</eval>
           <unset token="show_specs_tok"></unset>
@@ -210,7 +218,6 @@
           <unset token="update_source_ok_tok"></unset>
           <unset token="update_source_nok_tok"></unset>
           <unset token="update_reviewed_tok"></unset>
-          <unset token="form.filled_owner_tok"></unset>
           <unset token="form.filled_service_request_tok"></unset>
           <unset token="scheduler_tok"></unset>
         </drilldown>
@@ -239,37 +246,28 @@
           }
           #info_button_set button,
           #info_button_unset button,
-          #submit_owner_button button,
           #status_action_button button,
           #submit_service_request_button button{
             border-color: #C3CBD4 !important;
             background: #F7F8FA !important;
           }
-          #submit_owner_button.input, 
           #submit_service_request_button.input,
-          #submit_owner_button div[data-component="splunk-core:/splunkjs/mvc/components/LinkList"], 
           #submit_service_request_button div[data-component="splunk-core:/splunkjs/mvc/components/LinkList"]{
             width: 50px !important;
           }
-          #$submit_owner_panel_tok$,
           #$submit_service_request_panel_tok${
             display: flex !important;
             justify-content: center !important;
           }
-          #submit_owner_button button,
           #submit_service_request_button button{
             border-color: #C3CBD4 !important;
             background: #F7F8FA !important;
           }
-          #owner_text_input,
           #service_request_text_input,
-          #submit_owner_button,
           #submit_service_request_button{
             margin-top: 0vw !important;
           }
-          #owner_text_input label,
           #service_request_text_input label,
-          #submit_owner_button label,
           #submit_service_request_button label{
             display: none;
           }
@@ -303,6 +301,11 @@
             </condition>
           </done>
           <query>| inputlookup alerts_lookup
+| search NOT [| inputlookup app_whitelist_lookup]
+| append 
+    [| inputlookup alert_whitelist_lookup 
+    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
+| stats last(*) as * by alert app
 | eval dummy="$update_list_tok$"
 | fields - dummy
 | search alert="$clicked_alert_tok$" app IN ($clicked_app_tok$)
@@ -334,7 +337,6 @@
             <unset token="update_source_ok_tok"></unset>
             <unset token="update_source_nok_tok"></unset>
             <unset token="update_reviewed_tok"></unset>
-            <unset token="update_owner_tok"></unset>
             <unset token="update_service_request_tok"></unset>
           </done>
         </search>
@@ -601,6 +603,11 @@
       <table>
         <search>
           <query>| inputlookup alerts_lookup
+| search NOT [| inputlookup app_whitelist_lookup]
+| append 
+    [| inputlookup alert_whitelist_lookup 
+    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
+| stats last(*) as * by alert app
 | eval dummy="$update_structure_ok_tok$"
 | fields - dummy
 | search _key="$clicked_key_tok$"
@@ -620,6 +627,11 @@
       <table>
         <search>
           <query>| inputlookup alerts_lookup
+| search NOT [| inputlookup app_whitelist_lookup]
+| append 
+    [| inputlookup alert_whitelist_lookup 
+    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
+| stats last(*) as * by alert app
 | eval dummy="$update_structure_nok_tok$"
 | fields - dummy
 | search _key="$clicked_key_tok$"
@@ -639,6 +651,11 @@
       <table>
         <search>
           <query>| inputlookup alerts_lookup
+| search NOT [| inputlookup app_whitelist_lookup]
+| append 
+    [| inputlookup alert_whitelist_lookup 
+    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
+| stats last(*) as * by alert app
 | eval dummy="$update_source_ok_tok$"
 | fields - dummy
 | search _key="$clicked_key_tok$"
@@ -658,6 +675,11 @@
       <table>
         <search>
           <query>| inputlookup alerts_lookup
+| search NOT [| inputlookup app_whitelist_lookup]
+| append 
+    [| inputlookup alert_whitelist_lookup 
+    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
+| stats last(*) as * by alert app
 | eval dummy="$update_source_nok_tok$"
 | fields - dummy
 | search _key="$clicked_key_tok$"
@@ -677,6 +699,11 @@
       <table>
         <search>
           <query>| inputlookup alerts_lookup
+| search NOT [| inputlookup app_whitelist_lookup]
+| append 
+    [| inputlookup alert_whitelist_lookup 
+    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
+| stats last(*) as * by alert app
 | eval dummy="$update_reviewed_tok$"
 | fields - dummy
 | search _key="$clicked_key_tok$"
@@ -694,15 +721,6 @@
     </panel>
   </row>
   <row depends="$clicked_alert_tok$,$show_specs_tok$">
-    <panel depends="$show_update_owner_panel$">
-      <html>
-        <center>
-          <h2 style="color:#555">
-            <b>Update owner</b> <i class="icon-user icon-no-underline" style="font-size:120%;color:#555"/>
-          </h2>
-        </center>
-      </html>
-    </panel>
     <panel depends="$show_update_service_request_panel$">
       <html>
         <center>
@@ -714,16 +732,6 @@
     </panel>
   </row>
   <row depends="$clicked_alert_tok$,$show_specs_tok$">
-    <panel id="submit_owner_panel" depends="$show_update_owner_panel$">
-      <input id="owner_text_input" type="text" token="filled_owner_tok">
-        <label></label>
-        <default>$clicked_owner_tok$</default>
-      </input>
-      <input id="submit_owner_button" type="link" token="update_owner_tok">
-        <label></label>
-        <choice value="true">✔️</choice>
-      </input>
-    </panel>
     <panel id="submit_service_request_panel" depends="$show_update_service_request_panel$">
       <input id="service_request_text_input" type="text" token="filled_service_request_tok">
         <label></label>
@@ -735,18 +743,8 @@
       </input>
     </panel>
   </row>
-  <row>
-    <panel depends="$update_owner_tok$">
-      <html>
-      <center>
-          <h2>
-            <a style="text-decoration:none;color:#555" data-unset-token="form.update_owner_tok">✔️ Alert <b>$clicked_alert_tok$</b> updated! Owner: <b>$filled_owner_tok$</b>
-            </a>
-          </h2>
-      </center>
-      </html>
-    </panel>
-    <panel depends="$update_service_request_tok$">
+  <row depends="$update_service_request_tok$">
+    <panel>
       <html>
       <center>
           <h2>
@@ -762,25 +760,11 @@
       <table>
         <search>
           <query>| inputlookup alerts_lookup
-| eval dummy="$update_owner_tok$"
-| fields - dummy
-| search _key="$clicked_key_tok$"
-| eval owner="$filled_owner_tok$"
-| eval reviewer="$env:user_realname$"
-| outputlookup append="true" alerts_lookup</query>
-          <earliest>0</earliest>
-          <latest></latest>
-          <done>
-            <eval token="update_list_tok">random()</eval>
-          </done>
-        </search>
-        <option name="drilldown">none</option>
-      </table>
-    </panel>
-    <panel>
-      <table>
-        <search>
-          <query>| inputlookup alerts_lookup
+| search NOT [| inputlookup app_whitelist_lookup]
+| append 
+    [| inputlookup alert_whitelist_lookup 
+    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
+| stats last(*) as * by alert app
 | eval dummy="$update_service_request_tok$"
 | fields - dummy
 | search _key="$clicked_key_tok$"

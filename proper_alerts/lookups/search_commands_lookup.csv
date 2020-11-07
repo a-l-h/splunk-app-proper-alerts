@@ -8,6 +8,7 @@ dbxquery,0,0
 history,0,0
 inputcsv,0,0
 inputlookup,0,0
+ldapsearch,0,0
 loadjob,0,0
 lookup,0,0
 makeresults,0,0
@@ -18,6 +19,7 @@ meventcollect,0,1
 msearch,0,0
 mstats,0,0
 multisearch,0,0
+noop,0,1
 outputlookup,0,1
 outputcsv,0,1
 pivot,0,0
