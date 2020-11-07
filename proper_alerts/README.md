@@ -4,13 +4,13 @@
 ##	Version
 
 
-1.1.1
+1.1.2
 
 
 ##	Date
 
 
-88888888 November 2020
+8 November 2020
 
 
 ##	Release Notes
