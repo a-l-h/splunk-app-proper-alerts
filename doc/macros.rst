@@ -25,7 +25,7 @@ This latter case is simple, if the search is not a classic ``index=foo`` search,
 
 While it still is a good practice to precise the index using alernate commands such as mstats, the initial goal is to spot uneficient search queries within alerts, so mainly classic searches.
 
-If you use a scripted command in an alert query and it is spooted as not having index specified, add your script command to the search_commands_lookup and give the value classic search = 0
+If you use a scripted command in an alert query and it is spooted as not having index specified, add your script command to the ``search_commands_lookup`` and give the value ``classic search = 0``
 
 getServiceRequest
 -----------------
