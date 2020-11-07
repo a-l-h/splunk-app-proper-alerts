@@ -16,10 +16,10 @@ Email body contains the following message::
 
    There are <count> remaining alerts to review.
 
-Notify alert owner of a change 
+Notify alert recipient of a change 
 ------------------------------
 
-This alert notifies the owner of an alert of any change made on an alert he owns.
+This alert notifies the recipient of an alert of any change made on an alert he owns.
 
 The goal is to avoid any issue that could arise from unsolicited or unannounced modifications.
 
