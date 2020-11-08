@@ -17,6 +17,11 @@ Deployment steps
 #.  Verify that active alerts are listed in the **Inventory** dashboard
 #.  [OPT] Adjust **getServiceRequest** macro to extract service request # from alerts' description
 #.  Set recipient to **Notify admin for alerts to review** alert or disable it
-#.  [WARN] Set recipient to **Notify alert owner of a change** alert as ``$result.email$`` or disable it
+#.  [WARN] Set recipient to **Notify alert recipient of a change** alert as ``$result.email$`` or disable it
 
-.. warning:: **Notify alert owner of a change** alert will send an email to alert's recipient when triggered.
+.. warning:: **Notify alert recipient of a change** alert will send an email to alert's recipient when triggered.
+
+Upgrade
+-------
+
+Relaunch **Update KV Store lookup** from Reports tab by clicking ``Open in Search``
