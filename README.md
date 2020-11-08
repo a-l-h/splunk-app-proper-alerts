@@ -21,6 +21,18 @@
 - Alerts and Apps can now be whitelisted from the checks
 - *Notify alert recipient of a change* has be renamed to *Notify alert recipient of a change* and improved
 
+* Fruit
+  * Apple
+  * Orange
+  * Banana
+* Dairy
+  * Milk
+  * Cheese
+  
+- test
+ - subtest
+- ok
+
 
 ##	Documentation
 
