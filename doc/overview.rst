@@ -33,13 +33,6 @@ Alert checks
    * - Structure
      - Search query must be correctly structured 
      - Manual
-     
-.. warning::
- 
-    Alignement check assumes that the interval between two cron schedules is always the same. 
-    While it should be the case to avoid overlapping, there are some cases in which the cron 
-    interval could be different from one run to the next. This scenario is not yet covered in 
-    the App but it will be addressed any time soon.
 
 Automatic checks
 ++++++++++++++++
@@ -62,12 +55,8 @@ Alignment
 
 Alert schedule must be coordinated with search time range.
 For instance, an alert running every 5 minutes should have a time range of 5 minutes to avoid duplicate alerts and for better use of resources. `Resource <https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Coordinate_an_alert_schedule_and_search_time_range>`_
-
-.. note:: 
-
-      This checks assumes that the interval remains the same between each execution of the alert. 
-      While this is the most common scenario as it works in combination with alert's search time range, 
-      you might have specific usecases with an `uneven interval <https://docs.splunk.com/Documentation/SplunkCloud/latest/Alert/CronExpressions#Working_with_cron_intervals>`_. This is in not covered in this check yet. 
+ 
+.. note:: Alignement check assumes that the interval between two alert runs remains even. While it should be the case to avoid overlapping, an `uneven cron interval <https://docs.splunk.com/Documentation/SplunkCloud/latest/Alert/CronExpressions#Working_with_cron_intervals>`_ might be needed in some specific scenarios. This is not covered in this check just yet.
 
 Delay
 *****
