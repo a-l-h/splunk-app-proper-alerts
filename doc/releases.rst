@@ -27,7 +27,7 @@ Release Notes
 +---------+-------------+------------------------------------------------------------------------------------------------------------+
 | Version | Date        | Commnents                                                                                                  |                                                                                             
 +=========+=============+============================================================================================================+
-| 1.1.2   | 8 Nov 2020  | Alert owner is now the owner of the knowledge object instead of the first recipient of the alert           |
+| 1.1.2   | 8 Nov 2020  | | Alert owner is now the owner of the knowledge object instead of the first recipient of the alert           |
 |         |             | | Index check has been improved                                                                            |
 |         |             | | Alerts and Apps can now be whitelisted from the checks                                                   |
 |         |             | | *Notify alert recipient of a change* has be renamed to *Notify alert recipient of a change* and improved |
