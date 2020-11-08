@@ -44,7 +44,7 @@ It also comes with the inline table below:
      - ``<field>``
      - new ``<field>``
    
-.. note:: Possible ``<field>`` values: ``cron schedule``, ``earliest time``, ``latest time``, ``search``, ``actions``, ``email``
+.. note:: Possible ``<field>`` values: ``cron schedule``, ``earliest time``, ``latest time``, ``search``, ``actions``, ``email``,  ``owner``
  
 .. attention:: 
 
@@ -79,7 +79,7 @@ It also comes with the inline table below:
      - Eval main alert fields to identify the modified ones
    * - 28-31
      - Retrieve App label
-   * - 35-40
+   * - 35-42
      - If email is invalid set it as set in ``Notify admin for alerts to review`` alert
-   * - 43
+   * - 44
      - Fill any ``null`` column with ``N/A``
