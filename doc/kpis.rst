@@ -37,6 +37,8 @@ Besides stats on defined :hoverxref:`Alert checks<Alert Checks>`, 3 additional c
      - Several alerts share the same search query, schedule time and time range
    * - No action
      - Alert has no configured action
+   * - Close names
+     - Alerts with close names
      
 .. admonition:: In multiple apps
 
@@ -52,6 +54,10 @@ Besides stats on defined :hoverxref:`Alert checks<Alert Checks>`, 3 additional c
 
    This check discards alerts whose action resides within the search query 
    (e.g. outputlookup). These alerts should be checked.
+   
+.. admonition:: Close names
+
+   This check's purpose is to spot alert having very close names to check for duplicate alerts.
 
 .. warning:: These additonal checks are global, meaning dashboard's top filters does not apply.
 
