@@ -56,8 +56,13 @@ Alignment
 Alert schedule must be coordinated with search time range.
 For instance, an alert running every 5 minutes should have a time range of 5 minutes to avoid duplicate alerts and for better use of resources. `Resource <https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Coordinate_an_alert_schedule_and_search_time_range>`_
  
-.. note:: Alignement check assumes that the interval between two alert runs remains even. While it should be the case to avoid overlapping, an `uneven cron interval <https://docs.splunk.com/Documentation/SplunkCloud/latest/Alert/CronExpressions#Working_with_cron_intervals>`_ might be needed in some specific scenarios. This is not covered in this check just yet.
+.. note::
 
+      Alignement check assumes that the interval between two alert runs remains even. 
+      While it should be the case to avoid overlapping, an uneven cron interval might 
+      be needed in some specific scenarios. This is not covered in this check just yet.
+      In the mean time, it is possible to :hoverxref:`whitelist a particular alert check<Alert whitelist lookup>`.
+      
 Delay
 *****
 
