@@ -55,6 +55,8 @@ Considered fields
      - recipient(s)
    * - ``actions``
      - alert action(s)
+   * - ``owner``
+     - alert owner (knowledge object)
 
 Also save the MD5 hash of the search query.
 
