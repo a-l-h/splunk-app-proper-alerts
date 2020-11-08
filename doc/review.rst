@@ -60,8 +60,8 @@ To do so, update each manual check status by clicking either on ✔️ or ❌.
 
 .. admonition:: Update buttons
    
-   - If it is currently failed and you want to review it as passed, click ➫ [check] ✔️
-   - If it is currently passed and you want to review it as failed, click ➫ [check] ❌
+   - If it is currently failed and you want to review it as passed, click ➫ ✔️
+   - If it is currently passed and you want to review it as failed, click ➫ ❌
    - If you want to mark it as reviewed, click ➫ Reviewed ✔️
    - If alert's ``owner`` is undefined, a dedicated text box lets you update it manually
    - The same applies for the ``service request`` reference
