@@ -1,4 +1,4 @@
-#	![](https://github.com/a-l-h/splunk-app-proper-alerts/blob/master/doc/img/logo.svg) Proper Alerts
+#	![](./doc/img/icon.svg) Proper Alerts
 
 
 ##	Version
