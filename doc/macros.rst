@@ -27,6 +27,13 @@ While it still is a good practice to precise the index using alernate commands s
 
 If you use a scripted command in an alert query and it is spooted as not having index specified, add your script command to the ``search_commands_lookup`` and give the value ``classic_search = 0``
 
+.. note::
+
+    This macro does its best to spot alert queries in which no index is specified. 
+    While it tries to cover most cases, false positives are possible. In this case, 
+    :ref:`please report<Support>` so I can improve it. You can also :hoverxref:`whitelist<Alert whitelist lookup>`
+    the index check for a given alert.
+
 getServiceRequest
 -----------------
 
