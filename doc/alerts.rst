@@ -19,7 +19,7 @@ Email body contains the following message::
 Notify alert recipient of a change 
 ------------------------------
 
-This alert notifies the recipient of an alert of any change made on an alert he owns.
+This alert notifies the recipient of an alert of any change made on an alert is the recipient to.
 
 The goal is to avoid any issue that could arise from unsolicited or unannounced modifications.
 
