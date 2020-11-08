@@ -43,7 +43,7 @@ Index
 When there is no index specified in a search query, Splunk searches in all available allowed indexes. This is not optimal in terms of resource usage and it is best practice to specify index(es) to be searched within the query. 
 Searches that use alternate search commands in which index has not to be specified (e.g. ``dbxquery``, ``inputlookup``) are not taken into account (i.e. such queries are marked as having index specified). `Resource <https://docs.splunk.com/Documentation/Splunk/latest/Search/Writebettersearches#Restrict_searches_to_the_specific_index>`_
 
-.. note:: If any of your alerts is based on a custom search command, add the command to the :hoverxref:`Search commands lookup<Search commands lookup>`.
+.. note:: Add any custom command to the :hoverxref:`Search commands lookup<Search commands lookup>` to have it considered as an alternate search command.
 
 Runtime
 *******
