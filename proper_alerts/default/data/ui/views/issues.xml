@@ -122,7 +122,7 @@
     </done>
   </search>
   <search base="baseSearchGlobal">
-    <query>| search NOT actions="*"
+    <query>| search search="*" actions="N/A" 
 | rex field="search" "(?&lt;last_line&gt;.*\z)$"
 | rex field="last_line" "^.*\|\s*(?&lt;command&gt;\w+)(?:\s|$)"
 | rex field="last_line" "`(?&lt;macro&gt;.+?)(\\((?&lt;macro_args&gt;.+?)\\)|)\\`"
@@ -145,14 +145,13 @@
     </done>
   </search>
   <search base="baseSearchGlobal">
-    <query><![CDATA[| fields actions alert app cron_schedule md5_search search
-| rex mode="sed" field="alert" "s/./& /g"
+    <query><![CDATA[| rex mode="sed" field="alert" "s/./& /g"
 | cluster field="alert" t=0.8 showcount=true
 | where cluster_count>1
 | stats count]]></query>
     <done>
       <set token="close_names_tok">$result.count$</set>
-      <eval token="close_name_css">if($result.count$&gt;0,"#E66356","#53A051")</eval>
+      <eval token="close_names_css">if($result.count$&gt;0,"#E66356","#53A051")</eval>
     </done>
   </search>
   <fieldset submitButton="false">
@@ -424,7 +423,7 @@
     </panel>
   </row>
   <row depends="$show_panels_tok$">
-    <panel id="no_source">
+    <panel>
       <html>
         <style>
           #no_issues_count svg g.single-value-under-label g.single-value-label g.under-label-group g.svg-label text.under-label,
@@ -458,7 +457,7 @@
         </center>
       </html>
     </panel>
-    <panel id="no_index">
+    <panel>
       <html>
         <center>
           <h2>
@@ -468,7 +467,7 @@
         </center>
       </html>
     </panel>
-    <panel id="runtime">
+    <panel>
       <html>
         <center>
           <h2>
@@ -478,7 +477,7 @@
         </center>
       </html>
     </panel>
-    <panel id="not_aligned">
+    <panel>
       <html>
         <center>
           <h2>
@@ -488,7 +487,7 @@
         </center>
       </html>
     </panel>
-    <panel id="no_delay">
+    <panel>
       <html>
         <center>
           <h2>
@@ -613,7 +612,7 @@
     </panel>
   </row>
   <row depends="$show_panels_tok$">
-    <panel id="not_structured">
+    <panel>
       <html>
         <center>
           <h2>
@@ -623,7 +622,7 @@
         </center>
       </html>
     </panel>
-    <panel id="multiple_apps">
+    <panel>
       <html>
         <center>
           <h2>
@@ -633,7 +632,7 @@
         </center>
       </html>
     </panel>
-    <panel id="duplicates">
+    <panel>
       <html>
         <center>
           <h2>
@@ -643,7 +642,7 @@
         </center>
       </html>
     </panel>
-    <panel id="no_action">
+    <panel>
       <html>
         <center>
           <h2>
@@ -733,7 +732,7 @@
     <panel>
       <table>
         <search base="baseSearchGlobal">
-          <query>| search NOT actions="*"
+          <query>| search search="*" actions="N/A"
 | eval dummy="$show_panels_2_tok$" 
 | fields - dummy
 | rex field="search" "(?&lt;last_line&gt;.*\z)$"
@@ -768,28 +767,13 @@
     <panel>
       <table>
         <search base="baseSearchGlobal">
-          <query>| search NOT actions="*"
+          <query><![CDATA[| eval alert_cluser=alert
 | eval dummy="$show_panels_2_tok$" 
-| fields - dummy
-| rex field="search" "(?&lt;last_line&gt;.*\z)$"
-| rex field="last_line" "^.*\|\s*(?&lt;command&gt;\w+)(?:\s|$)"
-| rex field="last_line" "`(?&lt;macro&gt;.+?)(\\((?&lt;macro_args&gt;.+?)\\)|)\\`"
-| rex field="macro" mode=sed "s/\\(\\)//g" 
-| eval macro=if(isnotnull(macro_args),(((macro . "(") . mvcount(split(macro_args,","))) . ")"),macro)
-| join type=outer macro
-    [| rest splunk_server=local /servicesNS/-/-/admin/macros 
-    | fields + title, definition 
-    | rename title as macro]
-| eval macro=if((definition == "()"),null,definition)
-| eval search=if(isnotnull(macro),definition,search)
-| rex field="search" "(?&lt;last_line&gt;.*\z)$"
-| rex field="last_line" "^.*\|\s*(?&lt;command&gt;\w+)(?:\s|$)"
-| lookup search_commands_lookup command OUTPUT output_command
-| search NOT output_command=1
-| fields alert
-| eval lower_alert=lower(alert)
-| sort + lower_alert
-| fields - lower_alert</query>
+| rex mode="sed" field="alert_cluser" "s/./& /g"
+| cluster field="alert_cluser" t=0.8 showcount=true labelonly=true
+| where cluster_count>1
+| stats values(alert) as alert
+| mvexpand alert]]></query>
         </search>
         <option name="drilldown">cell</option>
         <option name="refresh.display">progressbar</option>

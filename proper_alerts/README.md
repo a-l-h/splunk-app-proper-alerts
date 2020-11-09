@@ -4,22 +4,24 @@
 ##	Version
 
 
-1.1.2
+1.1.3
 
 
 ##	Date
 
 
-8 November 2020
+9 November 2020
 
 
 ##	Release Notes
 
 
-- Alert owner is now the owner of the knowledge object instead of the first recipient of the alert
-- Index check has been improved
-- Alerts and Apps can now be whitelisted from the checks
-- *Notify alert recipient of a change* has be renamed to *Notify alert recipient of a change* and improved
+* Fixed *No action* check in *Issues* dashboard
+* Added *Close names* check in *Issues* dashboard
+* Fixed *Update KV Store lookup* query
+ * recipient field is set only if ``action.email`` is true
+ * ``triggeredalerts`` is added to ``actions`` when ``alert.track`` is true 
+ * null fields are set to ``N/A`` so that MD5 hash is never empty
 
 
 ##	Documentation
@@ -47,7 +49,7 @@ These Apps must be deployed to your Search Head(s):
 5.	Set recipient to *Notify admin for alerts to review* alert or disable it
 6.	[WARN] Set recipient to *Notify alert recipient of a change* alert as ``$result.email$`` or disable it
 
-:warning: *Notify alert owner of a change* alert will send an email to alert’s recipient when triggered
+:warning: *Notify alert recipient of a change* alert will send an email to alert’s recipient when triggered
 
 
 ##	Upgrade
@@ -60,7 +62,5 @@ Relaunch *Update KV Store lookup* from Reports tab by clicking ``Open in Search`
 
 
 [a-l-h](https://github.com/a-l-h)
-
-
 
 
