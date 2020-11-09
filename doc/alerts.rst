@@ -61,25 +61,31 @@ It also comes with the inline table below:
    
    * - 1
      - Search for all enabled and scheduled alerts, then for each alert:
+   * - 3
+     - Add triggeredalerts` to actions if alert.track is true
    * - 4
-     - Clean ``updated`` field
-   * - 5
-     - Save the MD5 hash of the concatenation of :hoverxref:`main fields<Considered fields>` for later comparison
-   * - 6
-     - Clean ``latest_time`` field
+     - Set recipient field only if action.email is true
    * - 7
-     - Prefix all fields name except ``alert`` & ``app`` with ``new_`` for later comparison
-   * - 9-12
-     - Load KV Store lookup entries that do have an ``owner``
+     - Clean ``updated`` field
+   * - 8-11
+     - Set fields to N/A so that MD5 hash is never empty
+   * - 12
+     - Save the MD5 hash of the concatenation of :hoverxref:`main fields<Considered fields>` for later comparison
    * - 13
-     - Group both data sets (1 & 9-12) by ``alert`` and by ``app``
+     - Clean ``latest_time`` field
    * - 14
+     - Prefix all fields name except ``alert`` & ``app`` with ``new_`` for later comparison
+   * - 16-19
+     - Load KV Store lookup entries that do have an ``owner``
+   * - 20
+     - Group both data sets (1 & 9-12) by ``alert`` and by ``app``
+   * - 21
      - Filter out results having the same MD5 hash of main fields in both data sets
-   * - 17-22
+   * - 24-29
      - Eval main alert fields to identify the modified ones
-   * - 28-31
+   * - 35-38
      - Retrieve App label
-   * - 35-42
+   * - 42-49
      - If email is invalid set it as set in ``Notify admin for alerts to review`` alert
-   * - 44
+   * - 51
      - Fill any ``null`` column with ``N/A``
