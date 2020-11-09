@@ -8,6 +8,14 @@ Release Notes
    * - Version
      - Date
      - Comments
+   * - 1.1.3
+     - 9 Nov 2020
+     - | Fixed *No action* check in *Issues* dashboard
+       | Added *Close names* check in *Issues* dashboard
+       | Fixed *Update KV Store lookup* query:
+       |  - recipient field is set only if ``action.email`` is true
+       |  - ``triggeredalerts`` is added to ``actions`` when ``alert.track`` is true
+       |  - null fields are set to ``N/A`` so that MD5 hash is never empty
    * - 1.1.2
      - 8 Nov 2020
      - | Alert owner is now the owner of the knowledge object instead of the first recipient of the alert
