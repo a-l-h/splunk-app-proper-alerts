@@ -18,12 +18,18 @@ Search for active alerts
    * - 1-2
      - Search for all enabled and scheduled alerts, then for each alert:
    * - 3
+     - Add `triggeredalerts`` to ``actions`` if ``alert.track`` is true
+   * - 4
+     - Set recipient field only if ``action.email`` is true
+   * - 6
      - Check if the index is specified in the search query, if applicable, using macro ``indexIsSpecified``
-   * - 5-6
+   * - 8-9
      - Extract service request reference from the description field, using macro ``getServiceRequest``
-   * - 8
+   * - 11
      - Clean ``updated`` field
-   * - 9
+   * - 12-15
+     - Set fields to ``N/A`` so that MD5 hash is never empty
+   * - 16
      - Save the MD5 hash of the concatenation of main fields for later comparison
 
 Considered fields
@@ -64,17 +70,17 @@ Also save the MD5 hash of the search query.
    :widths: 20 80
    :header-rows: 0
 
-   * - 10-12
+   * - 17-19
      - Use `Cron Iteration <https://splunkbase.splunk.com/app/4027/#/details>`_ command to calculate the interval between 2 executions
-   * - 13
+   * - 20
      - Calculate the search time range interval using earliest and latest time
-   * - 14
+   * - 21
      - If search time range interval = cron schedule interval, or if query is not an ``index=foo`` search, *Alignment* check is passed
-   * - 16-18
+   * - 23-24
      - Prefix all fields name except ``alert`` & ``app`` with ``new_`` for later comparison
-   * - 18-28
+   * - 25-35
      - Determine the maximum runtime from scheduler logs
-   * - 29
+   * - 36
      - Filter out alerts only present in scheduler logs
 
 Compare it to current KV Store lookup entries
@@ -84,23 +90,23 @@ Compare it to current KV Store lookup entries
    :widths: 20 80
    :header-rows: 0
 
-   * - 30-31
+   * - 37-38
      - Add the current content of the KV Store lookup to the results for comparison
-   * - 32
+   * - 39
      - Group both data sets (1-2 & 30-31) by ``alert`` and by ``app``
-   * - 33
+   * - 40
      - If the MD5 of main fields have changed or if runtime exceeds interval, or if indexIsSpecified value differs, keep the newest values
-   * - 34
+   * - 41
      - If the search query has changed, reset the *Structure* check
-   * - 35
+   * - 42
      - If the search query has changed, reset the *Source* check
-   * - 37
+   * - 44
      - If the runtime exceeds the interval, update the *Runtime* check
-   * - 39-40
+   * - 46-47
      - Check if the search period has a minimum delay of 1 minute, if applicable
-   * - 41-44
+   * - 48-51
      - Fields clean up
-   * - 45-48
+   * - 52-55
      - Retrieve App label
      
 Save results to the KV Store lookup
@@ -110,9 +116,9 @@ Save results to the KV Store lookup
    :widths: 20 80
    :header-rows: 0
 
-   * - 49
+   * - 56
      - Call KV Store lookup to get the ``_key`` field for each entry to update
-   * - 50
+   * - 57
      - Update ``alert_lookup`` KV store lookup entries with the results
 
 The output can be both:
