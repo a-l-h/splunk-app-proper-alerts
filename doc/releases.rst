@@ -8,6 +8,10 @@ Release Notes
    * - Version
      - Date
      - Comments
+   * - 1.1.4
+     - 12 Nov 2020
+     - | Fixed whitelisting alert issue in *Inventory* dashboard
+       | Fixed *IndexIsSpecified* macro
    * - 1.1.3
      - 9 Nov 2020
      - | Fixed *No action* check in *Issues* dashboard
