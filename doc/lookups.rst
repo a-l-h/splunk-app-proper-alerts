@@ -102,6 +102,8 @@ You might want to whitelist an alert's specific check or even all alerts for a g
 
 This is possible using whitelisting lookups.
 
+.. hint:: In both whitelists below, the App name to use is the one from App's URL ``../en-US/app/<app_name>/..``
+
 Alert whitelist lookup
 ++++++++++++++++++++++
 
