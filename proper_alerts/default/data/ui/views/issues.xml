@@ -10,7 +10,8 @@
 | append 
     [| inputlookup alert_whitelist_lookup 
     | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
-| stats last(*) as * by alert app
+| eventstats max(*) as * by alert app
+| search _key="*"
 | eval reviewed=if(updated&gt;=dateLastReview,0,1)
 | search app IN ($app_tok$) owner="$owner_tok$" reviewed IN ($reviewed_tok$)
 | fields alert hasOwner dataSourceExist indexIsSpecified runtimeIsLowerThanInterval searchPeriodIsAlignedWithSchedule scheduleHasAtLeastOneMinuteDelay searchIsCorrectlyStructured owner app app_label
@@ -28,7 +29,8 @@
 | append 
     [| inputlookup alert_whitelist_lookup 
     | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
-| stats last(*) as * by alert app
+| eventstats max(*) as * by alert app
+| search _key="*"
 | fields actions alert app cron_schedule md5_search search
     </query>
     <earliest>0</earliest>
@@ -40,7 +42,8 @@
 | append 
     [| inputlookup alert_whitelist_lookup 
     | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
-| stats last(*) as * by alert app
+| eventstats max(*) as * by alert app
+| search _key="*"
 | eval reviewed=if(updated&gt;=dateLastReview,0,1)
 | fields alert app app_label owner reviewed</query>
     <earliest>0</earliest>

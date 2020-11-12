@@ -11,7 +11,8 @@
 | append 
     [| inputlookup alert_whitelist_lookup 
     | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
-| stats last(*) as * by alert app
+| eventstats max(*) as * by alert app
+| search _key="*"
 | eval reviewed=if(updated&gt;=dateLastReview,0,1)
 | fields alert app app_label owner reviewed</query>
     <earliest>0</earliest>
@@ -168,7 +169,8 @@
 | append 
     [| inputlookup alert_whitelist_lookup
     | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
-| stats last(*) as * by alert app
+| eventstats max(*) as * by alert app
+| search _key="*"
 | eval dummy="$update_list_tok$"
 | fields - dummy
 | eval reviewed=if(updated&gt;=dateLastReview,0,1)
@@ -305,7 +307,8 @@
 | append 
     [| inputlookup alert_whitelist_lookup 
     | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
-| stats last(*) as * by alert app
+| eventstats max(*) as * by alert app
+| search _key="*"
 | eval dummy="$update_list_tok$"
 | fields - dummy
 | search alert="$clicked_alert_tok$" app IN ($clicked_app_tok$)
@@ -603,11 +606,6 @@
       <table>
         <search>
           <query>| inputlookup alerts_lookup
-| search NOT [| inputlookup app_whitelist_lookup]
-| append 
-    [| inputlookup alert_whitelist_lookup 
-    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
-| stats last(*) as * by alert app
 | eval dummy="$update_structure_ok_tok$"
 | fields - dummy
 | search _key="$clicked_key_tok$"
@@ -627,11 +625,6 @@
       <table>
         <search>
           <query>| inputlookup alerts_lookup
-| search NOT [| inputlookup app_whitelist_lookup]
-| append 
-    [| inputlookup alert_whitelist_lookup 
-    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
-| stats last(*) as * by alert app
 | eval dummy="$update_structure_nok_tok$"
 | fields - dummy
 | search _key="$clicked_key_tok$"
@@ -651,11 +644,6 @@
       <table>
         <search>
           <query>| inputlookup alerts_lookup
-| search NOT [| inputlookup app_whitelist_lookup]
-| append 
-    [| inputlookup alert_whitelist_lookup 
-    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
-| stats last(*) as * by alert app
 | eval dummy="$update_source_ok_tok$"
 | fields - dummy
 | search _key="$clicked_key_tok$"
@@ -675,11 +663,6 @@
       <table>
         <search>
           <query>| inputlookup alerts_lookup
-| search NOT [| inputlookup app_whitelist_lookup]
-| append 
-    [| inputlookup alert_whitelist_lookup 
-    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
-| stats last(*) as * by alert app
 | eval dummy="$update_source_nok_tok$"
 | fields - dummy
 | search _key="$clicked_key_tok$"
@@ -699,11 +682,6 @@
       <table>
         <search>
           <query>| inputlookup alerts_lookup
-| search NOT [| inputlookup app_whitelist_lookup]
-| append 
-    [| inputlookup alert_whitelist_lookup 
-    | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
-| stats last(*) as * by alert app
 | eval dummy="$update_reviewed_tok$"
 | fields - dummy
 | search _key="$clicked_key_tok$"
@@ -764,7 +742,8 @@
 | append 
     [| inputlookup alert_whitelist_lookup 
     | rename index as indexIsSpecified runtime as runtimeIsLowerThanInterval alignment as searchPeriodIsAlignedWithSchedule delay as scheduleHasAtLeastOneMinuteDelay] 
-| stats last(*) as * by alert app
+| eventstats max(*) as * by alert app
+| search _key="*"
 | eval dummy="$update_service_request_tok$"
 | fields - dummy
 | search _key="$clicked_key_tok$"
