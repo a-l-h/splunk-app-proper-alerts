@@ -8,6 +8,9 @@ Release Notes
    * - Version
      - Date
      - Comments
+   * - 1.1.5
+     - 17 Jan 2021
+     - | Saved searches can now be searched by type - alert or report
    * - 1.1.4
      - 12 Nov 2020
      - | Fixed whitelisting alert issue in *Inventory* dashboard
