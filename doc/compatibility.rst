@@ -12,8 +12,3 @@ Splunk
      - ✔️
    * - 8.x
      - ✔️
-
-Splunk Cloud
-------------
-
-Cloud vetting initiated
