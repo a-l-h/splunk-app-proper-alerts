@@ -3,6 +3,8 @@
   <init>
     <set token="reviewed_tok">1 0</set>
     <set token="show_info_set_tok">true</set>
+    <set token="clicked_type_tok">Alert(s)</set>
+    <set token="clicked_type_alt_tok">alert(s)</set>
   </init>
   <search id="baseSearch">
     <query>| inputlookup alerts_lookup
@@ -13,7 +15,7 @@
 | eventstats max(*) as * by alert app
 | search _key="*"
 | eval reviewed=if(updated&gt;=dateLastReview,0,1)
-| search app IN ($app_tok$) owner="$owner_tok$" reviewed IN ($reviewed_tok$)
+| search app IN ($app_tok$) owner="$owner_tok$" reviewed IN ($reviewed_tok$) type="$type_tok$"
 | fields alert hasOwner dataSourceExist indexIsSpecified runtimeIsLowerThanInterval searchPeriodIsAlignedWithSchedule scheduleHasAtLeastOneMinuteDelay searchIsCorrectlyStructured owner app app_label
 | eventstats count(eval(dataSourceExist="1" AND indexIsSpecified="1" AND runtimeIsLowerThanInterval="1" AND searchPeriodIsAlignedWithSchedule="1" AND scheduleHasAtLeastOneMinuteDelay="1" AND searchIsCorrectlyStructured="1")) as alert_without_issues_count
 | eventstats count(eval(dataSourceExist="0" OR indexIsSpecified="0" OR runtimeIsLowerThanInterval="0" OR searchPeriodIsAlignedWithSchedule="0" OR scheduleHasAtLeastOneMinuteDelay="0" OR searchIsCorrectlyStructured="0")) as alert_with_issues_count
@@ -45,7 +47,7 @@
 | eventstats max(*) as * by alert app
 | search _key="*"
 | eval reviewed=if(updated&gt;=dateLastReview,0,1)
-| fields alert app app_label owner reviewed</query>
+| fields alert app app_label owner type reviewed</query>
     <earliest>0</earliest>
     <latest></latest>
   </search>
@@ -148,10 +150,12 @@
     </done>
   </search>
   <search base="baseSearchGlobal">
-    <query><![CDATA[| rex mode="sed" field="alert" "s/./& /g"
+    <query>
+      <![CDATA[| rex mode="sed" field="alert" "s/./& /g"
 | cluster field="alert" t=0.8 showcount=true
 | where cluster_count>1
-| stats count]]></query>
+| stats count]]>
+    </query>
     <done>
       <set token="close_names_tok">$result.count$</set>
       <eval token="close_names_css">if($result.count$&gt;0,"#E66356","#53A051")</eval>
@@ -166,7 +170,7 @@
       <fieldForLabel>app_label</fieldForLabel>
       <fieldForValue>app</fieldForValue>
       <search base="inputBaseSearch">
-        <query>| search owner="$owner_tok$" reviewed IN ($reviewed_tok$)
+        <query>| search owner="$owner_tok$" reviewed IN ($reviewed_tok$) type="$type_tok$"
 | fields app app_label
 | dedup app app_label
 | eval lower_app_label=lower(app_label)
@@ -184,7 +188,7 @@
       <fieldForLabel>owner</fieldForLabel>
       <fieldForValue>owner</fieldForValue>
       <search base="inputBaseSearch">
-        <query>| search app IN ($app_tok$) reviewed IN ($reviewed_tok$)
+        <query>| search app IN ($app_tok$) reviewed IN ($reviewed_tok$) type="$type_tok$"
 | stats values(owner) as owner
 | mvexpand owner
 | eval lower_owner=lower(owner)
@@ -192,6 +196,17 @@
       </search>
       <change>
         <unset token="show_panels_tok"></unset>
+      </change>
+    </input>
+    <input type="dropdown" token="type_tok" searchWhenChanged="true">
+      <label>Type</label>
+      <choice value="*">Any</choice>
+      <choice value="alert">Alert</choice>
+      <choice value="report">Report</choice>
+      <default>alert</default>
+      <change>
+        <eval token="clicked_type_tok">case($form.type_tok$="alert","Alert(s)",$form.type_tok$="report","Report(s)",true(),"Saved search(es)")</eval>
+        <eval token="clicked_type_alt_tok">case($form.type_tok$="alert","alert(s)",$form.type_tok$="report","report(s)",true(),"saved search(es)")</eval>
       </change>
     </input>
     <input type="dropdown" token="reviewed_tok" searchWhenChanged="true">
@@ -231,7 +246,7 @@
     <panel>
       <html>
           <h2>
-          <b>Alert checks</b>
+          <b>Checks</b>
         </h2>
         <hr/>
           <b>Soure</b>: Target data source must be indexed – <b>manual</b>
@@ -240,9 +255,9 @@
           <br/>
           <b>Runtime</b>: Runtime must be lower than the interval between one run to the next – <b>auto</b>
           <br/>
-          <b>Alignment</b>: Alert schedule must be coordinated with search time range – <b>auto</b> | <a class="external" href="https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Coordinate_an_alert_schedule_and_search_time_range" target="_blank">Resource</a>
+          <b>Alignment</b>: Saved search schedule must be coordinated with search time range – <b>auto</b> | <a class="external" href="https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Coordinate_an_alert_schedule_and_search_time_range" target="_blank">Resource</a>
           <br/>
-          <b>Delay</b>: Alert must be scheduled with at least one minute of delay – <b>auto</b> | <a class="external" href="https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Schedule_alerts_with_at_least_one_minute_of_delay" target="_blank">Resource</a>
+          <b>Delay</b>: Saved search must be scheduled with at least one minute of delay – <b>auto</b> | <a class="external" href="https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Schedule_alerts_with_at_least_one_minute_of_delay" target="_blank">Resource</a>
           <br/>
           <b>Structure</b>: Search query must be correctly structured – <b>manual</b> | <a class="external" href="https://www.splunk.com/en_us/blog/tips-and-tricks/splunk-clara-fication-search-best-practices.html" target="_blank">Resource</a>
           <br/>
@@ -261,7 +276,7 @@
         <option name="height">70</option>
         <option name="rangeColors">["0xE66356","0x53A051"]</option>
         <option name="rangeValues">[0]</option>
-        <option name="underLabel">🔔 Alert(s) without issues</option>
+        <option name="underLabel">🔔 $clicked_type_tok$ without issues</option>
         <option name="useColors">1</option>
         <drilldown>
           <set token="show_panels_0_tok">true</set>
@@ -279,7 +294,7 @@
         <option name="height">70</option>
         <option name="rangeColors">["0x53A051","0xE66356"]</option>
         <option name="rangeValues">[0]</option>
-        <option name="underLabel">🔔 Alert(s) with issues</option>
+        <option name="underLabel">🔔 $clicked_type_tok$ with issues</option>
         <option name="useColors">1</option>
         <drilldown>
           <set token="show_panels_0_tok">true</set>
@@ -297,7 +312,7 @@
         <option name="height">70</option>
         <option name="rangeColors">["0x555","0x555"]</option>
         <option name="rangeValues">[0]</option>
-        <option name="underLabel">🔔 Total alert(s)</option>
+        <option name="underLabel">🔔 Total $clicked_type_alt_tok$</option>
         <option name="useColors">1</option>
         <drilldown>
           <set token="show_panels_0_tok">true</set>
@@ -316,7 +331,7 @@
         <option name="numberPrecision">0</option>
         <option name="rangeColors">["0x555","0x53A051"]</option>
         <option name="rangeValues">[99]</option>
-        <option name="underLabel">🔔 Alert(s) without issues %</option>
+        <option name="underLabel">🔔 $clicked_type_tok$ without issues %</option>
         <option name="unit">%</option>
         <option name="useColors">1</option>
         <drilldown>
@@ -512,7 +527,8 @@
 | fields alert
 | eval lower_alert=lower(alert)
 | sort + lower_alert
-| fields - lower_alert</query>
+| fields - lower_alert
+| rename alert as "saved search"</query>
         </search>
         <option name="drilldown">cell</option>
         <drilldown>
@@ -530,7 +546,8 @@
 | fields alert
 | eval lower_alert=lower(alert)
 | sort + lower_alert
-| fields - lower_alert</query>
+| fields - lower_alert
+| rename alert as "saved search"</query>
         </search>
         <option name="drilldown">cell</option>
         <option name="refresh.display">progressbar</option>
@@ -551,7 +568,8 @@
 | fields alert 
 | eval lower_alert=lower(alert) 
 | sort + lower_alert 
-| fields - lower_alert</query>
+| fields - lower_alert
+| rename alert as "saved search"</query>
         </search>
         <option name="drilldown">cell</option>
         <option name="refresh.display">progressbar</option>
@@ -572,7 +590,8 @@
 | fields alert
 | eval lower_alert=lower(alert)
 | sort + lower_alert
-| fields - lower_alert</query>
+| fields - lower_alert
+| rename alert as "saved search"</query>
         </search>
         <option name="drilldown">cell</option>
         <drilldown>
@@ -592,9 +611,11 @@
 | fields alert
 | eval lower_alert=lower(alert)
 | sort + lower_alert
-| fields - lower_alert</query>
+| fields - lower_alert
+| rename alert as "saved search"</query>
         </search>
         <option name="drilldown">cell</option>
+        <option name="refresh.display">progressbar</option>
         <drilldown>
           <link target="_blank">
             <![CDATA[/app/proper_alerts/inventory?form.alert_tok=$click.value$]]>
@@ -640,7 +661,7 @@
         <center>
           <h2>
             <a style="text-decoration:none;color:$duplicates_css$" data-set-token="show_panels_2_tok" data-value="true">
-              <i title="Same search &amp; cron schedule" class="icon-question icon-no-underline" style="color:$duplicates_css$"/> Duplicate alerts (global) (<b>$duplicates_tok$</b>)</a>
+              <i title="Same search &amp; cron schedule" class="icon-question icon-no-underline" style="color:$duplicates_css$"/> Duplicate $clicked_type_alt_tok$ (global) (<b>$duplicates_tok$</b>)</a>
           </h2>
         </center>
       </html>
@@ -677,9 +698,11 @@
 | fields alert
 | eval lower_alert=lower(alert)
 | sort + lower_alert
-| fields - lower_alert</query>
+| fields - lower_alert
+| rename alert as "saved search"</query>
         </search>
         <option name="drilldown">cell</option>
+        <option name="refresh.display">progressbar</option>
         <drilldown>
           <link target="_blank">
             <![CDATA[/app/proper_alerts/inventory?form.alert_tok=$click.value$]]>
@@ -695,9 +718,11 @@
 | eval dummy="$show_panels_2_tok$" 
 | fields - dummy 
 | where count&gt;1
-| sort - count</query>
+| sort - count
+| rename alert as "saved search"</query>
         </search>
         <option name="drilldown">cell</option>
+        <option name="refresh.display">progressbar</option>
         <format type="color" field="count">
           <colorPalette type="minMidMax" maxColor="#E66356" minColor="#FFFFFF"></colorPalette>
           <scale type="minMidMax"></scale>
@@ -721,15 +746,17 @@
 | stats values(*) as * by md5_search_cron_schedule
 | sort - count
 | fields - md5_search_cron_schedule count
-| eval drilldown_alert=mvjoin('alert',"&amp;form.alert_tok=")</query>
+| eval drilldown_alert=mvjoin('alert',"&amp;form.alert_tok=")
+| rename alert as "saved search"</query>
         </search>
         <option name="drilldown">cell</option>
+        <option name="refresh.display">progressbar</option>
+        <fields>["alert"]</fields>
         <drilldown>
           <link target="_blank">
             <![CDATA[/app/proper_alerts/inventory?form.alert_tok=$row.drilldown_alert|n$]]>
           </link>
         </drilldown>
-        <fields>["alert"]</fields>
       </table>
     </panel>
     <panel>
@@ -756,7 +783,8 @@
 | fields alert
 | eval lower_alert=lower(alert)
 | sort + lower_alert
-| fields - lower_alert</query>
+| fields - lower_alert
+| rename alert as "saved search"</query>
         </search>
         <option name="drilldown">cell</option>
         <option name="refresh.display">progressbar</option>
@@ -770,13 +798,14 @@
     <panel>
       <table>
         <search base="baseSearchGlobal">
-          <query><![CDATA[| eval alert_cluser=alert
+          <query>| eval alert_cluser=alert
 | eval dummy="$show_panels_2_tok$" 
-| rex mode="sed" field="alert_cluser" "s/./& /g"
+| rex mode="sed" field="alert_cluser" "s/./&amp; /g"
 | cluster field="alert_cluser" t=0.8 showcount=true labelonly=true
-| where cluster_count>1
+| where cluster_count&gt;1
 | stats values(alert) as alert
-| mvexpand alert]]></query>
+| mvexpand alert
+| rename alert as "saved search"</query>
         </search>
         <option name="drilldown">cell</option>
         <option name="refresh.display">progressbar</option>

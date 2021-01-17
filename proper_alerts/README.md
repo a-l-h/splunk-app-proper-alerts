@@ -4,20 +4,19 @@
 ##	Version
 
 
-1.1.4
+1.1.5
 
 
 ##	Date
 
 
-12 November 2020
+17 January 2021
 
 
 ##	Release Notes
 
 
-* Fixed whitelisting alert issue in *Inventory* dashboard
-* Fixed *IndexIsSpecified* macro
+* Saved searches can now be searched by type - alert or report
 
 
 ##	Documentation
@@ -53,10 +52,13 @@ These Apps must be deployed to your Search Head(s):
 
 Relaunch *Update KV Store lookup* from Reports tab by clicking ``Open in Search``
 
+:warning: *As 'type' is a new KV Store field, a change will be detected for all alerts, hence if you are using the 'Notify alert recipient of a change' alert, silence its first execution after the upgrade*
+
 
 ##	Contact
 
 
 [a-l-h](https://github.com/a-l-h)
+
 
 

@@ -14,7 +14,7 @@
 | eventstats max(*) as * by alert app
 | search _key="*"
 | eval reviewed=if(updated&gt;=dateLastReview,0,1)
-| fields alert app app_label owner reviewed</query>
+| fields alert app app_label owner type reviewed</query>
     <earliest>0</earliest>
     <latest></latest>
   </search>
@@ -36,14 +36,14 @@
   </search>
   <fieldset submitButton="false">
     <input type="multiselect" token="alert_tok" searchWhenChanged="true">
-      <label>Alert</label>
+      <label>Saved search</label>
       <choice value="*">Any</choice>
       <default>*</default>
       <delimiter>" OR alert="</delimiter>
       <fieldForLabel>alert</fieldForLabel>
       <fieldForValue>alert</fieldForValue>
       <search base="inputBaseSearch">
-        <query>| search app IN ($app_tok$) owner="$owner_tok$" reviewed IN ($reviewed_tok$)
+        <query>| search app IN ($app_tok$) owner="$owner_tok$" reviewed IN ($reviewed_tok$) type="$type_tok$"
 | stats values(alert) as alert
 | mvexpand alert
 | eval lower_alert=lower(alert)
@@ -63,7 +63,7 @@
       <fieldForLabel>app_label</fieldForLabel>
       <fieldForValue>app</fieldForValue>
       <search base="inputBaseSearch">
-        <query>| search alert="$alert_tok$" owner="$owner_tok$" reviewed IN ($reviewed_tok$)
+        <query>| search alert="$alert_tok$" owner="$owner_tok$" reviewed IN ($reviewed_tok$) type="$type_tok$"
 | fields app app_label
 | dedup app app_label
 | eval lower_app_label=lower(app_label)
@@ -83,12 +83,24 @@
       <fieldForLabel>owner</fieldForLabel>
       <fieldForValue>owner</fieldForValue>
       <search base="inputBaseSearch">
-        <query>| search alert="$alert_tok$" app IN ($app_tok$) reviewed IN ($reviewed_tok$)
+        <query>| search alert="$alert_tok$" app IN ($app_tok$) reviewed IN ($reviewed_tok$) type="$type_tok$"
 | stats values(owner) as owner
 | mvexpand owner
 | eval lower_owner=lower(owner)
 | sort + lower_owner</query>
       </search>
+      <change>
+        <unset token="clicked_alert_tok"></unset>
+        <unset token="clicked_search_tok"></unset>
+        <unset token="update_reviewed_tok"></unset>
+      </change>
+    </input>
+    <input type="dropdown" token="type_tok" searchWhenChanged="true">
+      <label>Type</label>
+      <choice value="*">Any</choice>
+      <choice value="alert">Alert</choice>
+      <choice value="report">Report</choice>
+      <default>alert</default>
       <change>
         <unset token="clicked_alert_tok"></unset>
         <unset token="clicked_search_tok"></unset>
@@ -134,7 +146,7 @@
     <panel>
       <html>
           <h2>
-          <b>Alert checks</b>
+          <b>Checks</b>
         </h2>
         <hr/>
           <b>Source</b>: Target data source must be indexed – <b>manual</b>
@@ -143,9 +155,9 @@
           <br/>
           <b>Runtime</b>: Runtime must be lower than the interval between one run to the next – <b>auto</b>
           <br/>
-          <b>Alignment</b>: Alert schedule must be coordinated with search time range – <b>auto</b> | <a class="external" href="https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Coordinate_an_alert_schedule_and_search_time_range" target="_blank">Resource</a>
+          <b>Alignment</b>: Saved search schedule must be coordinated with search time range – <b>auto</b> | <a class="external" href="https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Coordinate_an_alert_schedule_and_search_time_range" target="_blank">Resource</a>
           <br/>
-          <b>Delay</b>: Alert must be scheduled with at least one minute of delay – <b>auto</b> | <a class="external" href="https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Schedule_alerts_with_at_least_one_minute_of_delay" target="_blank">Resource</a>
+          <b>Delay</b>: Saved search must be scheduled with at least one minute of delay – <b>auto</b> | <a class="external" href="https://docs.splunk.com/Documentation/Splunk/latest/Alert/AlertSchedulingBestPractices#Schedule_alerts_with_at_least_one_minute_of_delay" target="_blank">Resource</a>
           <br/>
           <b>Structure</b>: Search query must be correctly structured – <b>manual</b> | <a class="external" href="https://www.splunk.com/en_us/blog/tips-and-tricks/splunk-clara-fication-search-best-practices.html" target="_blank">Resource</a>
           <br/>
@@ -174,11 +186,11 @@
 | eval dummy="$update_list_tok$"
 | fields - dummy
 | eval reviewed=if(updated&gt;=dateLastReview,0,1)
-| search alert="$alert_tok$" app IN ($app_tok$) owner="$owner_tok$" reviewed IN ($reviewed_tok$)
+| search alert="$alert_tok$" app IN ($app_tok$) owner="$owner_tok$" reviewed IN ($reviewed_tok$) type="$type_tok$"
 | convert ctime(updated)
 | eval issues=6-(runtimeIsLowerThanInterval+scheduleHasAtLeastOneMinuteDelay+searchIsCorrectlyStructured+searchPeriodIsAlignedWithSchedule+dataSourceExist+indexIsSpecified)
-| fields alert app app_label owner reviewed runtimeIsLowerThanInterval indexIsSpecified scheduleHasAtLeastOneMinuteDelay searchIsCorrectlyStructured searchPeriodIsAlignedWithSchedule dataSourceExist issues search cron_schedule service_request _key
-| rename dataSourceExist as source runtimeIsLowerThanInterval as runtime scheduleHasAtLeastOneMinuteDelay as delay searchIsCorrectlyStructured as structure searchPeriodIsAlignedWithSchedule as alignment indexIsSpecified as index app as app_drilldown app_label as app
+| fields alert app app_label owner type reviewed runtimeIsLowerThanInterval indexIsSpecified scheduleHasAtLeastOneMinuteDelay searchIsCorrectlyStructured searchPeriodIsAlignedWithSchedule dataSourceExist issues search cron_schedule service_request _key
+| rename alert as "saved search" dataSourceExist as source runtimeIsLowerThanInterval as runtime scheduleHasAtLeastOneMinuteDelay as delay searchIsCorrectlyStructured as structure searchPeriodIsAlignedWithSchedule as alignment indexIsSpecified as index app as app_drilldown app_label as app
 | eval reviewed=if(reviewed="1","✔️","❌")
 | eval source=if(source="1","✔️","❌")
 | eval index=if(index="1","✔️","❌")
@@ -198,14 +210,15 @@
           <colorPalette type="minMidMax" maxColor="#E66356" midColor="#FFFFFF" minColor="#F2F4F5"></colorPalette>
           <scale type="minMidMax" midValue="0"></scale>
         </format>
-        <fields>["reviewed","alert","app","owner","source","index","runtime","alignment","delay","structure","issues"]</fields>
+        <fields>["reviewed","saved search","app","owner","type","source","index","runtime","alignment","delay","structure","issues"]</fields>
         <drilldown>
-          <set token="clicked_alert_tok">$row.alert$</set>
+          <set token="clicked_alert_tok">$row.saved search$</set>
           <set token="clicked_search_tok">$row.search$</set>
           <set token="clicked_app_tok">$row.app_drilldown$</set>
           <set token="clicked_app_label_tok">$row.app$</set>
+          <set token="clicked_type_alt_tok">$row.type$</set>
+          <eval token="clicked_type_tok">if($row.type$="alert","Alert","Report")</eval>
           <set token="clicked_key_tok">$row._key$</set>
-          <set token="clicked_owner_tok">$row.owner$</set>
           <set token="clicked_service_request_tok">$row.service_request$</set>
           <eval token="show_source_ok_tok">if($row.source$="✔️",null,"true")</eval>
           <eval token="show_source_ko_tok">if($row.source$="✔️","true",null)</eval>
@@ -283,7 +296,7 @@
         </style>
         <center>
           <h2>
-          <a style="text-decoration:none;color:#555" data-token-json="{&quot;clicked_alert_tok&quot;: null, &quot;clicked_search_tok&quot;: null}">🔔 Alert: <b>$clicked_alert_tok$</b> (App: <b>$clicked_app_label_tok$</b>)</a>
+          <a style="text-decoration:none;color:#555" data-token-json="{&quot;clicked_alert_tok&quot;: null, &quot;clicked_search_tok&quot;: null}">🔔 $clicked_type_tok$: <b>$clicked_alert_tok$</b> (App: <b>$clicked_app_label_tok$</b>)</a>
           </h2>
         </center>
       </html>
@@ -312,7 +325,7 @@
 | eval dummy="$update_list_tok$"
 | fields - dummy
 | search alert="$clicked_alert_tok$" app IN ($clicked_app_tok$)
-| fields search cron_schedule earliest_time latest_time updated dateLastReview reviewer app_label actions email_to description service_request searchIsCorrectlyStructured runtimeIsLowerThanInterval scheduleHasAtLeastOneMinuteDelay searchPeriodIsAlignedWithSchedule dataSourceExist indexIsSpecified owner 
+| fields search cron_schedule earliest_time latest_time updated dateLastReview reviewer app_label actions email_to description service_request searchIsCorrectlyStructured runtimeIsLowerThanInterval scheduleHasAtLeastOneMinuteDelay searchPeriodIsAlignedWithSchedule dataSourceExist indexIsSpecified owner
 | convert ctime(dateLastReview)
 | convert ctime(updated)
 | eval dateLastReview=if(dateLastReview like "01/01/1970%","N/A",dateLastReview)
@@ -326,9 +339,9 @@
 | eval delay=if(delay="1","✔️","❌") 
 | eval structure=if(structure="1","✔️","❌") 
 | eval alignment=if(alignment="1","✔️","❌") 
-| eval "alert checks"="source: ".source."        index: ".index."        runtime: ".runtime ."        alignment: ".alignment."        delay: ".delay."        structure: ".structure 
+| eval checks="source: ".source."        index: ".index."        runtime: ".runtime ."        alignment: ".alignment."        delay: ".delay."        structure: ".structure 
 | eval "time range"="earliest: ".earliest_time."        latest: ".latest_time
-| fields search "cron schedule" "time range" "last update" "last review" reviewer app actions description owner "service request" "alert checks"
+| fields search "cron schedule" "time range" "last update" "last review" reviewer app actions description owner "service request" checks
 | fields - _key
 | transpose 0</query>
           <earliest>0</earliest>
@@ -354,7 +367,7 @@
       <html>
         <center>
           <h2 style="color:#555">
-            <b>Review alert</b> <i class="icon-calendar icon-no-underline" style="font-size:120%;color:#555"/>
+            <b>Review $clicked_type_alt_tok$</b> <i class="icon-calendar icon-no-underline" style="font-size:120%;color:#555"/>
           </h2>
         </center>
       </html>
