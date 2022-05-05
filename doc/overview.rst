@@ -112,3 +112,20 @@ This could be limited by the maximum concurrent scheduled searches Splunk schedu
 Hence, the idea is to represent the number of alerts launched over time against this concurrency limit so it becomes easy to spot too busy schedules.
 
 :ref:`See Improve Spreading<Improve Spreading>`
+
+Scheduler dashboard
+-------------------
+
+This dashboard provides visibility over scheduler errors by showing the most frequent ones.
+
+Runtime dashboard
+-----------------
+
+This dashboard highlights the longer running scheduled searches.
+
+Find dashboard
+--------------
+
+As Splunk admins we often need to find an active alert depending on various criteria such as its name, its recipient or what its search query contains.
+
+The goal of this dashboard is to make this search easier.
