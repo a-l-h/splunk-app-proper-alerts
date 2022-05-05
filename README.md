@@ -19,6 +19,7 @@
 * Added new dashboards: Scheduler, Runtime, Find
 * Updated icons in all dashboards
 * Removed the update service request function from Inventory dashboard
+* Granted r/w access for Splunk Cloud role sc_admin
  
 
 ##	Documentation
