@@ -2,6 +2,9 @@
   <view name="inventory" default='true' />
   <view name="issues" />
   <view name="concurrency" />
+  <view name="scheduler" />
+  <view name="runtime" />
+  <view name="find" />
   <collection label="Lookups">
   	<a href="/app/proper_alerts/lookup_edit?owner=nobody&amp;namespace=proper_alerts&amp;lookup=alerts_lookup&amp;type=kv">Alerts (KV Store)</a>
     <a href="/app/proper_alerts/lookup_edit?owner=nobody&amp;namespace=proper_alerts&amp;lookup=search_commands_lookup.csv&amp;type=csv">Search Commands (CSV)</a>

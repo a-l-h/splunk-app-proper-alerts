@@ -4,19 +4,21 @@
 ##	Version
 
 
-1.1.5
+1.2.0
 
 
 ##	Date
 
 
-17 January 2021
+05 May 2022
 
 
 ##	Release Notes
 
 
-* Saved searches can now be searched by type - alert or report
+* Added new dashboards: Scheduler, Runtime, Find
+* Updated icons in all dashboards
+* Removed the update service request function from Inventory dashboard
 
 
 ##	Documentation
@@ -52,7 +54,7 @@ These Apps must be deployed to your Search Head(s):
 
 Relaunch *Update KV Store lookup* from Reports tab by clicking ``Open in Search``
 
-:warning: *As 'type' is a new KV Store field, a change will be detected for all alerts, hence if you are using the 'Notify alert recipient of a change' alert, silence its first execution after the upgrade*
+:warning: *As 'type' is a new KV Store field, a change will be detected for all alerts, hence if you are using the 'Notify alert recipient of a change' alert, silence its first execution after the upgrade
 
 
 ##	Contact

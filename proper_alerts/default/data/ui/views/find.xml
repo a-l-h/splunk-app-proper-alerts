@@ -1,0 +1,132 @@
+<form script="tokenlinks.js" version="1.1">
+  <label>Find</label>
+  <fieldset submitButton="true" autoRun="false">
+    <input type="text" token="name_tok" searchWhenChanged="false">
+      <label>Name</label>
+      <prefix>*</prefix>
+      <suffix>*</suffix>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <change>
+        <unset token="clicked_name_tok"></unset>
+      </change>
+    </input>
+    <input type="text" token="search_tok" searchWhenChanged="false">
+      <label>Search</label>
+      <prefix>*</prefix>
+      <suffix>*</suffix>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <change>
+        <unset token="clicked_name_ready_tok"></unset>
+      </change>
+    </input>
+    <input type="text" token="recipient_tok" searchWhenChanged="false">
+      <label>Recipient</label>
+      <prefix>*</prefix>
+      <suffix>*</suffix>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <change>
+        <unset token="clicked_name_ready_tok"></unset>
+      </change>
+    </input>
+    <input type="text" token="description_tok" searchWhenChanged="false">
+      <label>Description</label>
+      <prefix>*</prefix>
+      <suffix>*</suffix>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <change>
+        <unset token="clicked_name_ready_tok"></unset>
+      </change>
+    </input>
+  </fieldset>
+  <row depends="$show_panel_tok$">
+    <panel>
+      <table>
+        <search>
+          <query>| rest splunk_server="local" /servicesNS/-/-/saved/searches search="disabled=0 is_scheduled=1"
+| search title="$name_tok$" search="$search_tok$" (action.email.to="$recipient_tok$" OR action.email.cc="$recipient_tok$" OR action.email.bcc="$recipient_tok$") description="$description_tok$"
+| fields title eai:acl.app
+| rename title as alert eai:acl.app as app</query>
+          <earliest>0</earliest>
+          <latest></latest>
+          <finalized>
+            <set token="show_panel_tok">true</set>
+          </finalized>
+        </search>
+        <option name="count">15</option>
+        <option name="drilldown">cell</option>
+        <format type="color" field="app">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <drilldown>
+          <set token="clicked_name_tok">$click.value$</set>
+        </drilldown>
+      </table>
+    </panel>
+  </row>
+  <row depends="$clicked_name_ready_tok$">
+    <panel>
+      <html>
+          <center>
+           <h2>
+            <p style="text-decoration:none;color:#555">🔔 $clicked_name_tok$  <a href="#" class="btn btn-small" data-token-json="{&quot;clicked_name_ready_tok&quot;: null,&quot;clicked_name_tok&quot;: null}">▲</a>
+            </p>
+            </h2>     
+          </center>
+        <style>
+          .dashboard-panel,
+          .panel-body.html{
+            background: #F2F4F5 !important;
+          }
+          a.hide-global-filters{
+            display: none !important;
+          }
+        </style>
+      </html>
+    </panel>
+  </row>
+  <row depends="$clicked_name_ready_tok$">
+    <panel>
+      <title></title>
+      <table>
+        <search>
+          <query>| rest splunk_server="local" /servicesNS/-/-/saved/searches search="disabled=0 is_scheduled=1"
+| search title="$clicked_name_tok$"
+| fields search cron_schedule dispatch.earliest_time dispatch.latest_time actions description action.email.message.alert action.email.to action.email.cc
+| rename dispatch.* as * action.email.* as * message.alert as "email body" cron_schedule as "cron schedule" earliest_time as "earliest time" latest_time as "latest time"
+| eval description=if(description="","N/A",description)
+| transpose 0
+| rename column as attributes "row 1" as values</query>
+          <earliest>0</earliest>
+          <latest></latest>
+          <finalized>
+            <set token="clicked_name_ready_tok">true</set>
+          </finalized>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+  <row depends="$clicked_name_ready_tok$">
+    <panel>
+      <html>
+          <center>
+           <h2>
+            <a style="text-decoration:none;color:#555" target="blank" href="/app/proper_alerts/inventory?form.alert_tok=$clicked_name_tok$">Inventory 👉 
+            </a>
+            </h2>     
+          </center>
+        <style>
+          a.hide-global-filters{
+            display: none !important;
+          }
+        </style>
+      </html>
+    </panel>
+  </row>
+</form>

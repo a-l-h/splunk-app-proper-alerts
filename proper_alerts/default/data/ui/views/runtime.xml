@@ -1,0 +1,126 @@
+<form version="1.1">
+  <label>Runtime</label>
+  <fieldset submitButton="false">
+    <input type="time" token="time_tok" searchWhenChanged="true">
+      <label>Time Picker</label>
+      <default>
+        <earliest>-24h@h</earliest>
+        <latest>now</latest>
+      </default>
+      <change>
+        <unset token="show_panel_tok"></unset>
+      </change>
+    </input>
+    <input type="dropdown" token="show_tok" searchWhenChanged="true">
+      <label>Mode</label>
+      <choice value="run">Per run</choice>
+      <choice value="cumulative">Cumulative</choice>
+      <default>run</default>
+      <change>
+        <condition value="run">
+          <set token="show_run_tok">true</set>
+          <unset token="show_cumulative_tok"></unset>
+        </condition>
+        <condition value="cumulative">
+          <set token="show_cumulative_tok">true</set>
+          <unset token="show_run_tok"></unset>
+        </condition>
+      </change>
+    </input>
+  </fieldset>
+  <row depends="$show_run_tok$,$run_ready_tok$">
+    <panel>
+      <html>
+        <style>
+          .dashboard-panel,
+          .panel-body.html{
+            background: #F2F4F5 !important;
+          }
+          a.hide-global-filters{
+            display: none !important;
+          }
+        </style>
+      <center>
+        <h2>
+          🕒 Runtime per run
+        </h2>
+      </center>
+    </html>
+    </panel>
+  </row>
+  <row depends="$show_run_tok$,$run_ready_tok$">
+    <panel>
+      <table>
+        <search>
+          <finalized>
+            <set token="run_ready_tok">true</set>
+          </finalized>
+          <query>index="_internal" sourcetype="scheduler" status="success"
+| table savedsearch_name app run_time
+| rename run_time as runtime savedsearch_name as savedsearch
+| sort - runtime
+| rename runtime as "runtime per run"</query>
+          <earliest>$time_tok.earliest$</earliest>
+          <latest>$time_tok.latest$</latest>
+        </search>
+        <option name="count">15</option>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+        <format type="number" field="runtime per run">
+          <option name="precision">0</option>
+          <option name="unit">sec</option>
+          <option name="useThousandSeparators">false</option>
+        </format>
+        <format type="color" field="runtime per run">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" minColor="#FFFFFF"></colorPalette>
+          <scale type="minMidMax"></scale>
+        </format>
+        <format type="color" field="app">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+      </table>
+    </panel>
+  </row>
+  <row depends="$show_cumulative_tok$">
+    <panel>
+      <html>
+      <center>
+        <h2>
+          🕘 Cumulative runtime
+        </h2>
+      </center>
+    </html>
+    </panel>
+  </row>
+  <row depends="$show_cumulative_tok$">
+    <panel>
+      <table>
+        <search>
+          <query>index="_internal" sourcetype="scheduler" status="success"
+| stats sum(run_time) as cumulative_runtime by savedsearch_name app
+| eval cumulative_runtime=cumulative_runtime/60
+| sort - cumulative_runtime
+| rename savedsearch_name as savedsearch cumulative_runtime as "cumulative runtime"</query>
+          <earliest>$time_tok.earliest$</earliest>
+          <latest>$time_tok.latest$</latest>
+        </search>
+        <option name="count">15</option>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+        <format type="color" field="cumulative runtime">
+          <colorPalette type="minMidMax" maxColor="#DC4E41" minColor="#FFFFFF"></colorPalette>
+          <scale type="minMidMax"></scale>
+        </format>
+        <format type="number" field="cumulative runtime">
+          <option name="precision">0</option>
+          <option name="unit">min</option>
+        </format>
+        <format type="color" field="app">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+      </table>
+    </panel>
+  </row>
+</form>

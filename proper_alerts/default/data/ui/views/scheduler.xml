@@ -1,0 +1,112 @@
+<form script="multiselect.js" version="1.1">
+  <label>Scheduler</label>
+  <fieldset submitButton="false">
+    <input type="time" token="time_tok" searchWhenChanged="true">
+      <label>Time Picker</label>
+      <default>
+        <earliest>-7d@h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="multiselect" token="level_tok" searchWhenChanged="true">
+      <label>Level</label>
+      <choice value="*">Any</choice>
+      <choice value="FATAL">FATAL</choice>
+      <choice value="ERROR">ERROR</choice>
+      <choice value="WARN">WARN</choice>
+      <default>*</default>
+      <delimiter> </delimiter>
+    </input>
+    <input type="text" token="search_tok" searchWhenChanged="true">
+      <label>Search</label>
+      <default>*</default>
+      <prefix>*</prefix>
+      <suffix>*</suffix>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <html>
+        <style>
+          .dashboard-panel,
+          .panel-body.html{
+            background: #F2F4F5 !important;
+          }
+          a.hide-global-filters{
+            display: none !important;
+          }
+        </style>
+      <center>
+        <h2>
+          🏁 Most recurring errors
+        </h2>
+      </center>
+    </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <search>
+          <query>index="_internal" sourcetype="scheduler" log_level IN (ERROR WARN FATAL) log_level IN ($level_tok$) event_message="$search_tok$"
+| cluster field=event_message showcount=t
+| fields host log_level event_message cluster_count
+| sort - cluster_count
+| rename log_level as level cluster_count as count event_message as message
+| table host level message count</query>
+          <earliest>$time_tok.earliest$</earliest>
+          <latest>$time_tok.latest$</latest>
+        </search>
+        <option name="drilldown">cell</option>
+        <option name="refresh.display">progressbar</option>
+        <format type="color" field="level">
+          <colorPalette type="map">{"WARN":#F1813F,"ERROR":#F8BE34,"FATAL":#DC4E41}</colorPalette>
+        </format>
+        <format type="color" field="level">
+          <colorPalette type="map">{"WARN":#F1813F,"ERROR":#F8BE34,"FATAL":#DC4E41}</colorPalette>
+        </format>
+        <format type="color" field="count">
+          <colorPalette type="minMidMax" maxColor="#F8BE34" minColor="#FFFFFF"></colorPalette>
+          <scale type="minMidMax"></scale>
+        </format>
+        <format type="color" field="host">
+          <colorPalette type="sharedList"></colorPalette>
+          <scale type="sharedCategory"></scale>
+        </format>
+        <drilldown>
+          <eval token="clicked_msg_tok">replace($row.message$,"\"","*")</eval>
+        </drilldown>
+      </table>
+    </panel>
+  </row>
+  <row depends="$clicked_msg_tok$">
+    <panel>
+      <html>
+      <center>
+        <h2>
+          Occurrences for message : <b>$clicked_msg_tok$</b>
+        </h2>
+      </center>
+    </html>
+    </panel>
+  </row>
+  <row depends="$clicked_msg_tok$">
+    <panel>
+      <chart>
+        <search>
+          <query>index="_internal" sourcetype="scheduler" event_message="$clicked_msg_tok$"
+| timechart count</query>
+          <earliest>$time_tok.earliest$</earliest>
+          <latest>$time_tok.latest$</latest>
+        </search>
+        <option name="charting.axisTitleX.visibility">collapsed</option>
+        <option name="charting.axisTitleY.visibility">collapsed</option>
+        <option name="charting.chart">column</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.legend.placement">none</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="charting.backgroundColor">#F2F4F5</option>
+      </chart>
+    </panel>
+  </row>
+</form>

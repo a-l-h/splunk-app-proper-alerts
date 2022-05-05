@@ -1,4 +1,4 @@
-<form script="tokenlinks.js,multiselect.js">
+<form script="tokenlinks.js,multiselect.js" version="1.1">
   <label>Issues</label>
   <init>
     <set token="reviewed_tok">1 0</set>
@@ -221,7 +221,7 @@
     </input>
     <input id="info_button_set" type="link" token="show_info_tok" depends="$show_info_set_tok$">
       <label></label>
-      <choice value="true">ℹ</choice>
+      <choice value="true">💡</choice>
       <change>
         <condition value="true">
           <unset token="show_info_set_tok"></unset>
@@ -232,7 +232,7 @@
     </input>
     <input id="info_button_unset" type="link" token="hide_info_tok" depends="$show_info_unset_tok$">
       <label></label>
-      <choice value="true">ℹ</choice>
+      <choice value="true">💡</choice>
       <change>
         <condition value="true">
           <unset token="form.show_info_tok"></unset>
@@ -347,19 +347,18 @@
           <query>| search dataSourceExist="1" indexIsSpecified="1" runtimeIsLowerThanInterval="1" searchPeriodIsAlignedWithSchedule="1" scheduleHasAtLeastOneMinuteDelay="1" searchIsCorrectlyStructured="1"
 | stats count(alert) as # by app_label app
 | rename app as app_drilldown app_label as app
-| eval lower_alert=lower(alert) 
-| sort + lower_alert
-| fields - lower_alert</query>
+| sort - #</query>
         </search>
         <option name="drilldown">cell</option>
+        <option name="refresh.display">progressbar</option>
         <format type="color" field="#">
           <colorPalette type="minMidMax" maxColor="#53A051" minColor="#FFFFFF"></colorPalette>
           <scale type="minMidMax"></scale>
         </format>
+        <fields>["app","#"]</fields>
         <drilldown>
           <set token="form.app_tok">$row.app_drilldown$</set>
         </drilldown>
-        <fields>["app","#"]</fields>
       </table>
     </panel>
     <panel>
@@ -368,9 +367,7 @@
           <query>| search dataSourceExist="0" OR indexIsSpecified="0" OR runtimeIsLowerThanInterval="0" OR searchPeriodIsAlignedWithSchedule="0" OR scheduleHasAtLeastOneMinuteDelay="0" OR searchIsCorrectlyStructured="0"
 | stats count(alert) as # by app_label app
 | rename app as app_drilldown app_label as app
-| eval lower_alert=lower(alert) 
-| sort + lower_alert
-| fields - lower_alert</query>
+| sort - #</query>
         </search>
         <option name="drilldown">cell</option>
         <option name="refresh.display">progressbar</option>
@@ -378,10 +375,10 @@
           <colorPalette type="minMidMax" maxColor="#E66356" minColor="#FFFFFF"></colorPalette>
           <scale type="minMidMax"></scale>
         </format>
+        <fields>["app","#"]</fields>
         <drilldown>
           <set token="form.app_tok">$row.app_drilldown$</set>
         </drilldown>
-        <fields>["app","#"]</fields>
       </table>
     </panel>
     <panel>
@@ -389,11 +386,10 @@
         <search base="baseSearch">
           <query>| stats count(alert) as # by app_label app
 | rename app as app_drilldown app_label as app
-| eval lower_alert=lower(alert) 
-| sort + lower_alert
-| fields - lower_alert</query>
+| sort - #</query>
         </search>
         <option name="drilldown">cell</option>
+        <option name="refresh.display">progressbar</option>
         <format type="color" field="#">
           <colorPalette type="minMidMax" maxColor="#555555" minColor="#FFFFFF"></colorPalette>
           <scale type="minMidMax"></scale>
@@ -433,9 +429,7 @@
     <panel>
       <html>
         <center>
-          Close  <a title="Close panel" class="btn btn-small" data-unset-token="show_panels_0_tok">
-          🗙
-        </a>
+          <a title="Close panel" class="btn btn-small" data-unset-token="show_panels_0_tok">▲</a>
         </center>
       </html>
     </panel>
@@ -606,7 +600,7 @@
       <table>
         <search base="baseSearch">
           <query>| search scheduleHasAtLeastOneMinuteDelay="0"
-| eval dummy="$show_panels_2_tok$" 
+| eval dummy="$show_panels_1_tok$" 
 | fields - dummy 
 | fields alert
 | eval lower_alert=lower(alert)
@@ -628,9 +622,7 @@
     <panel>
       <html>
         <center>
-          Close  <a title="Close panel" class="btn btn-small" data-unset-token="show_panels_1_tok">
-          🗙
-        </a>
+          <a title="Close panel" class="btn btn-small" data-unset-token="show_panels_1_tok">▲</a>
         </center>
       </html>
     </panel>
@@ -751,7 +743,7 @@
         </search>
         <option name="drilldown">cell</option>
         <option name="refresh.display">progressbar</option>
-        <fields>["alert"]</fields>
+        <fields>["saved search"]</fields>
         <drilldown>
           <link target="_blank">
             <![CDATA[/app/proper_alerts/inventory?form.alert_tok=$row.drilldown_alert|n$]]>
@@ -821,9 +813,7 @@
     <panel>
       <html>
         <center>
-          Close  <a title="Close panel" class="btn btn-small" data-unset-token="show_panels_2_tok">
-          🗙
-        </a>
+          <a title="Close panel" class="btn btn-small" data-unset-token="show_panels_2_tok">▲</a>
         </center>
       </html>
     </panel>
