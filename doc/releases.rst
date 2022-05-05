@@ -8,6 +8,11 @@ Release Notes
    * - Version
      - Date
      - Comments
+   * - 1.2.0
+     - 5 May 2022
+     - | Added new dashboards: Scheduler, Runtime, Find
+       | Updated icons in all dashboards
+       | Removed the update service request function from Inventory dashboard
    * - 1.1.5
      - 17 Jan 2021
      - | Saved searches can now be searched by type - alert or report
