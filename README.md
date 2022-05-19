@@ -4,22 +4,19 @@
 ##	Version
 
 
-1.2.1
+1.2.2
 
 
 ##	Date
 
 
-5 May 2022
+19 May 2022
 
 
 ##	Release Notes
 
 
-* Added new dashboards: Scheduler, Runtime, Find
-* Updated icons in all dashboards
-* Removed the update service request function from Inventory dashboard
-* Granted r/w access for Splunk Cloud role sc_admin
+* Fixed issues in 'Find' dashboard
  
 
 ##	Documentation
