@@ -3,7 +3,7 @@ Lookups
 
 This App uses 4 lookups, ``alerts_lookup``,  ``search_commands_lookup``,  ``alert_whitelist_lookup`` and ``app_whitelist_lookup``
 
-All these lookups can be edited manually effortlessly from the ``Lookups`` tab which relies on `Lookup File Editor App <https://splunkbase.splunk.com/app/1724/>`_.
+All these lookups can be edited manually effortlessly from the ``Lookups`` tab which relies on `Splunk App for Lookup File Editing <https://splunkbase.splunk.com/app/1724/>`_.
 
 KV Store lookup
 ---------------
