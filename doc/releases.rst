@@ -8,6 +8,9 @@ Release Notes
    * - Version
      - Date
      - Comments
+   * - 1.2.2
+     - 19 May 2022
+     - | Fixed issues in 'Find' dashboard
    * - 1.2.1
      - 5 May 2022
      - | Added new dashboards: Scheduler, Runtime, Find
